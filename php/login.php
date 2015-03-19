@@ -14,9 +14,9 @@ mysql_select_db("stablestudy", $con)
 
 or die("Unable to select database:" . mysql_error());
 
-$query = "select * from users where username = '" ;
+$query = "select * from users where email = '" ;
 
-$query = $query . $_POST['username'] . "' and password = '" . $_POST['password'] ."'";
+$query = $query . $_POST['email'] . "' and password = '" . $_POST['password'] ."'";
 
 $result = mysql_query($query);
 
