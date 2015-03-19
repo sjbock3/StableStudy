@@ -14,11 +14,11 @@ mysql_select_db("stablestudy", $con)
 
 or die("Unable to select database:" . mysql_error());
 
-$query = "insert into user(first, last, username, school, email, password) values('" ;
+$query = "select * from users where username = '" ;
 
-$query = $query . $_POST['first'] . "', '" . $_POST['last'] . "', '" . $_POST['username'] . "', '" . $_POST['school'] . "', '" . $_POST['email'] . "', '" . $_POST['password'] . "')'";
+$query = $query . $_POST['username'] . "' and password = '" . $_POST['password'] ."'";
 
-mysql_query($query);
+$result = mysql_query($query);
 
 // if (mysql_num_rows($result) == 0)
 
