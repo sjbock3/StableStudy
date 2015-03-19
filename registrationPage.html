@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="css/registration.css">
+
+	<title>Stable Study</title>
+
+</head>
+
+<header>
+
+		<div id="logo-container">
+			<div id="logo">Stable Study</div>
+			<br>
+		</div>
+
+</header>
+
+<body>
+
+<script src="js/registration.js"></script>
+	<div id="content">
+	<section class="row">
+	<div class="col-borderless">
+		<form name="registration" id="registration" enctype="application/json"  method="post">
+		<table>
+		<tbody>
+		<tr><td><h4>First Name: </td><td><input type="text" name="firstname" required></h4></td></tr>
+		<tr><td><h4>Last Name: </td><td><input type="text" name="lastname" required></h4></td></tr>
+		<tr><td><h4>School: </td><td><select name="school" form="registration">
+				<option value="SMU">SMU</option>
+				<option value="TCU">TCU</option>
+				<option value="UTD">UTD</option>
+			</select></h4></td></tr>
+		<tr><td><h4>Username: </td><td><input type="text" name="username" required></h4></td></tr>
+		<tr><td><h4>Email: </td><td><input type="email" name="email" required></h4></td></tr>
+		<tr><td><h4>Password: </td><td><input type="password" name="password" required minlength="8"></h4></td></tr>
+		<tr><td><h4>Verify Password: </td><td><input type="password" name="verifyPassword" required minlength="8"></td></tr>
+		</tbody></table>
+		<br><input type="button" onclick="registrationForm(registration)" name="Submit" value="Submit">
+		</form>
+	</div>
+	</section>
+	</div>
+</body>
+		
+</html>
