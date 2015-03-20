@@ -1,0 +1,84 @@
+body {
+    
+    background-color: dodgerblue;
+    font-family: 'Roboto', sans-serif;
+    background-image: url(../images/triangular.png);
+}
+
+
+
+
+
+#centerwindow {
+    width: 50%;
+    height: 400px;
+    min-width: 700px;
+    max-width: 1000px;
+    vertical-align: middle;
+    margin-top: 10em;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    
+    border-radius: 2px;
+}
+
+
+.titlebar {
+    height 35px;
+}
+
+.titlebar h1 {
+    text-align: center;
+    font-size: 3em;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid black
+}
+
+.button_style {
+    border-radius: 10px;
+    width: 200px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    font-size: 2em;
+    background-color: #9cbfff;
+    
+}
+
+.button_style a, .button_style a:visited {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.login {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    
+    
+}
+
+.inputfield {
+    height: 20px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+#loginbutton {
+    border: none;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    background-color: #9cbfff;
+    font-size: 1em;
+    margin-top: 10px;
+    width: 60px;
+    
+}
+
