@@ -19,11 +19,11 @@
         global $mysqli;
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $query = "SELECT * from users where email = '" ;
+       /* $query = "SELECT * from users where email = '" ;
 
-        $query = $query . $email . "' and password = '" . $password ."'";
+        $query = $query . $email . "' and password = '" . $password ."'";*/
 
-        $result = $mysqli->query($query);
+        $result = $mysqli->query("SELECT * FROM users WHERE email = '$email' AND password = '$password'");
         
         
         
@@ -72,13 +72,16 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
         
-        $usernameChecker = "SELECT * FROM user WHERE username = '" ;
+        /*$usernameChecker = "SELECT * FROM user WHERE username = '" ;
         $usernameChecker = $usernameChecker . $username . "'";
         $emailChecker = "SELECT * FROM user WHERE email = '";
         $emailChecker = $emailChecker . $email . "'";
         
         $doesUserExist = $mysqli->query($usernameChecker);
-        $doesEmailExist = $mysqli->query($emailChecker);
+        $doesEmailExist = $mysqli->query($emailChecker);*/
+        
+        $doesUserExist = $mysqli->query("SELECT * FROM user WHERE username = '$username'");
+        $doesEmailExist = $mysqli->query("SELECT * FROM user WHERE email = '$email'");
         
         //if username or email exists
         if($doesUserExist === NULL || $doesEmailExist === NULL)
@@ -91,9 +94,11 @@
         //add in new user
         else
         {
-            $query = "INSERT INTO user (fName, lName, school, username, email, password) VALUES ('" ;
-            $query = $query . $fName . "', '" . $lName . "', '" . $school . "', '" . $username . "', '" . $email . "', '" . $password . "')'";
-            $mysqli->query($query);
+            /*$query = "INSERT INTO user (fName, lName, school, username, email, password) VALUES ('" ;
+            $query = $query . $fName . "', '" . $lName . "', '" . $school . "', '" . $username . "', '" . $email . "', '" . $password . "')";
+            $mysqli->query($query);*/
+            
+            $mysqli->query("INSERT INTO user(fName, lName, school, username, email, password) VALUES ('$fName', '$lName', '$school', '$username', '$email', '$password')");
             $jsonArray = array('u_id' => 1);
             
             echo json_encode($jsonArray);
