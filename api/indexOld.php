@@ -19,8 +19,11 @@
         global $mysqli;
         $email = $_POST['email'];
         $password = $_POST['password'];
+        $query = "SELECT * from users where email = '" ;
 
-        $result = $mysqli->query("SELECT * FROM users WHERE email = '$email' AND password = '$password'");
+        $query = $query . $email . "' and password = '" . $password ."'";
+
+        $result = $mysqli->query($query);
         
         
         
@@ -69,8 +72,13 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
         
-        $doesUserExist = $mysqli->query("SELECT * FROM users WHERE username = '$username'");
-        $doesEmailExist = $mysqli->query("SELECT * FROM users WHERE email = '$email'");
+        $usernameChecker = "SELECT * FROM user WHERE username = '" ;
+        $usernameChecker = $usernameChecker . $username . "'";
+        $emailChecker = "SELECT * FROM user WHERE email = '";
+        $emailChecker = $emailChecker . $email . "'";
+        
+        $doesUserExist = $mysqli->query($usernameChecker);
+        $doesEmailExist = $mysqli->query($emailChecker);
         
         //if username or email exists
         if($doesUserExist === NULL || $doesEmailExist === NULL)
@@ -83,14 +91,14 @@
         //add in new user
         else
         {
-            
-            if($mysqli->query("INSERT INTO users(fName, lName, school, username, email, password) VALUES ('$fName', '$lName', '$school', '$username', '$email', '$password')")){
+            $query = "INSERT INTO user (fName, lName, school, username, email, password) VALUES ('" ;
+            $query = $query . $fName . "', '" . $lName . "', '" . $school . "', '" . $username . "', '" . $email . "', '" . $password . "')";
+            if ($mysqli->query($query)) {
 
             }
             else {
-                echo "db done goofed ";
+                echo "DB done goofed";
             }
-
             $jsonArray = array('u_id' => 1);
             
             echo json_encode($jsonArray);
