@@ -19,9 +19,6 @@
         global $mysqli;
         $email = $_POST['email'];
         $password = $_POST['password'];
-       /* $query = "SELECT * from users where email = '" ;
-
-        $query = $query . $email . "' and password = '" . $password ."'";*/
 
         $result = $mysqli->query("SELECT * FROM users WHERE email = '$email' AND password = '$password'");
         
@@ -72,14 +69,6 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
         
-        /*$usernameChecker = "SELECT * FROM user WHERE username = '" ;
-        $usernameChecker = $usernameChecker . $username . "'";
-        $emailChecker = "SELECT * FROM user WHERE email = '";
-        $emailChecker = $emailChecker . $email . "'";
-        
-        $doesUserExist = $mysqli->query($usernameChecker);
-        $doesEmailExist = $mysqli->query($emailChecker);*/
-        
         $doesUserExist = $mysqli->query("SELECT * FROM users WHERE username = '$username'");
         $doesEmailExist = $mysqli->query("SELECT * FROM users WHERE email = '$email'");
         
@@ -94,9 +83,6 @@
         //add in new user
         else
         {
-            /*$query = "INSERT INTO user (fName, lName, school, username, email, password) VALUES ('" ;
-            $query = $query . $fName . "', '" . $lName . "', '" . $school . "', '" . $username . "', '" . $email . "', '" . $password . "')";
-            $mysqli->query($query);*/
             
             if($mysqli->query("INSERT INTO users(fName, lName, school, username, email, password) VALUES ('$fName', '$lName', '$school', '$username', '$email', '$password')")){
 
