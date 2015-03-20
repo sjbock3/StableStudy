@@ -80,20 +80,30 @@
         $doesUserExist = $mysqli->query($usernameChecker);
         $doesEmailExist = $mysqli->query($emailChecker);
         
+        //if username or email exists
         if($doesUserExist === NULL || $doesEmailExist === NULL)
         {
             $jsonArray = array( 'u_id' => -1);
+            echo json_encode($jsonArray);
+            return;
         }
+        
+        //add in new user
         else
         {
             $query = "INSERT INTO user (fName, lName, school, username, email, password) VALUES ('" ;
             $query = $query . $fName . "', '" . $lName . "', '" . $school . "', '" . $username . "', '" . $email . "', '" . $password . "')'";
             $mysqli->query($query);
+            $jsonArray = array('u_id' => 1);
+            
+            echo json_encode($jsonArray);
+            return;
         }
         
-        
-        
-        
+        //return error
+        $jsonArray = array('u_id' => -2);
+        echo json_encode($jsonArray);
+        return;
         
     });
     
