@@ -107,6 +107,6 @@
         
     });
     
-    $mysqli->close();
+    $app->run();
 
 ?>
