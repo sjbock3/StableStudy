@@ -13,9 +13,9 @@ if (!$con)
 }
 or die("Unable to select database:" . mysql_error());
 
-$query = "insert into user(first, last, username, school, email, password) values('" ;
+$query = "INSERT INTO user (fName, lName, school, username, email, password) VALUES ('" ;
 
-$query = $query . $_POST['first'] . "', '" . $_POST['last'] . "', '" . $_POST['username'] . "', '" . $_POST['school'] . "', '" . $_POST['email'] . "', '" . $_POST['password'] . "')'";
+$query = $query . $_POST['fName'] . "', '" . $_POST['lName'] . "', '" . $_POST['school'] . "', '" . $_POST['username'] . "', '" . $_POST['email'] . "', '" . $_POST['password'] . "')'";
 
 mysqli_query($con, $query);
 
