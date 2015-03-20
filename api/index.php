@@ -92,7 +92,7 @@
         else
         {
             $query = "INSERT INTO user (fName, lName, school, username, email, password) VALUES ('" ;
-            $query = $query . $fName . "', '" . $lName . "', '" . $school . "', '" . $username . "', '" . $email . "', '" . $password . "')'";
+            $query = $query . $fName . "', '" . $lName . "', '" . $school . "', '" . $username . "', '" . $email . "', '" . $password . "')";
             $mysqli->query($query);
             $jsonArray = array('u_id' => 1);
             
