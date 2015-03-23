@@ -27,6 +27,7 @@ function registrationForm(form) {
 	if(!re.test(form.password.value))
 	{
 	    alert("Password must contain at least one lowercase letter.");
+	    return false;
 	}
 
 	re = /[A-Z]/;
