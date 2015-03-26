@@ -20,20 +20,22 @@ USE `stablestudy` ;
 -- -----------------------------------------------------
 -- Table `stablestudy`.`users`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `stablestudy`.`users` ;
 CREATE TABLE IF NOT EXISTS `stablestudy`.`users` (
   `fName` VARCHAR(20) NOT NULL,
   `lName` VARCHAR(20) NOT NULL,
   `school` VARCHAR(45) NOT NULL,
-  `username` VARCHAR(20) NOT NULL,
+  `username` VARCHAR(20) NOT NULL UNIQUE,
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`email`, `username`))
+  PRIMARY KEY (`email`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
 -- Table `stablestudy`.`rooms`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `stablestudy`.`rooms` ;
 CREATE TABLE IF NOT EXISTS `stablestudy`.`rooms` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `number` INT NOT NULL,
@@ -52,6 +54,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `stablestudy`.`buildings`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `stablestudy`.`buildings` ;
 CREATE TABLE IF NOT EXISTS `stablestudy`.`buildings` (
   `buildingName` VARCHAR(100) NOT NULL,
   `closedAtNight` TINYINT(1) NULL,
