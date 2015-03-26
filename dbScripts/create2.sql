@@ -5,37 +5,36 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema stablestudy
 -- -----------------------------------------------------
 DROP SCHEMA IF EXISTS `stablestudy` ;
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema stablestudy
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `stablestudy` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `stablestudy` ;
 -- -----------------------------------------------------
 -- Schema stablestudy
 -- -----------------------------------------------------
 USE `stablestudy` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`building`
+-- Table `stablestudy`.`building`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `stablestudy`.`building` (
+CREATE TABLE IF NOT EXISTS `stablestudy`.`buildings` (
   `buildingID` INT(11) NOT NULL AUTO_INCREMENT,
   `bName` VARCHAR(25) NULL DEFAULT NULL,
   `closedAtNight` TINYINT(1) NULL DEFAULT NULL,
   `onCampus` TINYINT(1) NULL DEFAULT NULL,
   `address` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`buildingID`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`user`
+-- Table `stablestudy`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `stablestudy`.`user` (
+CREATE TABLE IF NOT EXISTS `stablestudy`.`users` (
   `username` VARCHAR(20) NOT NULL,
   `email` VARCHAR(30) NULL DEFAULT NULL,
   `namef` VARCHAR(20) NULL DEFAULT NULL,
@@ -45,12 +44,11 @@ CREATE TABLE IF NOT EXISTS `stablestudy`.`user` (
   `usertype` VARCHAR(9) NULL DEFAULT NULL,
   `online` TINYINT(1) NULL DEFAULT NULL,
   PRIMARY KEY (`username`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`favorites`
+-- Table `stablestudy`.`favorites`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `stablestudy`.`favorites` (
   `favID` INT NOT NULL AUTO_INCREMENT,
@@ -60,15 +58,14 @@ CREATE TABLE IF NOT EXISTS `stablestudy`.`favorites` (
   INDEX `username_idx` (`username` ASC),
   CONSTRAINT `username`
     FOREIGN KEY (`username`)
-    REFERENCES `mydb`.`user` (`username`)
+    REFERENCES `stablestudy`.`users` (`username`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`friends`
+-- Table `stablestudy`.`friends`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `stablestudy`.`friends` (
   `friendID` INT(11) NOT NULL,
@@ -80,22 +77,21 @@ CREATE TABLE IF NOT EXISTS `stablestudy`.`friends` (
   INDEX `user2_idx` (`user2` ASC),
   CONSTRAINT `user1`
     FOREIGN KEY (`user1`)
-    REFERENCES `mydb`.`user` (`username`)
+    REFERENCES `stablestudy`.`users` (`username`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `user2`
     FOREIGN KEY (`user2`)
-    REFERENCES `mydb`.`user` (`username`)
+    REFERENCES `stablestudy`.`users` (`username`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`room`
+-- Table `stablestudy`.`rooms`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `stablestudy`.`room` (
+CREATE TABLE IF NOT EXISTS `stablestudy`.`rooms` (
   `id` INT(11) NOT NULL,
   `number` INT(11) NULL DEFAULT NULL,
   `buidlingID:FK` INT(11) NULL DEFAULT NULL,
@@ -110,11 +106,10 @@ CREATE TABLE IF NOT EXISTS `stablestudy`.`room` (
   INDEX `buildingID_idx` (`buidlingID:FK` ASC),
   CONSTRAINT `buildingID`
     FOREIGN KEY (`buidlingID:FK`)
-    REFERENCES `mydb`.`building` (`buildingID`)
+    REFERENCES `stablestudy`.`buildings` (`buildingID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
