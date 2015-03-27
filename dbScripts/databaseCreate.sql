@@ -53,12 +53,12 @@ DROP TABLE IF EXISTS `stablestudy`.`rooms` ;
 
 CREATE TABLE IF NOT EXISTS `stablestudy`.`rooms` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `number` INT NULL,
+  `number` INT NOT NULL,
   `buildingName` VARCHAR(100) NULL,
   `chairs` INT NULL,
   `computers` INT NULL,
   `whiteboards` INT NULL,
-  `printer` INT NULL,
+  `printers` INT NULL,
   `projectors` INT NULL,
   `restricted` TINYINT NULL,
   `pictureurl` VARCHAR(100) NULL,
