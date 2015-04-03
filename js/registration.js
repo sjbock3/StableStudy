@@ -27,6 +27,7 @@ function registrationForm(form) {
 	if(!re.test(form.password.value))
 	{
 	    alert("Password must contain at least one lowercase letter.");
+	    return false;
 	}
 
 	re = /[A-Z]/;
@@ -45,9 +46,10 @@ function registrationForm(form) {
 
         var Request = new XMLHttpRequest();
 
-	Request.open('POST', 'http://private-c92d2-stablestudy.apiary-mock.com/users');
+	Request.open('POST', './api/index.php/user', true);
 
-	Request.setRequestHeader('Content-Type', 'application/json');	
+	Request.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");	
+
 
 	Request.onreadystatechange = function () {
 	  if (this.readyState === 4) {
@@ -57,17 +59,11 @@ function registrationForm(form) {
 		window.location.href = "registrationPage.html";
   	  }
 	};
+	
+	var body = "fName="+form.firstname.value+"&lName="+form.lastname.value+"&school="+form.school.value+"&username="+form.username.value+"&email="+form.email.value+"&password="+form.password.value;
 
-	var body = {
-  	'fName': form.firstname.value,
-  	'lName': form.lastname.value,
-  	'school': form.school.value,
-  	'username': form.username.value,
-  	'email': form.email.value,
-  	'password': form.password.value
-	};
 
-Request.send(JSON.stringify(body));
+	Request.send(body);
 
 }
 
