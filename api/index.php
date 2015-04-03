@@ -104,6 +104,13 @@
         
     });
     
+    $app->get('/locations', function(){
+        $locationList = $mysqli->query("SELECT * FROM locations");
+        echo json_encode($locationList); 
+        return;
+        
+    });
+    
     $app->run();
 
 ?>
