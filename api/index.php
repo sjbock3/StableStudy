@@ -1,4 +1,4 @@
-<?php //completely written by Nick Roberts
+<?php //completely written by 
     require 'vendor/autoload.php';
     $app = new \Slim\Slim();
 
@@ -100,6 +100,17 @@
         //return error
         $jsonArray = array('u_id' => -2);
         echo json_encode($jsonArray);
+        return;
+        
+    });
+    
+    $app->get('/locations', function(){
+    	global $mysqli;
+        $locationList = $mysqli->query("SELECT * FROM locations");
+        #echo var_dump($locationList->fetch_all());
+	    echo "\n";
+        #echo json_encode($locationList->fetch_assoc());
+        echo json_encode($locationList->fetch_all(MYSQLI_ASSOC)); 
         return;
         
     });
