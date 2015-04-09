@@ -24,18 +24,16 @@
         
         
         
-        
-        if(($result === NULL)) {
+        $row = $result->fetch_assoc();
+        if(($row === NULL)) {
             $jsonArray = array(
                 'status' => 'Failure',
                 'fName'=> NULL,
                 'lName'=> NULL,
                 'school'=> NULL,
                 'username'=> NULL);
-                
             echo json_encode($jsonArray);
             return;
-        
         
         
             
@@ -43,7 +41,6 @@
         
         
         else {
-            $row = $result->fetch_assoc();
             $jsonArray = array(
                 'status' => 'Success',
                 'fName'=> $row['fName'],
@@ -80,7 +77,7 @@
             return;
         }
         
-        //add in new user
+        //else add in new user
         else
         {
             
@@ -107,9 +104,6 @@
     $app->get('/locations', function(){
     	global $mysqli;
         $locationList = $mysqli->query("SELECT * FROM locations");
-        #echo var_dump($locationList->fetch_all());
-	    echo "\n";
-        #echo json_encode($locationList->fetch_assoc());
         echo json_encode($locationList->fetch_all(MYSQLI_ASSOC)); 
         return;
         
