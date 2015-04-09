@@ -25,17 +25,15 @@
         
         
         
-        if(($result === NULL)) {
+        if(($result->fetch_assoc() === NULL)) {
             $jsonArray = array(
                 'status' => 'Failure',
                 'fName'=> NULL,
                 'lName'=> NULL,
                 'school'=> NULL,
                 'username'=> NULL);
-                
             echo json_encode($jsonArray);
             return;
-        
         
         
             
@@ -80,7 +78,7 @@
             return;
         }
         
-        //add in new user
+        //else add in new user
         else
         {
             
