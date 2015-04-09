@@ -24,8 +24,8 @@
         
         
         
-        
-        if(($result->fetch_assoc() === NULL)) {
+        $row = $result->fetch_assoc();
+        if(($row === NULL)) {
             $jsonArray = array(
                 'status' => 'Failure',
                 'fName'=> NULL,
@@ -41,7 +41,6 @@
         
         
         else {
-            $row = $result->fetch_assoc();
             $jsonArray = array(
                 'status' => 'Success',
                 'fName'=> $row['fName'],
