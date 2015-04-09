@@ -1,4 +1,11 @@
 $(document).ready(function() {
+
+    var data = {'email':'bcelii@smu.edu',
+            'password':"parkhill"};
+
+    $.post('http://192.168.33.10/api/index.php/loginUser',data,function(passedData){
+        console.log(passedData);
+    });
     alert('made inside brendan script');
     $("#map_canvas").css('background-image', 'url( "../img/google_Maps_Pic")');
 
