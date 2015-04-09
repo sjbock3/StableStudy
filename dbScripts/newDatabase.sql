@@ -87,6 +87,7 @@ DROP TABLE IF EXISTS `stablestudy`.`meetings` ;
 CREATE TABLE IF NOT EXISTS `stablestudy`.`meetings` (
   `meetingID` INT NOT NULL AUTO_INCREMENT,
   `hostName` VARCHAR(20) NULL,
+  `meetingTime` TIME,
   `roomID` INT NULL,
   PRIMARY KEY (`meetingID`),
   INDEX `hostName_idx` (`hostName` ASC),
