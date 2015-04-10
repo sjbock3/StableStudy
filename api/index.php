@@ -107,7 +107,7 @@ $server = "localhost";
 
     $app->get('/buildings', function(){
         global $mysqli;
-        $buildingList = $mysqli->query("SELECT buildingName FROM locations");
+        $buildingList = $mysqli->query("SELECT DISTINCT buildingName FROM locations");
 
         echo json_encode($buildingList->fetch_all(MYSQLI_ASSOC));
 
