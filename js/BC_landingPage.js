@@ -79,10 +79,16 @@ $( "#loginButton" ).click(function(){
 
     var  userName = $('#username');
     var password = $('#userPassword');
-    if(userName.length) {
+    console.log(password);
+    if(userName.length && password.length) {
+        console.log('expression ='+ userName.eq(0).val());
         var userEmail = userName.eq(0).val();
+        console.log("userEmail = "+ userEmail);
+
         var userPass = password.eq(0).val();
+        console.log("userPass = "+ userPass);
         var valid = askDatabaseIfUser(userEmail, userPass);
+        console.log("valid3 = "+valid);
         if (valid != true) {
             $(".incorrect_Login").css("visibility","inherit");
             //want to clear the fiedls if incorrect
@@ -94,7 +100,7 @@ $( "#loginButton" ).click(function(){
         else {
             //go to the main site
             //alert("Password correct");
-            location.href = "index.html";
+            window.location.href = '/index.html';
         }
     }
     else {
@@ -104,15 +110,36 @@ $( "#loginButton" ).click(function(){
 
 
 function askDatabaseIfUser(userEmail, password){
+    /*var data = {'email':'bcelii@smu.edu',
+        'password':"parkhill"};
+
+    $.post('http://192.168.33.10/api/index.php/loginUser',data,function(passedData){
+        console.log(passedData);
+    });
+    */
+
     console.log(userEmail,password);
     //create the JSON to pass to database
-    var data = {"email":userEmail,
+    var data2 = {"email":userEmail,
                 "password":password};
 
-    var valid = false;
-    $.post(databaseURL + '/loginUser',data,function(){
-        valid = true;
+    var valid = true;
+    $.post('http://192.168.33.10/api/index.php/loginUser',data2,function(originalReturn){
+        console.log(originalReturn);
+        var returnData = JSON.parse(originalReturn);
+        console.log(returnData);
+        console.log((returnData.status == "Success"));
+        console.log((returnData.fName != null));
+        console.log((returnData.lName != null));
+
+        if((returnData.status == "Success") && (returnData.fName != null) && (returnData.lName != null)){
+            valid = true;
+            console.log("valid2 = "+valid);
+            return true;
+
+        }
     });
+    console.log("valid1 = "+valid);
     return valid;
 }
 
