@@ -2,50 +2,12 @@
 <html>
 <head>
 	<title>Stable Study Landing</title>
-	<style>
-		.bg {
-				width:100%;
-				position: absolute;
-				top: 0;
-				left: 0;
-			}
-		.button_style {
-  				position: absolute;
-  				width: 20%;
-  				height: 70px;
-  				padding: 0;
-  				font-size: 28px;
-  				color: white;
-  				text-align: center;
-  				background: #3242d0;
-  				border: 0;
-  				border-bottom: 6px solid #222222;
-  				border-top: 6px solid #9797d0;
-  				border-left: 6px solid #9797d0;
-  				border-right: 6px solid #222222;
-  				cursor: pointer;
-  				left:31%;
-  				top:30%;
-			}
-		.top_left_text {
-			position: absolute;
-			text-align: left;
-			color: cornflowerblue;
-			font-size: 400%;
-			margin-left: 0px;
-			left:28.3%;
-			top:0%;
-			}
-		.login {
-			position: absolute;
-			text-align: left;
-			left: 29%;
-			top: 18%;
-		}
-			}
-	</style>
+
+	<link href="./css/NC_landingpage.css" rel="stylesheet">
 </head>
 	<body>
+		<script src="js/cookie.js"></script>
+		<script src="js/jquery.js"></script>
 		<div class="bg">
 			<img id="background-img" class="bg" src="images/shelves.jpg" alt="" />
 		</div>
@@ -60,10 +22,11 @@
 			<table>
 			<tbody>
 			<tr><td>Email: </td><td><input type="email" name="email" required></td><td>Already have</td></tr>
-			<tr><td>Password: </td><td><input type="password" name="password" required minlength="8"></td><td>an account?</td></tr>
+			<tr><td>Password: </td><td><input type="password" name="password" required minlength="1"></td><td>an account?</td></tr>
 			</tbody></table>
-			<input type="button" onclick="loginForm(login)" name="Login" value="Login">
+			<input type="button" onclick="loginUser(login)" name="Login" value="Login">
 			</form>
 		</div>
+		
 	</body>
 </html>
