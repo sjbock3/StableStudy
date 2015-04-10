@@ -135,6 +135,7 @@ function askDatabaseIfUser(userEmail, password){
         if((returnData.status == "Success") && (returnData.fName != null) && (returnData.lName != null)){
             valid = true;
             console.log("valid2 = "+valid);
+            setCookie(status, fName, lName, school, username);
             return true;
 
         }
@@ -143,4 +144,8 @@ function askDatabaseIfUser(userEmail, password){
     return valid;
 }
 
+function setCookie(status, fName, lName, school, username) {
+	document.cookie="status="+status+"; fname="+fname+"; lname="+lname+"; school="+school+"; username="+username;
 
+	var c = document.cookie;
+}
