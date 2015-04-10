@@ -1,4 +1,4 @@
--- MySQL Workbench Forward Engineering
+MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -39,15 +39,14 @@ DROP TABLE IF EXISTS `stablestudy`.`locations` ;
 
 CREATE TABLE IF NOT EXISTS `stablestudy`.`locations` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `latitude` DOUBLE NULL,
-  `longitude` DOUBLE NULL,
-  `floor` INT NULL,
+  `latitude` VARCHAR(45) NULL,
+  `longitude` VARCHAR(45) NULL,
   `buildingName` VARCHAR(45) NULL,
   `roomNumber` INT NULL,
   `chairs` INT NULL,
   `computers` INT NULL,
   `whiteboards` INT NULL,
-  `printers` INT NULL,
+  `printer` INT NULL,
   `projectors` INT NULL,
   `restricted` TINYINT(1) NULL,
   `pictureurl` VARCHAR(100) NULL,
