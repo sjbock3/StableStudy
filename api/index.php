@@ -102,12 +102,28 @@
     });
     
     $app->get('/locations', function(){
-    	global $mysqli;
+        global $mysqli;
         $locationList = $mysqli->query("SELECT * FROM locations");
         echo json_encode($locationList->fetch_all(MYSQLI_ASSOC)); 
         return;
         
     });
+
+    $app->get('/buildings', function(){
+        global $mysqli;
+        $buildingList = $mysqli->query("SELECT buildingName FROM locations");
+
+        echo json_encode($buildingList->fetch_all(MYSQLI_ASSOC));
+
+
+
+
+        return;
+        
+    });
+
+
+    
     
     $app->run();
 
