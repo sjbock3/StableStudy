@@ -135,8 +135,10 @@ function askDatabaseIfUser(userEmail, password){
         if((returnData.status == "Success") && (returnData.fName != null) && (returnData.lName != null)){
             valid = true;
             console.log("valid2 = "+valid);
-            window.location.href = '/index.html';
+            setCookie(returnData.status, returnData.fName, returnData.lName, returnData.school, returnData.username);
 
+            window.location.href = '/index.html';
+            return true;
 
         }
         else{
@@ -147,10 +149,15 @@ function askDatabaseIfUser(userEmail, password){
             userName.eq(0).val('');
             password.eq(0).val('');
 
+
         }
     });
     console.log("valid1 = "+valid);
     return valid;
 }
 
+function setCookie(status, fName, lName, school, username) {
+	document.cookie="status="+status+"; fname="+fname+"; lname="+lname+"; school="+school+"; username="+username;
 
+	var c = document.cookie;
+}
