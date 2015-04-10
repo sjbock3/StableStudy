@@ -8,7 +8,7 @@ html {
     position: relative;*/
     width: 100%;                    /************Have to change these widths and heights******/
     height: 100%;
-    background-size: cover;
+    background-size: 100% 100%
     /*-webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -47,5 +47,14 @@ body {
 }
 
 #map_canvas{
-    background: url('../img/google_Maps_Pic.png');
+    /*background: url('../img/google_Maps_Pic.png');*/
+}
+
+/*Edits made 4/9/15 11:48pm*/
+#smallSuggest {
+    margin-right: 15px;
+}
+
+.location_container{
+    float: right;
 }

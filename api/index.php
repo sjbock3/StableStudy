@@ -1,11 +1,11 @@
-$server = "localhost";
+<?php //completely written by 
+    require 'vendor/autoload.php';
+    $app = new \Slim\Slim();
+    $server = "localhost";
     $user = "root";
     $pass = "rootpass";
     $dbname = "stablestudy";
-
-
     $mysqli = new mysqli($server, $user, $pass, $dbname);
-
     if ($mysqli->connect_error)
         die("Connection failed: " . $mysqli->connect_error);
     
@@ -15,7 +15,6 @@ $server = "localhost";
         global $mysqli;
         $email = $_POST['email'];
         $password = $_POST['password'];
-
         $result = $mysqli->query("SELECT * FROM users WHERE email = '$email' AND password = '$password'");
         
         
@@ -78,12 +77,10 @@ $server = "localhost";
         {
             
             if($mysqli->query("INSERT INTO users(fName, lName, school, username, email, password) VALUES ('$fName', '$lName', '$school', '$username', '$email', '$password')")){
-
             }
             else {
                 echo "db done goofed ";
             }
-
             $jsonArray = array('u_id' => 1);
             
             echo json_encode($jsonArray);
@@ -122,5 +119,4 @@ $server = "localhost";
     
     
     $app->run();
-
-?
+?>

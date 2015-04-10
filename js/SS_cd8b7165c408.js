@@ -6803,6 +6803,19 @@ var requests = [];
         if ($.cookie('default_location')) {
             $('#location_select').val($.cookie('default_location'));
         }
+
+
+        //default locatoins for SMU
+        /*var SMU_latitude = "32.8441";
+        var SMU_longitude = "-96.7849";
+        var SMU_location = "dallas";
+        var SMU_zoom = "15";
+
+        window.default_latitude = SMU_latitude;
+        window.default_longitude = SMU_longitude;
+        window.default_location = SMU_location;
+        window.default_zoom = SMU_zoom;*/
+
         $('#location_select').change(function() {
             var loc_info = $(this).val().split(',');
             window.default_latitude = loc_info[0];
@@ -6968,7 +6981,8 @@ var requests = [];
         $('.carousel').height(containerH);
         $('.carousel-inner-image').height(containerH);
         $('.carousel-inner-image-inner').height(containerH);
-        $('.map-container').height(containerH);
+        $('.map-container').height(containerH-400)
+        alert('inside resize Carousel Container');
     }
     window.resizeCarouselMapContainer = resizeCarouselMapContainer;
 
@@ -7027,18 +7041,28 @@ var requests = [];
     window.replaceUrls = replaceUrls;
 
     function _getLocationBuildings() {
-        var url = '/buildings';
-        if (window.default_location !== null) {
+        console.log('in _getLocationBuildings');
+        //just ask for buildings
+        var url = '/api/index.php/buildings';
+        /*if (window.default_location !== null) {
             url = url + '?campus=' + window.default_location;
         }
+
         $.ajax({
+            //going and getting the building information
             url: url,
             success: _formatLocationFilter
-        });
+        });*/
+
+        var data = ["Florence Hall","Brendans Hall"];
+        var formatFunct = _formatLocationFilter;
+        //formatFunct(data);
     }
     window.getLocationBuildings = _getLocationBuildings;
 
     function _formatLocationFilter(data) {
+        console.log('in _formatLocationFilter');
+        //will populate the list of buildings in the filter list
         var source = $('#building_list').html();
         var template = Handlebars.compile(source);
         if (source) {
@@ -7080,7 +7104,8 @@ var requests = [];
 })(Handlebars, jQuery, google.maps);
 
 function static_url(base) {
-    return window.spacescout_static_url + base;
+    /*return window.spacescout_static_url + base;*/
+    return 'https://spacescout.uw.edu/static/612/' + base;
 }
 
 function monthname_from_month(month) {
@@ -8721,6 +8746,7 @@ function dataLoaded(count) {
         if ($("#map_canvas").length == 1) {
             initialize();
             $(window).resize(function() {
+                //alert('inside resize function');
                 _desktopContent();
                 if ($('.space-detail-container').is(":visible")) {
                     $('.space-detail-container').height($('#map_canvas').height());
@@ -8896,9 +8922,10 @@ function dataLoaded(count) {
         var windowH = $(window).height();
         var headerH = $('#nav').height();
         var contentH = windowH - headerH;
-        $('#map_canvas').height(contentH - 100);
-        $('#info_list').height(contentH - 80);
-        $('#info_list .list-inner').css('min-height', contentH - 100);
+        $('#map_canvas').height(contentH - 220); /**changed map height**/
+        $('#info_list').height(contentH - 185);
+        //$('#info_list .list-inner').css('min-height', contentH - 100);
+        $("#main_content").height(contentH - 160);
     }
 })(Handlebars, jQuery);
 (function(H, $, GM) {

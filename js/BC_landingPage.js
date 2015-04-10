@@ -87,8 +87,8 @@ $( "#loginButton" ).click(function(){
 
         var userPass = password.eq(0).val();
         console.log("userPass = "+ userPass);
-        var valid = askDatabaseIfUser(userEmail, userPass);
-        console.log("valid3 = "+valid);
+        askDatabaseIfUser(userEmail, userPass);
+        /*console.log("valid3 = "+valid);
         if (valid != true) {
             $(".incorrect_Login").css("visibility","inherit");
             //want to clear the fiedls if incorrect
@@ -101,7 +101,7 @@ $( "#loginButton" ).click(function(){
             //go to the main site
             //alert("Password correct");
             window.location.href = '/index.html';
-        }
+        }*/
     }
     else {
         console.log('jquery not find login button');
@@ -135,8 +135,20 @@ function askDatabaseIfUser(userEmail, password){
         if((returnData.status == "Success") && (returnData.fName != null) && (returnData.lName != null)){
             valid = true;
             console.log("valid2 = "+valid);
-            setCookie(status, fName, lName, school, username);
+            setCookie(returnData.status, returnData.fName, returnData.lName, returnData.school, returnData.username);
+
+            window.location.href = '/index.html';
             return true;
+
+        }
+        else{
+            $(".incorrect_Login").css("visibility","inherit");
+            //want to clear the fiedls if incorrect
+            var  userName = $('#username');
+            var password = $('#userPassword');
+            userName.eq(0).val('');
+            password.eq(0).val('');
+
 
         }
     });
