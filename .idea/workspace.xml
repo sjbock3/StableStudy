@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a763ef7f-73c3-4fb4-80cd-77964b02920c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BC_LandingPage.html" afterPath="$PROJECT_DIR$/BC_LandingPage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/BC_landingPage.js" afterPath="$PROJECT_DIR$/js/BC_landingPage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/Brendan_1.js" afterPath="$PROJECT_DIR$/js/Brendan_1.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/SS_cd8b7165c408.js" afterPath="$PROJECT_DIR$/js/SS_cd8b7165c408.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/mainPageCookies.js" afterPath="$PROJECT_DIR$/js/mainPageCookies.js" />
     </list>
     <ignored path="StableStudy.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,14 +76,14 @@
     <splitter split-orientation="horizontal" split-proportion="0.513125">
       <split-first>
         <leaf>
-          <file leaf-file-name="SS_cd8b7165c408.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="SS_cd8b7165c408.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/SS_cd8b7165c408.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-153.68965" vertical-offset="42854" max-vertical-offset="156196">
-                  <caret line="2783" column="29" selection-start-line="2783" selection-start-column="29" selection-end-line="2783" selection-end-column="29" />
+                <state vertical-scroll-proportion="0.2872629" vertical-offset="118482" max-vertical-offset="156196">
+                  <caret line="6982" column="37" selection-start-line="6982" selection-start-column="37" selection-end-line="6982" selection-end-column="37" />
                   <folding>
-                    <marker date="1428705287528" expanded="true" signature="83302:83357" placeholder="..." />
-                    <marker date="1428705287528" expanded="true" signature="257554:257576" placeholder="..." />
+                    <marker date="1428717484549" expanded="true" signature="83302:83357" placeholder="..." />
+                    <marker date="1428717484549" expanded="true" signature="257554:257576" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -111,11 +107,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Brendan_1.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Brendan_1.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/js/Brendan_1.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.47948718" vertical-offset="0" max-vertical-offset="1564">
-                  <caret line="22" column="62" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1564">
+                  <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
                   <folding />
                 </state>
               </provider>
@@ -176,8 +172,8 @@
           <file leaf-file-name="mainPageCookies.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/mainPageCookies.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.32692307" vertical-offset="0" max-vertical-offset="780">
-                  <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+                <state vertical-scroll-proportion="0.5885486" vertical-offset="0" max-vertical-offset="751">
+                  <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
                   <folding />
                 </state>
               </provider>
@@ -253,14 +249,14 @@
         <option value="$PROJECT_DIR$/css/SS_stylePage2.css" />
         <option value="$PROJECT_DIR$/js/BC_dummy_classroom.js" />
         <option value="$PROJECT_DIR$/api/index.php" />
-        <option value="$PROJECT_DIR$/js/SS_cd8b7165c408.js" />
         <option value="$PROJECT_DIR$/mainPageCookies.js" />
-        <option value="$PROJECT_DIR$/js/mainPageCookies.js" />
         <option value="$PROJECT_DIR$/BC_LandingPage.html" />
         <option value="$PROJECT_DIR$/js/loginPageCookies.js" />
         <option value="$PROJECT_DIR$/js/BC_landingPage.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/Brendan_1.js" />
+        <option value="$PROJECT_DIR$/js/mainPageCookies.js" />
+        <option value="$PROJECT_DIR$/js/SS_cd8b7165c408.js" />
       </list>
     </option>
   </component>
@@ -579,8 +575,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="119798" max-vertical-offset="156162">
           <caret line="7059" column="5" selection-start-line="7059" selection-start-column="5" selection-end-line="7059" selection-end-column="5" />
           <folding>
-            <marker date="1428705287528" expanded="true" signature="83302:83357" placeholder="..." />
-            <marker date="1428705287528" expanded="true" signature="257554:257576" placeholder="..." />
+            <marker date="1428717484549" expanded="true" signature="83302:83357" placeholder="..." />
+            <marker date="1428717484549" expanded="true" signature="257554:257576" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -680,8 +676,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="119798" max-vertical-offset="156162">
           <caret line="7069" column="21" selection-start-line="7069" selection-start-column="21" selection-end-line="7069" selection-end-column="21" />
           <folding>
-            <marker date="1428705287528" expanded="true" signature="83302:83357" placeholder="..." />
-            <marker date="1428705287528" expanded="true" signature="257554:257576" placeholder="..." />
+            <marker date="1428717484549" expanded="true" signature="83302:83357" placeholder="..." />
+            <marker date="1428717484549" expanded="true" signature="257554:257576" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -998,25 +994,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/mainPageCookies.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32692307" vertical-offset="0" max-vertical-offset="780">
-          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/SS_cd8b7165c408.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-153.68965" vertical-offset="42854" max-vertical-offset="156196">
-          <caret line="2783" column="29" selection-start-line="2783" selection-start-column="29" selection-end-line="2783" selection-end-column="29" />
-          <folding>
-            <marker date="1428705287528" expanded="true" signature="83302:83357" placeholder="..." />
-            <marker date="1428705287528" expanded="true" signature="257554:257576" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.88372093" vertical-offset="1471" max-vertical-offset="20451">
@@ -1044,9 +1021,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/Brendan_1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47948718" vertical-offset="0" max-vertical-offset="1564">
-          <caret line="22" column="62" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1564">
+          <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/mainPageCookies.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5885486" vertical-offset="0" max-vertical-offset="751">
+          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/SS_cd8b7165c408.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2872629" vertical-offset="118482" max-vertical-offset="156196">
+          <caret line="6982" column="37" selection-start-line="6982" selection-start-column="37" selection-end-line="6982" selection-end-column="37" />
+          <folding>
+            <marker date="1428717484549" expanded="true" signature="83302:83357" placeholder="..." />
+            <marker date="1428717484549" expanded="true" signature="257554:257576" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

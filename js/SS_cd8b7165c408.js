@@ -6982,7 +6982,7 @@ var requests = [];
         $('.carousel-inner-image').height(containerH);
         $('.carousel-inner-image-inner').height(containerH);
         $('.map-container').height(containerH-400)
-        alert('inside resize Carousel Container');
+        /*alert('inside resize Carousel Container');       *******BC_alert********/
     }
     window.resizeCarouselMapContainer = resizeCarouselMapContainer;
 
@@ -8153,7 +8153,7 @@ var spacescout_map = null,
     var youarehere = null;
 
     function openAllMarkerInfoWindow(data) {
-        alert('used openAllMarkerInfoWidnow');
+        /*alert('used openAllMarkerInfoWidnow');*********BC_alert*********/
         var source = $('#all_markers').html();
         var template = H.compile(source);
         data = buildingNameHeaders(data);
@@ -8757,7 +8757,7 @@ function dataLoaded(count) {
             });
         }
         $('#filter_button').click(function() {
-            alert('button was clicked');
+            /*alert('button was clicked');********BC_alert*********/
             var $block = $("#filter_block");
             if ($block.css('display') == 'none') {
                 window.getLocationBuildings();
@@ -9110,7 +9110,7 @@ function dataLoaded(count) {
     }
 
     function _loadMarkerSpots(marker, data) {
-        alert('used loadMarkerSpots');
+        /********alert('used loadMarkerSpots');******BC_alert********/
         $("#info_list").scrollTop(0);
         if (active_marker) {
             _updateActiveMarker(marker);

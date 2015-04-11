@@ -25,9 +25,9 @@ function getCookie(cname) {
 function checkCookie() {
     var user=getCookie("username");
     if (user != "") {
-        alert("Welcome again " + user);
+        //alert("Welcome again " + user);
     } else {
-        alert("cookie not set");
+        //alert("cookie not set");
         window.location.href = '/BC_LandingPage.html';
     }
 }
