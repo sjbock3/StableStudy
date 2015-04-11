@@ -29,6 +29,7 @@
 <!--[if gt IE 8]><!--><html class="no-js"> <!--<![endif]-->
 
 <head>
+    <script src="js/mainPageCookies.js"></script>
     <title>StableStudy&trade; Stabilize your Studying</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -126,7 +127,7 @@
 
             </div>
             <!-- hidden for now, until cool stuff for logged in users is finished.-->
-            <div class="user_context pull-right">
+            <div class="user_context pull-right" id="user_Greet">
                 <script id="userGreeting" type="text/x-handlebars-template">
                     Welcome &nbsp;<a id="login_button" href="/login">{{firstName}}</a> <!--**********Need to change out with username*******-->
                 </script>
@@ -1034,17 +1035,17 @@
 <!--other javascript files-->
 
 <!--Google Maps  javascripts-->
-<!--<script type="text/javascript" src="js/SS_maps_geometry.js"></script>-->
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyAKp8I19VjVf4sOzkRnKXKbdvSOKsqbubE&amp;libraries=geometry&amp;sensor=false></script>
 <script type="text/javascript" src="js/SS_maps_main.js"></script>
 <script type="text/javascript" src="js/SS_respond.js"></script>
 
 <!--this script will probably not work because uses wrong key...-->
-<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyAKp8I19VjVf4sOzkRnKXKbdvSOKsqbubE"></script>
+
 <!--
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.15&key=AIzaSyAKp8I19VjVf4sOzkRnKXKbdvSOKsqbubE&libraries=geometry&sensor=false"></script>-->
 
 
-
+<script type="text/javascript" src="js/SS_maps_geometry.js"></script>
 <!--deals with cookies and storage and event handlers-->
 <script type="text/javascript" src="js/SS_cd8b7165c408.js"></script>
 

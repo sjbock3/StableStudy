@@ -8188,7 +8188,8 @@ var spacescout_map = null,
                 $spot.click();
                 $.removeCookie('spot_id');
             }
-            var lazyload_target = isMobile ? window : '#info_list';
+            //var lazyload_target = isMobile ? window : '#info_list';  /*****BC_changed********/
+            var lazyload_target = '#info_list';
             $(lazyload_target).lazyScrollLoading({
                 lazyItemSelector: ".lazyloader",
                 onLazyItemFirstVisible: function(e, $lazyItems, $firstVisibleLazyItems) {
