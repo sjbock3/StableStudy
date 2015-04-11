@@ -37,16 +37,21 @@ function loginUser(form) {
      var username;
 	
 	$.post('./api/index.php/loginUser', {"email": form.email.value, "password": form.password.value}, function( data ) {
-		console.log(data.username);
+		alert('inside post function');
+        console.log(data.username);
 		console.log(data.school);
 		status = data.status;
         fName = data.fName;
         lName = data.lName;
         school = data.school;
         username = data.username;
+
+        setMultipleCookies();
+
 	}, "json");
-	
-	setCookie(status, fName, lName, school, username);
+
+
+	//setCookie(status, fName, lName, school, username);
 
 }
 
@@ -54,4 +59,15 @@ function setCookie(status, fName, lName, school, username) {
 	document.cookie="status="+status+"; fname="+fname+"; lname="+lname+"; school="+school+"; username="+username;
 
 	var c = document.cookie;
+}
+
+
+function setMultipleCookies(names,values){
+
+    var counter;
+    for(counter = 0;counter<names.length;counter++){
+        setCookie(names[counter],values[counter],1);
+    }
+
+    //console.log(document.cookie);
 }
