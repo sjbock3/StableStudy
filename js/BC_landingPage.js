@@ -135,8 +135,11 @@ function askDatabaseIfUser(userEmail, password){
         if((returnData.status == "Success") && (returnData.fName != null) && (returnData.lName != null)){
             valid = true;
             console.log("valid2 = "+valid);
-            setCookie(returnData.status, returnData.fName, returnData.lName, returnData.school, returnData.username);
-
+            //compile all data into arrays
+            var names = ["status","fName","lName","school","username"];
+            var values = [returnData.status, returnData.fName, returnData.lName, returnData.school, returnData.username]
+            setMultipleCookies(names,values);
+            console.log(document.cookie);
             window.location.href = '/index.html';
             return true;
 
@@ -155,9 +158,10 @@ function askDatabaseIfUser(userEmail, password){
     console.log("valid1 = "+valid);
     return valid;
 }
-
-function setCookie(status, fName, lName, school, username) {
-	document.cookie="status="+status+"; fname="+fname+"; lname="+lname+"; school="+school+"; username="+username;
-
-	var c = document.cookie;
+function setMultipleCookies(names,values){
+    var counter;
+    for(counter = 0;counter<names.length;counter++){
+        setCookie(names[counter],values[counter],1);
+    }
+    //console.log(document.cookie);
 }

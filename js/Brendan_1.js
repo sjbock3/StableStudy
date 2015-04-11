@@ -1,30 +1,51 @@
 $(document).ready(function() {
 
-    var data = {'email':'bcelii@smu.edu',
-            'password':"parkhill"};
+    //add the user's name in right corner
+    var username = getCookie('fName');
 
-    $.post('http://192.168.33.10/api/index.php/loginUser',data,function(passedData){
+    //use handlebars scripts
+    var beforeTemplate = $('#userGreeting').html();
+    console.log('beforeTemplate = '+beforeTemplate);
+    var Template = Handlebars.compile(beforeTemplate);
+    var data = {firstName:username};
+    var newHTML = Template(data);
+
+    //insert the new HTML
+    $('#user_Greet').html(newHTML);
+
+    //console.log($('#userGreeting').html());
+
+    /*var data = {
+        'email': 'bcelii@smu.edu',
+        'password': "parkhill"
+    };
+
+    $.post('http://192.168.33.10/api/index.php/loginUser', data, function (passedData) {
         console.log(passedData);
-    });
+    });*/
     //alert('made inside brendan script');
-    $("#map_canvas").css('background-image', 'url( "../img/google_Maps_Pic")');
+    //$("#map_canvas").css('background-image', 'url( "../img/google_Maps_Pic")');
 
     //will make the favorite button link to another page
 
     var fav_button = $('button#favorite_space');
-    fav_button.click(function(e) {
+    fav_button.click(function (e) {
 
         window.location.href = '/userAccount#favoriteSpaces';
-    } );
+    });
 
     var fav_button = $('button#favorite_space');
-    fav_button.click(function(e) {
+    fav_button.click(function (e) {
         /*make share pope up list*/
         window.location.href = '/userAccount#share';
-    } );
+    });
+
+
+
+});
 
     //initialize carousel function is what adds the list of images
-    function initializeCarousel() {
+ /*   function initializeCarousel() {
         $('.carousel').each(function() {
             var $this = $(this);
             $this.carousel({
@@ -61,5 +82,5 @@ $(document).ready(function() {
         resizeCarouselMapContainer();
     }
     window.initializeCarousel = initializeCarousel;
-});
+});*/
 
