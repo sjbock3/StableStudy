@@ -1,4 +1,4 @@
-StableStudy 
+#StableStudy 
 
 by {font: 10 no-squad}
 
