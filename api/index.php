@@ -29,9 +29,7 @@
                 'username'=> NULL);
             echo json_encode($jsonArray);
             return;
-        
-        
-            
+
         }
         
         
@@ -152,7 +150,75 @@
         return;
 
     });
-    
+/*
+ * problem id => 0 : no problems
+ * problem id => 1 : room not in DB
+ * problem id => 2 : host has another meeting at this time
+ * problem id => 3 : room has another meeting at this time
+ * problem id => 4 : other user doesn't exit in DB
+ */
+    $app->post('/createMeeting', function(){
+        global $mysqli;
+        $hostName = $_POST['hostName'];
+        $buildingName = $_POST['buildingName'];
+        $roomNumber = $_POST['roomNumber'];
+        $meetingTime = $_POST['meetingTime'];
+        $otherUsers = $_POST['users'];
+
+        //get location id
+        $getRoomID = $mysqli->query("SELECT id FROM locations WHERE buildingName= '$buildingName' AND roomNumber= '$roomNumber'");
+        $roomArr = $getRoomID->fetch_assoc();
+
+        if ($roomArr === NULL){
+
+            echo json_encode(array('status' => 'failed', 'problem' => 1));
+            return;
+        }
+        else {
+            $roomID = $roomArr['id'];
+        }
+
+        //personal scheduling conflict
+        $existingMeet = $mysqli->query("SELECT * FROM meetings WHERE hostName = '$hostName' AND meetingTime = '$meetingTime'");
+        if ($existingMeet->fetch_assoc() != NULL){
+            echo json_encode(array('status' => 'failed', 'problem' => 2));
+            return;
+        }
+        //room scheduling conflict
+        $existingMeet = $mysqli->query("SELECT * FROM meetings WHERE roomID = '$roomID' AND meetingTime = '$meetingTime'");
+        if ($existingMeet->fetch_assoc() != NULL){
+            echo json_encode(array('status' => 'failed', 'problem' => 3));
+            return;
+        }
+
+        if($mysqli->query("INSERT INTO meetings(hostName, meetingTime, roomID) VALUES('$hostName', '$meetingTime', '$roomID')")){
+
+        }
+        else{
+            echo 'db done goofed';
+        }
+
+        $getMeetingID = $mysqli->query("SELECT meetingID FROM meetings WHERE hostName = '$hostName' AND roomID = '$roomID'");
+        $meetingIDarr = $getMeetingID->fetch_assoc();
+        $meetingID = $meetingIDarr['meetingID'];
+
+        $len = count($otherUsers);
+
+        for ($i = 0; $i < $len; $i++){
+            $username = $otherUsers[$i];
+            if($mysqli->query("INSERT INTO meetingUsers(meeting_id, users) VALUES('$meetingID', '$username')")){
+            }
+            else{
+                // other user might not exist in database
+                echo json_encode(array('status'=>'failed', 'problem' => 4));
+                return;
+            }
+        }
+
+        echo json_encode(array('status'=>'success', 'problem' => 0));
+        return;
+
+    });
     
     
     $app->run();
