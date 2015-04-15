@@ -115,7 +115,44 @@
         
     });
 
+    $app->get('/locinfo', function(){
+        global $mysqli;
+        $result = $mysqli->query("SELECT * FROM locations");
+        $locationList = $result->fetch_all(MYSQLI_ASSOC);
+        $len = count($locationList);
+        $all_loc = array();
+        for ($i = 0; $i < $len; $i++){
+            $json = array(
+                'capacity' => $locationList[$i]['chairs'],
+                'name' => $locationList[$i]['buildingName']." ".$locationList[$i]['roomNumber'],
+                'external_id' => NULL,
+                'external_info' => NULL,
+                'available_hours' => NULL,
+                'manager' => "",
+                'last_modified' => NULL,
+                'etag' => NULL,
+                'type' => "classroom",
+                'images' => NULL,
+                'organization' => "",
+                'display_access_restrictions' => 'false',
+                'id' => $locationList[$i]['id'],
+                'location' =>
+                    array(
+                    'floor' => $locationList[$i]['floor'],
+                    'height_from_sea_level' => NULL,
+                    'longitude' => $locationList[$i]['longitude'],
+                    'latitude' => $locationList[$i]['latitude'],
+                    'building_name' => $locationList[$i]['buildingName']
+                    )
 
+                );
+            $all_loc[$i] = $json;
+        }
+        echo json_encode($all_loc);
+        return;
+
+    });
+    
     
     
     $app->run();
