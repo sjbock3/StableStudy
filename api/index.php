@@ -152,7 +152,37 @@
         return;
 
     });
-    
+
+    $app->post('/createMeeting', function(){
+        global $mysqli;
+        $hostName = $_POST['hostName'];
+        $buildingName = $_POST['buildingName'];
+        $roomNumber = $_POST['roomNumber'];
+        $meetingDate = $_POST['meetingDate'];
+        $meetingTime = $_POST['meetingTime'];
+        $otherUsers = $_POST['users'];
+
+        $getRoomID = $mysqli->query("SELECT id FROM locations WHERE buildingName= '$buildingName' AND roomNumber= '$roomNumber'");
+        $roomArr = $getRoomID->fetch_assoc();
+        $roomID = $roomArr['id'];
+
+        $mysqli->query("INSERT INTO meetings(hostName, meetingTime, meetingDate, roomID) VALUES('$hostName', '$meetingTime', '$meetingDate', '$roomID')");
+
+        $getMeetingID = $mysqli->query("SELECT meetingID FROM meetings WHERE hostName = '$hostName' AND roomID = '$roomID'");
+        $meetingIDarr = $getMeetingID->fetch_assoc();
+        $meetingID = $meetingIDarr['meetingID'];
+
+        $userArray = json_decode($otherUsers);
+        $len = count($userArray);
+
+        for ($i = 0; $i < $len; $i++){
+            $username = $userArray[$i];
+            $mysqli->query("INSERT INTO meetingUsers(meetingID, username) VALUES('$meetingID', '$username')");
+        }
+
+        return;
+
+    });
     
     
     $app->run();
