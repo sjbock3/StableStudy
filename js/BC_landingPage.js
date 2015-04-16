@@ -127,7 +127,7 @@ function askDatabaseIfUser(userEmail, password){
 
     var valid = true;
     /*$.post('http://192.168.33.10/api/index.php/loginUser',data2,function(originalReturn){*/
-    $.post('./api/index.php/loginUser',data2,function(originalReturn){
+    $.post('http://52.11.111.78/api/index.php/loginUser',data2,function(originalReturn){
         console.log(originalReturn);
         var returnData = JSON.parse(originalReturn);
         console.log(returnData);
