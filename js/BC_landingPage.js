@@ -6,7 +6,9 @@
 * http://192.168.33.10/api/index.php....and then the resource
 * Ex: http://192.168.33.10/api/index.php/loginUser*/
 
-var databaseURL = 'http://192.168.33.10/api/index.php';
+/*var databaseURL = 'http://192.168.33.10/api/index.php';*/
+var databaseURL = './api/index.php';
+
 
 $(document).keyup(function(e) {
 
@@ -124,7 +126,8 @@ function askDatabaseIfUser(userEmail, password){
                 "password":password};
 
     var valid = true;
-    $.post('http://192.168.33.10/api/index.php/loginUser',data2,function(originalReturn){
+    /*$.post('http://192.168.33.10/api/index.php/loginUser',data2,function(originalReturn){*/
+    $.post('./api/index.php/loginUser',data2,function(originalReturn){
         console.log(originalReturn);
         var returnData = JSON.parse(originalReturn);
         console.log(returnData);
