@@ -39,8 +39,8 @@ DROP TABLE IF EXISTS `stablestudy`.`locations` ;
 
 CREATE TABLE IF NOT EXISTS `stablestudy`.`locations` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `latitude` DOUBLE NULL,
-  `longitude` DOUBLE NULL,
+  `latitude` VARCHAR(45) NULL,
+  `longitude` VARCHAR(45) NULL,
   `floor` INT NULL,
   `buildingName` VARCHAR(45) NULL,
   `roomNumber` INT NULL,
@@ -88,7 +88,7 @@ DROP TABLE IF EXISTS `stablestudy`.`meetings` ;
 CREATE TABLE IF NOT EXISTS `stablestudy`.`meetings` (
   `meetingID` INT NOT NULL AUTO_INCREMENT,
   `hostName` VARCHAR(20) NULL,
-  `meetingTime` TIME,
+  `meetingTime` DATETIME,
   `roomID` INT NULL,
   PRIMARY KEY (`meetingID`),
   INDEX `hostName_idx` (`hostName` ASC),
