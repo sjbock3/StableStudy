@@ -1,16 +1,16 @@
 /* no-image styles are duplicated in desktop.less */
 .space-detail-no-image {
-    background: transparent url('/static/612/img/placeholder_noImage_bw.png?bdbed58e15e4') no-repeat 50% 50%;
+    background: transparent url('https://spacescout.uw.edu/static/612/img/placeholder_noImage_bw.png?bdbed58e15e4') no-repeat 50% 50%;
     background-size: 150px;
 }
 .space-detail-no-image-full {
-    background: transparent url('/static/612/img/placeholder_noImage_bw.png?bdbed58e15e4') no-repeat 50% 50%;
+    background: transparent url('https://spacescout.uw.edu/static/612/img/placeholder_noImage_bw.png?bdbed58e15e4') no-repeat 50% 50%;
     background-size: 100%;
 }
 /* Less Variables */
 #preload {
     background: no-repeat -9999px -9999px;
-    background-image: url('/static/612/img/pins/pin00@2x.png?bdbed58e15e4'), url('/static/612/img/pins/pin00-alt@2x.png?bdbed58e15e4');
+    background-image: url('https://spacescout.uw.edu/static/612/img/pins/pin00@2x.png?bdbed58e15e4'), url('https://spacescout.uw.edu/static/612/img/pins/pin00-alt@2x.png?bdbed58e15e4');
 }
 .map-label {
     background-color: transparent;
@@ -902,24 +902,24 @@ div.actions a {
     border-top: solid 1px #fff !important;
 }
 #space_details_page .space-detail-container .space-detail .space-detail-inner .space-image-map-buttons #carouselControl span {
-    background: transparent url('/static/612/img/gallery_grey.png?bdbed58e15e4') no-repeat 50% 50%;
+    background: transparent url('https://spacescout.uw.edu/static/612/img/gallery_grey.png?bdbed58e15e4') no-repeat 50% 50%;
     display: inline-block;
     text-indent: -9999px;
     width: 30px;
     height: 25px;
 }
 #space_details_page .space-detail-container .space-detail .space-detail-inner .space-image-map-buttons #carouselControl.active span {
-    background: transparent url('/static/612/img/gallery_purple.png?bdbed58e15e4') no-repeat 50% 50%;
+    background: transparent url('https://spacescout.uw.edu/static/612/img/gallery_purple.png?bdbed58e15e4') no-repeat 50% 50%;
 }
 #space_details_page .space-detail-container .space-detail .space-detail-inner .space-image-map-buttons #mapControl span {
-    background: transparent url('/static/612/img/locate_grey.png?bdbed58e15e4') no-repeat 50% 50%;
+    background: transparent url('https://spacescout.uw.edu/static/612/img/locate_grey.png?bdbed58e15e4') no-repeat 50% 50%;
     display: inline-block;
     text-indent: -9999px;
     width: 30px;
     height: 25px;
 }
 #space_details_page .space-detail-container .space-detail .space-detail-inner .space-image-map-buttons #mapControl.active span {
-    background: transparent url('/static/612/img/locate_purple.png?bdbed58e15e4') no-repeat 50% 50%;
+    background: transparent url('https://spacescout.uw.edu/static/612/img/locate_purple.png?bdbed58e15e4') no-repeat 50% 50%;
 }
 #space_details_page .space-detail-container .space-detail .space-detail-inner .space-detail-share {
     padding-top: 5px;
@@ -1262,7 +1262,7 @@ div.actions a {
     display: inline-block;
 }
 #info_list #info_items ol li ol li .space-detail-list-item .space-detail-labstats {
-    background-image: url('/static/612/img/comp-icon.png?bdbed58e15e4');
+    background-image: url('https://spacescout.uw.edu/static/612/img/comp-icon.png?bdbed58e15e4');
     background-size: 20px 20px;
     background-repeat: no-repeat;
     background-position: left top;
@@ -1345,10 +1345,12 @@ div.actions a {
     line-height: 14px;
 
 }
-#footer .copyright {
+#footer #SMU_Logo_Footer {
     background: url('../img/SMU_Logo.jpg') no-repeat;
-    margin-left: 45px;
-    margin-bottom: 10px;
+    background-size: cover;
+    display: inline;
+    width: 50px;
+    height: 50px;
 }
 #footer .partners {
     margin-left: 45px;
@@ -1645,10 +1647,10 @@ This is patrick's attempt @ @2x:
 */
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2) {
     #nav .logo-container .logo {
-        background-image: url('/static/612/img/spacescout_logo@2x.png?bdbed58e15e4');
+        background-image: url('https://spacescout.uw.edu/static/612/img/spacescout_logo@2x.png?bdbed58e15e4');
     }
     #info_items ol li .space-detail-list-item .space-detail-labstats {
-        background-image: url('/static/612/img/comp-icon@2x.png?bdbed58e15e4');
+        background-image: url('https://spacescout.uw.edu/static/612/img/comp-icon@2x.png?bdbed58e15e4');
     }
 }
 
@@ -1659,11 +1661,11 @@ CS - duplicating these styles for no-image to mobile.less 1/5/15
 
 */
 .space-detail-no-image {
-    background: transparent url('/static/612/img/placeholder_noImage_bw.png?bdbed58e15e4') no-repeat 50% 50%;
+    background: transparent url('https://spacescout.uw.edu/static/612/img/placeholder_noImage_bw.png?bdbed58e15e4') no-repeat 50% 50%;
     background-size: 150px;
 }
 .space-detail-no-image-full {
-    background: transparent url('/static/612/img/placeholder_noImage_bw.png?bdbed58e15e4') no-repeat 50% 50%;
+    background: transparent url('https://spacescout.uw.edu/static/612/img/placeholder_noImage_bw.png?bdbed58e15e4') no-repeat 50% 50%;
     background-size: 100%;
 }
 /* Less Variables */
@@ -1695,7 +1697,7 @@ CS - duplicating these styles for no-image to mobile.less 1/5/15
     line-height: 60px;
     width: 226px;
     position: relative;
-    background-image: url('/static/612/img/spacescout_logo.png?bdbed58e15e4');
+    background-image: url('https://spacescout.uw.edu/static/612/img/spacescout_logo.png?bdbed58e15e4');
     background-size: 226px, 56px;
     background-repeat: no-repeat;
     background-position: 0 50%;
@@ -1741,7 +1743,7 @@ CS - duplicating these styles for no-image to mobile.less 1/5/15
     width: 8px;
     top: 22px;
     right: -8px;
-    background: transparent url('/static/612/img/tri-right.png?bdbed58e15e4') no-repeat;
+    background: transparent url('https://spacescout.uw.edu/static/612/img/tri-right.png?bdbed58e15e4') no-repeat;
 }
 #nav .bubble-inner .bubble-filters {
     width: 79%;
@@ -2017,25 +2019,25 @@ CS - duplicating these styles for no-image to mobile.less 1/5/15
     border-left: none !important;
 }
 #map_canvas .space-detail-container .space-detail .space-detail-inner .space-image-map-buttons #carouselControl span {
-    background: transparent url('/static/612/img/gallery_grey.png?bdbed58e15e4') no-repeat 50% 50%;
+    background: transparent url('https://spacescout.uw.edu/static/612/img/gallery_grey.png?bdbed58e15e4') no-repeat 50% 50%;
     display: inline-block;
     text-indent: -9999px;
     width: 30px;
     height: 25px;
 }
 #map_canvas .space-detail-container .space-detail .space-detail-inner .space-image-map-buttons #carouselControl.active span {
-    background: transparent url('/static/612/img/gallery_purple.png?bdbed58e15e4') no-repeat 50% 50%;
+    background: transparent url('https://spacescout.uw.edu/static/612/img/gallery_purple.png?bdbed58e15e4') no-repeat 50% 50%;
     width: 31px;
 }
 #map_canvas .space-detail-container .space-detail .space-detail-inner .space-image-map-buttons #mapControl span {
-    background: transparent url('/static/612/img/locate_grey.png?bdbed58e15e4') no-repeat 50% 50%;
+    background: transparent url('https://spacescout.uw.edu/static/612/img/locate_grey.png?bdbed58e15e4') no-repeat 50% 50%;
     display: inline-block;
     text-indent: -9999px;
     width: 30px;
     height: 25px;
 }
 #map_canvas .space-detail-container .space-detail .space-detail-inner .space-image-map-buttons #mapControl.active span {
-    background: transparent url('/static/612/img/locate_purple.png?bdbed58e15e4') no-repeat 50% 50%;
+    background: transparent url('https://spacescout.uw.edu/static/612/img/locate_purple.png?bdbed58e15e4') no-repeat 50% 50%;
     width: 31px;
 }
 #map_canvas .space-detail-container .space-detail .space-detail-inner .space-detail-share {
@@ -2273,7 +2275,7 @@ CS - duplicating these styles for no-image to mobile.less 1/5/15
     width: 49%;
 }
 #info_list #info_items ol li .space-detail-list-item .space-detail-labstats {
-    background: transparent url('/static/612/img/comp-icon.png?bdbed58e15e4') no-repeat center top;
+    background: transparent url('https://spacescout.uw.edu/static/612/img/comp-icon.png?bdbed58e15e4') no-repeat center top;
     margin-top: -2px;
     color: #4d4d4d;
     font-size: 11px;
@@ -2305,7 +2307,7 @@ CS - duplicating these styles for no-image to mobile.less 1/5/15
     padding: 0 2px;
 }
 #info_list #info_items ol li.selected {
-    background: #6160a2 url('/static/612/img/list_item_selected.png?bdbed58e15e4') bottom repeat-x;
+    background: #6160a2 url('https://spacescout.uw.edu/static/612/img/list_item_selected.png?bdbed58e15e4') bottom repeat-x;
 }
 #info_list #info_items ol li.selected .space-detail-type {
     color: #ccc;
@@ -2392,7 +2394,7 @@ This is patrick's attempt @ @2x:
 */
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2) {
     #nav .logo-container .logo {
-        background-image: url('/static/612/img/spacescout_logo@2x.png?bdbed58e15e4');
+        background-image: url('https://spacescout.uw.edu/static/612/img/spacescout_logo@2x.png?bdbed58e15e4');
     }
 }
 
@@ -2465,7 +2467,7 @@ This is patrick's attempt @ @2x:
     display: block;
     width: 12px;
     height: 12px;
-    background: url('/static/612/img/chosen-sprite.png?bdbed58e15e4') -42px 1px no-repeat;
+    background: url('https://spacescout.uw.edu/static/612/img/chosen-sprite.png?bdbed58e15e4') -42px 1px no-repeat;
     font-size: 1px;
 }
 .chzn-container-single .chzn-single abbr:hover {
@@ -2486,7 +2488,7 @@ This is patrick's attempt @ @2x:
     display: block;
     width: 100%;
     height: 100%;
-    background: url('/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat 0px 2px;
+    background: url('https://spacescout.uw.edu/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat 0px 2px;
 }
 .chzn-container-single .chzn-search {
     position: relative;
@@ -2504,12 +2506,12 @@ This is patrick's attempt @ @2x:
     width: 100%;
     outline: 0;
     border: 1px solid #aaa;
-    background: #ffffff url('/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat 100% -20px;
-    background: url('/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat 100% -20px, -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
-    background: url('/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat 100% -20px, -webkit-linear-gradient(#eeeeee 1%, #ffffff 15%);
-    background: url('/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat 100% -20px, -moz-linear-gradient(#eeeeee 1%, #ffffff 15%);
-    background: url('/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat 100% -20px, -o-linear-gradient(#eeeeee 1%, #ffffff 15%);
-    background: url('/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat 100% -20px, linear-gradient(#eeeeee 1%, #ffffff 15%);
+    background: #ffffff url('https://spacescout.uw.edu/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat 100% -20px;
+    background: url('https://spacescout.uw.edu/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat 100% -20px, -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+    background: url('https://spacescout.uw.edu/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat 100% -20px, -webkit-linear-gradient(#eeeeee 1%, #ffffff 15%);
+    background: url('https://spacescout.uw.edu/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat 100% -20px, -moz-linear-gradient(#eeeeee 1%, #ffffff 15%);
+    background: url('https://spacescout.uw.edu/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat 100% -20px, -o-linear-gradient(#eeeeee 1%, #ffffff 15%);
+    background: url('https://spacescout.uw.edu/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat 100% -20px, linear-gradient(#eeeeee 1%, #ffffff 15%);
     font-size: 1em;
     font-family: sans-serif;
 }
@@ -2653,7 +2655,7 @@ This is patrick's attempt @ @2x:
     display: block;
     width: 12px;
     height: 12px;
-    background: url('/static/612/img/chosen-sprite.png?bdbed58e15e4') -42px 1px no-repeat;
+    background: url('https://spacescout.uw.edu/static/612/img/chosen-sprite.png?bdbed58e15e4') -42px 1px no-repeat;
     font-size: 1px;
 }
 .chzn-container-multi .chzn-choices li.search-choice .search-choice-close:hover {
@@ -2786,12 +2788,12 @@ This is patrick's attempt @ @2x:
 }
 .chzn-rtl .chzn-search input {
     padding: 4px 5px 4px 20px;
-    background: #ffffff url('/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat -30px -20px;
-    background: url('/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat -30px -20px, -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
-    background: url('/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat -30px -20px, -webkit-linear-gradient(#eeeeee 1%, #ffffff 15%);
-    background: url('/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat -30px -20px, -moz-linear-gradient(#eeeeee 1%, #ffffff 15%);
-    background: url('/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat -30px -20px, -o-linear-gradient(#eeeeee 1%, #ffffff 15%);
-    background: url('/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat -30px -20px, linear-gradient(#eeeeee 1%, #ffffff 15%);
+    background: #ffffff url('https://spacescout.uw.edu/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat -30px -20px;
+    background: url('https://spacescout.uw.edu/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat -30px -20px, -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+    background: url('https://spacescout.uw.edu/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat -30px -20px, -webkit-linear-gradient(#eeeeee 1%, #ffffff 15%);
+    background: url('https://spacescout.uw.edu/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat -30px -20px, -moz-linear-gradient(#eeeeee 1%, #ffffff 15%);
+    background: url('https://spacescout.uw.edu/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat -30px -20px, -o-linear-gradient(#eeeeee 1%, #ffffff 15%);
+    background: url('https://spacescout.uw.edu/static/612/img/chosen-sprite.png?bdbed58e15e4') no-repeat -30px -20px, linear-gradient(#eeeeee 1%, #ffffff 15%);
     direction: rtl;
 }
 .chzn-rtl.chzn-container-single .chzn-single div b {
@@ -2813,7 +2815,7 @@ This is patrick's attempt @ @2x:
     .chzn-container-multi .chzn-choices .search-choice .search-choice-close,
     .chzn-container .chzn-results-scroll-down span,
     .chzn-container .chzn-results-scroll-up span {
-        background-image: url('/static/612/img/chosen-sprite@2x.png?bdbed58e15e4') !important;
+        background-image: url('https://spacescout.uw.edu/static/612/img/chosen-sprite@2x.png?bdbed58e15e4') !important;
         background-size: 52px 37px !important;
         background-repeat: no-repeat !important;
     }

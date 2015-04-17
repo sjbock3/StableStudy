@@ -1,0 +1,49 @@
+<!-- Should be moved into the main page -->
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="css/registration.css">
+
+	<title>Stable Study</title>
+
+</head>
+
+<header>
+
+		<div id="logo-container">
+			<div id="logo">Stable Study</div>
+			<br>
+		</div>
+
+</header>
+
+<body>
+<script src="js/meeting.js"></script>
+	<div id="content">
+	<section class="row">
+	<div class="col-borderless">
+		<table id="formTable"><tbody>
+		<form name="meeting" id="meeting" enctype="application/json"  method="post">
+		<tr><td><p>Time: </td><td><input type="text" name="time" required></td><td> <select name="am/pm" form="meeting"> 
+			<option value="am">AM</option>
+			<option value="pm">PM</option></select></p></td></tr>
+		<tr><td><p>Date: </td><td><input type="date" name="date" required></p></td></tr>
+		<tr><td><p>Location: </td><td><input type="text" name="loc" required></p></td></tr>
+		<div id="dynamicInput">
+			<tr><td><p>User to Invite #1: </td><td><input type ="text" name="users[]" required></p></td></tr>
+		</div>
+		</tbody></table>
+		<input type="button" value="Add another user" onClick="addInput('dynamicInput');">
+		<br><input type="button" onclick="meetingForm(meeting)" name="Submit" value="Submit">
+		</form>
+	</div>
+	</section>
+	</div>
+</body>
+		
+</html>

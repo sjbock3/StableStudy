@@ -1,0 +1,60 @@
+/* Changes: BC 3.30 */
+
+html {
+    background-image: url("../img/chalkboard3.jpg");
+    background-repeat: no-repeat;
+    /*background-position: center center;*/
+    /*display: table;
+    position: relative;*/
+    width: 100%;                    /************Have to change these widths and heights******/
+    height: 100%;
+    background-size: 100% 100%
+    /*-webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;*/
+    /*background-color: green;*/
+}
+
+body {
+    background-color: transparent;
+}
+
+#headerLogo {
+    height: 50px;
+    display: inline;
+    color: #ffffff;
+}
+
+#nav .spacescout-header .logo-container {
+    background-color: transparent;
+    width: 250px;
+}
+
+#app_header {
+    font-size: large;
+    color: white;       /*????????????change to chalkboard*/
+}
+
+/*Change the color of user_content*/
+
+#nav .spacescout-header .user_context {
+    color: white;
+}
+
+#nav {
+    margin-top:50px;
+}
+
+#map_canvas{
+    /*background: url('../img/google_Maps_Pic.png');*/
+}
+
+/*Edits made 4/9/15 11:48pm*/
+#smallSuggest {
+    margin-right: 15px;
+}
+
+.location_container{
+    float: right;
+}
