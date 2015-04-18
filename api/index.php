@@ -150,12 +150,45 @@
         return;
 
     });
+
+    $app->post('/addLocation', function(){
+       global $mysqli;
+        $buildingName = $_POST['buildingName'];
+        $roomNumber = $_POST['roomNumber'];
+        $longitude = $_POST['longitude'];
+        $latitude = $_POST['latitude'];
+        $classroom = $_POST['classroom'];
+        $outdoor = $_POST['outdoor'];
+        $open_space = $_POST['open_space'];
+        $study_room = $_POST['study_room'];
+        $floor = $_POST['floor'];
+        $chairs = $_POST['chairs'];
+        $computers = $_POST['computers'];
+        $whiteboards = $_POST['printers'];
+        $projectors = $_POST['projectors'];
+        $printers = $_POST['printers'];
+        $restricted = $_POST['restricted'];
+        $pictureurl = $_POST['pictureurl'];
+
+        $existingRoom = $mysqli->query("SELECT * FROM locations WHERE buildingName = '$buildingName' AND roomNumber = '$roomNumber'");
+        if($existingRoom->fetch_assoc() === NULL){
+            echo json_encode(array('status'=>'failed', 'problem'=>1));
+            return;
+        }
+        else{
+            $mysqli->query("INSERT INTO locations(latitude, longitude, floor, buildingName, roomNumber, classroom, outdoor, open_space, study_room, chairs, computers, whiteboards, printers, projectors, restricted, pictureurl)
+                            VALUES('$latitude', '$longitude', '$floor', '$buildingName', '$roomNumber', '$classroom', '$outdoor', '$open_space', '$study_room', '$chairs', '$computers', '$whiteboards', '$printers', '$projectors', '$restricted', '$pictureurl')");
+            echo json_encode(array('status'=>'success', 'problem'=>0));
+            return;
+        }
+
+    });
 /*
  * problem id => 0 : no problems
  * problem id => 1 : room not in DB
  * problem id => 2 : host has another meeting at this time
  * problem id => 3 : room has another meeting at this time
- * problem id => 4 : other user doesn't exit in DB
+ * problem id => 4 : other user doesn't exist in DB
  */
     $app->post('/createMeeting', function(){
         global $mysqli;
@@ -219,7 +252,55 @@
         return;
 
     });
-    
+
+    $app->post('/getMeetings', function(){
+        global $mysqli;
+        $hostName = $_POST['hostName'];
+        $meeting_list = $mysqli->query("SELECT meetingTime, roomID, users FROM meeting INNER JOIN meetingUsers ON meeting.meetingID = meetingUsers.meeting_id WHERE hostName = '$hostName'");
+        $result = $meeting_list->fetch_all(MYSQLI_ASSOC);
+        echo json_encode($result);
+        return;
+    });
+
+    $app->post('/addFavorite', function(){
+        global $mysqli;
+        $username = $_POST['username'];
+        $buildingName = $_POST['buildingName'];
+        $roomNumber = $_POST['roomNumber'];
+
+        $getID = $mysqli->query("SELECT id FROM locations WHERE buildingName = '$buildingName' AND roomNumber = '$roomNumber'");
+        $roomID = $getID->fetch_assoc();
+
+        // room doesn't exist
+        if($roomID === NULL){
+            echo json_encode(array('status'=>'failed'));
+            return;
+        }
+        else{
+
+            $checkExisting = $mysqli->query("SELECT * FROM favorites WHERE username = '$username' AND roomID = '$roomID'");
+            // if user already has that room as favorite
+            if ($checkExisting->fetch_assoc() === NULL){
+                echo json_encode(array('status'=>'failed'));
+                return;
+            }
+
+            $mysqli->query("INSERT INTO favorites(username, favRoom) VALUES('$username', '$roomID')");
+            echo json_encode(array('status'=>'success'));
+            return;
+        }
+    });
+
+    $app->post('/seeFavorites', function(){
+        global $mysqli;
+        $username = $_POST['username'];
+        $favorite_arr = $mysqli->query("SELECT latitude, longitude, floor, buildingName, roomNumber, chairs, computers, whiteboards, printers, projectors, restricted, pictureurl
+            FROM favorites INNER JOIN locations on favorites.favRoom = locations.id WHERE username = '$username'");
+        $faves = $favorite_arr->fetch_all(MYSQLI_ASSOC);
+        echo json_encode($faves);
+        return;
+
+    });
     
     $app->run();
 ?>
