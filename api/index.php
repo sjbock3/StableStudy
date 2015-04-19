@@ -266,6 +266,31 @@
         return;
     });
 
+    $app->post('/filter', function(){
+        global $mysqli;
+        $classroom = $_POST['classroom'];
+        $outdoor = $_POST['outdoor'];
+        $open_space = $_POST['open_space'];
+        $study_room = $_POST['study_room'];
+        $chairs = $_POST['chairs'];
+        $computers = $_POST['computers'];
+        $whiteboards = $_POST['whiteboards'];
+        $printers = $_POST['printers'];
+        $projectors = $_POST['projectors'];
+        $restricted = $_POST['restricted'];
+
+        $result = $mysqli->query("SELECT * FROM locations WHERE classroom >= '$classroom' AND
+        outdoor >= '$outdoor' AND $open_space >= '$open_space' AND study_room >= '$study_room' AND
+        chairs >= '$chairs' AND computers >= '$computers' AND whiteboards >= '$whiteboards' AND
+        printers >= '$printers' AND projectors >= '$projectors' AND restricted >= '$restricted'");
+
+        $loc_array = $result->fetch_all();
+        echo json_encode($loc_array);
+        return;
+
+
+    });
+
     $app->post('/addFavorite', function(){
         global $mysqli;
         $username = $_POST['username'];
