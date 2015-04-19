@@ -77,7 +77,11 @@
             if($mysqli->query("INSERT INTO users(fName, lName, school, username, email, password) VALUES ('$fName', '$lName', '$school', '$username', '$email', '$password')")){
             }
             else {
-                echo "db done goofed ";
+                //return error
+                    $jsonArray = array('u_id' => -2);
+                    echo json_encode($jsonArray);
+                    return;
+               
             }
             $jsonArray = array('u_id' => 1);
             
