@@ -249,6 +249,8 @@
                 // other user might not exist in database
                 echo json_encode(array('status'=>'failed', 'problem' => 4));
                 //delete the meeting that was inserted
+
+                $mysqli->query("DELETE FROM meetingUsers WHERE meeting_id = '$meetingID'");
                 $mysqli->query("DELETE FROM meetings WHERE meetingID = '$meetingID'");
 
                 return;
