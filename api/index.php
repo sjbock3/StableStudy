@@ -235,7 +235,7 @@
             echo 'db done goofed';
         }
 
-        $getMeetingID = $mysqli->query("SELECT meetingID FROM meetings WHERE hostName = '$hostName' AND roomID = '$roomID'");
+        $getMeetingID = $mysqli->query("SELECT meetingID FROM meetings WHERE hostName = '$hostName' AND roomID = '$roomID' AND meetingTime = '$meetingTime'");
         $meetingIDarr = $getMeetingID->fetch_assoc();
         $meetingID = $meetingIDarr['meetingID'];
 
@@ -248,6 +248,9 @@
             else{
                 // other user might not exist in database
                 echo json_encode(array('status'=>'failed', 'problem' => 4));
+                //delete the meeting that was inserted
+                $mysqli->query("DELETE FROM meetings WHERE meetingID = '$meetingID'");
+
                 return;
             }
         }
@@ -260,7 +263,7 @@
     $app->post('/getMeetings', function(){
         global $mysqli;
         $hostName = $_POST['hostName'];
-        $meeting_list = $mysqli->query("SELECT meetingTime, roomID, users FROM meeting INNER JOIN meetingUsers ON meeting.meetingID = meetingUsers.meeting_id WHERE hostName = '$hostName'");
+        $meeting_list = $mysqli->query("SELECT meetingTime, buildingName, roomNumber, users FROM meetings INNER JOIN meetingUsers ON meetings.meetingID = meetingUsers.meeting_id INNER JOIN locations ON meetings.roomID = locations.id WHERE hostName = '$hostName'");
         $result = $meeting_list->fetch_all(MYSQLI_ASSOC);
         echo json_encode($result);
         return;
