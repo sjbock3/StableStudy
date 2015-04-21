@@ -58,3 +58,11 @@ body {
 .location_container{
     float: right;
 }
+#info_list #info_items ol li ol .view-details button {
+    float: right;
+    width: 45%;
+}
+
+.loading .loading-inner{
+    display: none
+}
