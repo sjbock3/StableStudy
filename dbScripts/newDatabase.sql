@@ -44,18 +44,60 @@ CREATE TABLE IF NOT EXISTS `stablestudy`.`locations` (
   `floor` INT NULL,
   `buildingName` VARCHAR(45) NULL,
   `roomNumber` VARCHAR(20) NULL,
-  `classroom` TINYINT(1),
-  `outdoor` TINYINT(1),
-  `open_space` TINYINT(1),
-  `study_room` TINYINT(1),
+  `ctype` TINYINT(4),
   `chairs` INT NULL,
   `computers` INT NULL,
   `whiteboards` INT NULL,
   `printers` INT NULL,
   `projectors` INT NULL,
   `restricted` TINYINT(1) NULL,
-  `pictureurl` VARCHAR(100) NULL,
-  PRIMARY KEY (`id`))
+  `pictureid` INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `pictureid`
+    FOREIGN KEY (`pictureid`)
+    REFERENCES `stablestudy`.`pictures` (`picture_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `stablestudy`.`pictures`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `stablestudy`.`pictures` ;
+
+CREATE TABLE IF NOT EXISTS `stablestudy`.`pictures` (
+  `picture_id` INT NOT NULL,
+  `roomID` INT,
+  `pictureurl` VARCHAR(100),
+  PRIMARY KEY (`picture_id`),
+  CONSTRAINT `roomID`
+    FOREIGN KEY (`roomID`)
+    REFERENCES `stablestudy`.`locations` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `stablestudy`.`reviews`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `stablestudy`.`reviews` ;
+
+CREATE TABLE IF NOT EXISTS `stablestudy`.`reviews` (
+  `review_id` INT NOT NULL,
+  `roomID` INT,
+  `comment` VARCHAR(140),
+  `username` VARCHAR(20),
+  PRIMARY KEY (`picture_id`),
+  CONSTRAINT `roomID`
+    FOREIGN KEY (`roomID`)
+    REFERENCES `stablestudy`.`locations` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `users`
+    FOREIGN KEY (`users`)
+    REFERENCES `stablestudy`.`users` (`username`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
