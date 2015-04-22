@@ -1,0 +1,103 @@
+url https://spacescout.uw.edu/space/515/json/
+
+{  
+   "capacity":30,
+   "name":"Commons Room 105",
+   "external_id":null,
+   "extended_info":{  
+      "has_whiteboards":"true",
+      "access_notes":"Available to residence hall students and escorted guests when not reserved for an event. Card access required. Enter at NE 40th St.",
+      "location_description":"Alder Hall Commons, NE 40th St entrance",
+      "has_natural_light":"true",
+      "has_outlets":"true",
+      "food_nearby":"building",
+      "has_projector":"true",
+      "campus":"seattle"
+   },
+   "uri":"/api/v1/spot/515",
+   "available_hours":{  
+      "monday":[  
+         [  
+            "08:00",
+            "23:00"
+         ]
+      ],
+      "tuesday":[  
+         [  
+            "08:00",
+            "23:00"
+         ]
+      ],
+      "friday":[  
+         [  
+            "08:00",
+            "23:00"
+         ]
+      ],
+      "wednesday":[  
+         [  
+            "08:00",
+            "23:00"
+         ]
+      ],
+      "thursday":[  
+         [  
+            "08:00",
+            "23:00"
+         ]
+      ],
+      "sunday":[  
+
+      ],
+      "saturday":[  
+
+      ]
+   },
+   "manager":"",
+   "last_modified":"07/29/2014",
+   "etag":"033ac733cd9eb548475f6e44fa0f480989f5c34b",
+   "type":"Conference/<wbr><a class=wbr></a>classroom",
+   "images":[  
+      {  
+         "upload_user":"cstimmel",
+         "thumbnail_root":"/api/v1/spot/515/image/1108/thumb",
+         "modification_date":"2014-07-29T17:10:11+00:00",
+         "url":"/api/v1/spot/515/image/1108",
+         "upload_application":"spotseeker_admin_1.0",
+         "display_index":0,
+         "height":2000,
+         "width":3008,
+         "creation_date":"2012-08-30T08:52:57+00:00",
+         "content-type":"image/jpeg",
+         "id":1108,
+         "description":""
+      },
+      {  
+         "upload_user":"cstimmel",
+         "thumbnail_root":"/api/v1/spot/515/image/1109/thumb",
+         "modification_date":"2014-07-29T17:10:11+00:00",
+         "url":"/api/v1/spot/515/image/1109",
+         "upload_application":"spotseeker_admin_1.0",
+         "display_index":1,
+         "height":2000,
+         "width":3008,
+         "creation_date":"2012-08-30T08:53:25+00:00",
+         "content-type":"image/jpeg",
+         "id":1109,
+         "description":""
+      }
+   ],
+   "organization":"",
+   "display_access_restrictions":"true",
+   "id":515,
+   "location":{  
+      "floor":"1",
+      "height_from_sea_level":null,
+      "room_number":"105",
+      "longitude":-122.314204,
+      "latitude":47.655633999999999,
+      "building_name":"Alder Hall"
+   }
+}
+
+url for ratings: https://spacescout.uw.edu/web_api/v1/space/524/reviews  --> but could just return empty array
