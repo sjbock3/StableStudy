@@ -1048,7 +1048,7 @@
         }
     };
     if (_.isMsie()) {
-        _.mixin(css.input, {
+        _.mixin(css.input, {    /*Brendan_Change*/
             backgroundImage: "url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)"
         });
     }
@@ -6519,14 +6519,15 @@ MarkerWithLabel.prototype.setMap = function(theMap) {
 })(jQuery);
 var requests = [];
 (function(H, $, GM) {
-    H.registerHelper('carouselimages', function(spacedata) {
+    H.registerHelper('carouselimages', function (spacedata) {
         var space_id = spacedata.id;
         var elements = [];
         var image_url, div_string;
         if (spacedata.images.length > 0) {
             for (var i = 0; i < spacedata.images.length; i++) {
                 var image_id = spacedata.images[i].id;
-                image_url = "background:url(/space/" + space_id + "/image/" + image_id + "/thumb/constrain/width:500)";
+                image_url = "background:url(space/" + space_id + '/' + image_id + "/thumb/constrain/picture.jpg)";
+                /***where set background image***/
                 div_string = "<div class='carousel-inner-image item'><div class='carousel-inner-image-inner' style='" + image_url + "'>&nbsp;</div></div>";
                 elements.push(div_string);
             }
@@ -6536,33 +6537,33 @@ var requests = [];
         }
         return new H.SafeString(elements.join('\n'));
     });
-    H.registerHelper('compare', function(lvalue, rvalue, options) {
+    H.registerHelper('compare', function (lvalue, rvalue, options) {
         if (arguments.length < 3)
             throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
         var operator = options.hash.operator || "==";
         var operators = {
-            '==': function(l, r) {
+            '==': function (l, r) {
                 return l == r;
             },
-            '===': function(l, r) {
+            '===': function (l, r) {
                 return l === r;
             },
-            '!=': function(l, r) {
+            '!=': function (l, r) {
                 return l != r;
             },
-            '<': function(l, r) {
+            '<': function (l, r) {
                 return l < r;
             },
-            '>': function(l, r) {
+            '>': function (l, r) {
                 return l > r;
             },
-            '<=': function(l, r) {
+            '<=': function (l, r) {
                 return l <= r;
             },
-            '>=': function(l, r) {
+            '>=': function (l, r) {
                 return l >= r;
             },
-            'typeof': function(l, r) {
+            'typeof': function (l, r) {
                 return typeof l == r;
             }
         };
@@ -6575,16 +6576,16 @@ var requests = [];
             return options.inverse(this);
         }
     });
-    H.registerHelper('addition', function(lvalue, rvalue) {
+    H.registerHelper('addition', function (lvalue, rvalue) {
         if (arguments.length < 2)
             throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
         return new H.SafeString(Number(lvalue) + Number(rvalue));
     });
-    H.registerHelper('formatHours', function(hours) {
+    H.registerHelper('formatHours', function (hours) {
         var formatted = {};
-        $.each(hours, function(day) {
+        $.each(hours, function (day) {
             if (hours[day].length > 0) {
-                $.each(hours[day], function() {
+                $.each(hours[day], function () {
                     this[0] = this[0].replace(/^0+/, '');
                     this[1] = this[1].replace(/^0+/, '');
                 });
@@ -6599,7 +6600,7 @@ var requests = [];
         formatted = _groupHours(formatted);
         return new H.SafeString(formatted.join("<br/>"));
     });
-    H.registerHelper('alphaOptGroupsHTML', function(list) {
+    H.registerHelper('alphaOptGroupsHTML', function (list) {
         list.sort();
         var firstletter = null;
         var out = [];
@@ -6706,7 +6707,7 @@ var requests = [];
     function _sortDays(days) {
         var ordered = [];
         var order = ["M", "T", "W", "Th", "F", "Sa", "Su"];
-        $.each(order, function(day) {
+        $.each(order, function (day) {
             if (days[order[day]]) {
                 ordered.push(order[day] + ": " + days[order[day]]);
             }
@@ -6756,6 +6757,7 @@ var requests = [];
         }
         return retData;
     }
+
     window.to12Hour = to12Hour;
 
     function default_open_at_filter() {
@@ -6786,12 +6788,14 @@ var requests = [];
         $("#day-until").val(weekday_from_day(date.getDay()));
         $("#hour-until").val(hour);
     }
+
     window.default_open_at_filter = default_open_at_filter;
 
     function weekday_from_day(day) {
         var weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         return (day >= 0 && day <= 6) ? weekdays[day] : '';
     }
+
     window.weekday_from_day = weekday_from_day;
 
     function _preloadImages(arrayOfImages) {
@@ -6799,7 +6803,8 @@ var requests = [];
             $('<img/>')[0].src = arrayOfImages[i];
         }
     }
-    $(document).ready(function() {
+
+    $(document).ready(function () {
         if ($.cookie('default_location')) {
             $('#location_select').val($.cookie('default_location'));
         }
@@ -6807,16 +6812,16 @@ var requests = [];
 
         //default locatoins for SMU
         /*var SMU_latitude = "32.8441";
-        var SMU_longitude = "-96.7849";
-        var SMU_location = "dallas";
-        var SMU_zoom = "15";
+         var SMU_longitude = "-96.7849";
+         var SMU_location = "dallas";
+         var SMU_zoom = "15";
 
-        window.default_latitude = SMU_latitude;
-        window.default_longitude = SMU_longitude;
-        window.default_location = SMU_location;
-        window.default_zoom = SMU_zoom;*/
+         window.default_latitude = SMU_latitude;
+         window.default_longitude = SMU_longitude;
+         window.default_location = SMU_location;
+         window.default_zoom = SMU_zoom;*/
 
-        $('#location_select').change(function() {
+        $('#location_select').change(function () {
             var loc_info = $(this).val().split(',');
             window.default_latitude = loc_info[0];
             window.default_longitude = loc_info[1];
@@ -6831,12 +6836,13 @@ var requests = [];
             window.update_count = true;
             _getLocationBuildings();
             $.cookie('default_location', $(this).val(), {
+
                 path: '/'
             });
             window.spacescout_url.push();
             reset_location_filter();
         });
-        $('#center_all').on('click', function(e) {
+        $('#center_all').on('click', function (e) {
             e.preventDefault();
             if (window.spacescout_map.getZoom() != window.default_zoom) {
                 window.spacescout_map.setZoom(parseInt(window.default_zoom));
@@ -6844,7 +6850,7 @@ var requests = [];
             window.spacescout_map.setCenter(new GM.LatLng(window.default_latitude, window.default_longitude));
         });
         _getLocationBuildings();
-        $('.checkbox input:checkbox').click(function() {
+        $('.checkbox input:checkbox').click(function () {
             var $parent = $(this).parent();
             if (this.checked) {
                 $parent.addClass("selected");
@@ -6852,7 +6858,7 @@ var requests = [];
                 $parent.removeClass("selected");
             }
         });
-        $('#filter_hours input:radio').change(function() {
+        $('#filter_hours input:radio').change(function () {
             var $parent = $(this).parent();
             $parent.addClass("selected");
             $parent.siblings().removeClass("selected");
@@ -6862,7 +6868,7 @@ var requests = [];
                 $('#hours_list_container').hide();
             }
         });
-        $('#filter_location input:radio').change(function() {
+        $('#filter_location input:radio').change(function () {
             var $parent = $(this).parent();
             $parent.addClass("selected");
             $parent.siblings().removeClass("selected");
@@ -6875,7 +6881,7 @@ var requests = [];
         var escape_key_code = 27;
 
         function closeFilter() {
-            $('#filter_block').slideUp(400, function() {
+            $('#filter_block').slideUp(400, function () {
                 var icon = $('.fa-angle-double-up');
                 if (icon.length) {
                     icon.switchClass('fa-angle-double-up', 'fa-angle-double-down', 0);
@@ -6887,7 +6893,8 @@ var requests = [];
             });
             $('#filter_button').focus();
         }
-        $(document).keyup(function(e) {
+
+        $(document).keyup(function (e) {
             if (e.keyCode == escape_key_code) {
                 if ($('#filter_block').is(':visible')) {
                     closeFilter();
@@ -6896,7 +6903,7 @@ var requests = [];
                 }
             }
         });
-        $("#view_results_button").click(function() {
+        $("#view_results_button").click(function () {
             run_custom_search();
             $.cookie('initial_load', false, {
                 expires: 1
@@ -6908,18 +6915,19 @@ var requests = [];
     });
 
     function initializeCarousel() {
-        $('.carousel').each(function() {
+        $('.carousel').each(function () {
             var $this = $(this);
             $this.carousel({
                 interval: false
-            });
+            })
             var html = '<div class="carousel-nav" data-target="' + $this.attr('id') + '"><ul>';
+            /***********Brendan Change**********/
             for (var i = 0; i < $this.find('.item').size(); i++) {
                 html += '<li><a';
                 if (i === 0) {
                     html += ' class="active"';
                 }
-                html += ' href="#">â€¢</a></li>';
+                html += ' href="#">•</a></li>';
             }
             html += '</ul></li>';
             $this.before(html);
@@ -6928,14 +6936,14 @@ var requests = [];
                 $this.find('.carousel-control').hide();
                 $this.prev().hide();
             }
-        }).bind('slid', function(e) {
+        }).bind('slid', function (e) {
             var $nav = $('.carousel-nav[data-target="' + $(this).attr('id') + '"] ul');
             var index = $(this).find('.item.active').index();
             var item = $nav.find('li').get(index);
             $nav.find('li a.active').removeClass('active');
             $(item).find('a').addClass('active');
         });
-        $('.carousel-nav a').bind('click', function(e) {
+        $('.carousel-nav a').bind('click', function (e) {
             var index = $(this).parent().index();
             var $carousel = $('#' + $(this).closest('.carousel-nav').data('target'));
             $carousel.carousel(index);
@@ -6943,10 +6951,11 @@ var requests = [];
         });
         resizeCarouselMapContainer();
     }
+
     window.initializeCarousel = initializeCarousel;
 
     function initMapCarouselButtons() {
-        $('.space-image-map-buttons button').on('click', function(e) {
+        $('.space-image-map-buttons button').on('click', function (e) {
             var $target = $(this),
                 active = $target.hasClass('active'),
                 $container = $target.closest('.space-detail'),
@@ -6968,6 +6977,7 @@ var requests = [];
             }
         });
     }
+
     window.initMapCarouselButtons = initMapCarouselButtons;
 
     function resizeCarouselMapContainer() {
@@ -6981,9 +6991,11 @@ var requests = [];
         $('.carousel').height(containerH);
         $('.carousel-inner-image').height(containerH);
         $('.carousel-inner-image-inner').height(containerH);
-        $('.map-container').height(containerH-400)
+        $('.map-container').height(containerH - 400);
+        /* Brendan_Change*/
         /*alert('inside resize Carousel Container');       *******BC_alert********/
     }
+
     window.resizeCarouselMapContainer = resizeCarouselMapContainer;
 
     function _getSpaceMap(container, lat, lon) {
@@ -7011,7 +7023,7 @@ var requests = [];
     }
 
     function resetFilters() {
-        $('input[type=checkbox]').each(function() {
+        $('input[type=checkbox]').each(function () {
             if ($(this).attr('checked')) {
                 $(this).attr('checked', false);
                 $(this).parent().removeClass("selected");
@@ -7038,56 +7050,67 @@ var requests = [];
             $("#ei_reservation_notes").html(text);
         }
     }
+
     window.replaceUrls = replaceUrls;
 
     function _getLocationBuildings() {
         console.log('in _getLocationBuildings');
         //just ask for buildings
         var url = '/api/index.php/buildings';
-        /*if (window.default_location !== null) {
-            url = url + '?campus=' + window.default_location;
+        if (window.default_location !== null) {
+            url = url + '?campus=' + window.default_location; //Brendan_Change: will add on the locatoins
         }
 
         $.ajax({
             //going and getting the building information
             url: url,
             success: _formatLocationFilter
-        });*/
+        });
 
-        var data = ["Florence Hall","Brendans Hall"];
+        var data = ["Florence Hall", "Brendans Hall"];
         var formatFunct = _formatLocationFilter;
         //formatFunct(data);
     }
+
     window.getLocationBuildings = _getLocationBuildings;
 
     function _formatLocationFilter(data) {
-        console.log('in _formatLocationFilter');
-        //will populate the list of buildings in the filter list
-        var source = $('#building_list').html();
-        var template = Handlebars.compile(source);
-        if (source) {
-            $('#building_list_container').html(template({
-                data: data
-            }));
-        }
-        if ($.cookie('spacescout_search_opts')) {
-            var form_opts = JSON.parse($.cookie('spacescout_search_opts'));
-            if (form_opts["building_name"]) {
-                $('#e9 option').each(function() {
-                    if ($.inArray($(this).val(), form_opts["building_name"]) != -1) {
-                        $(this).prop("selected", "selected");
-                    }
+        //console.log(data.length = 'data.length');
+        console.log(data[0]);
+        if (data != '[]') {
+
+            console.log('data = ' + data);
+
+            console.log('in _formatLocationFilter');
+            //will populate the list of buildings in the filter list
+            var source = $('#building_list').html();
+            console.log('source = ' + source);
+            var template = Handlebars.compile(source);
+            if (source) {
+                $('#building_list_container').html(template({
+                    data: data
+                }));
+            }
+            if ($.cookie('spacescout_search_opts')) {
+                var form_opts = JSON.parse($.cookie('spacescout_search_opts'));
+                if (form_opts["building_name"]) {
+                    $('#e9 option').each(function () {
+                        if ($.inArray($(this).val(), form_opts["building_name"]) != -1) {
+                            $(this).prop("selected", "selected");
+                        }
+                    });
+                }
+            }
+            var $node = $(".chzn-select");
+            if ($node.length > 0 && $node.chosen) {
+                $node.chosen({
+                    width: "98%"
                 });
             }
+            $('#e9.building-location').trigger("liszt:updated");
         }
-        var $node = $(".chzn-select");
-        if ($node.length > 0 && $node.chosen) {
-            $node.chosen({
-                width: "98%"
-            });
-        }
-        $('#e9.building-location').trigger("liszt:updated");
     }
+    window._formatLocationFilter = _formatLocationFilter;
 
     function closeSpaceDetails() {
         var the_spot_id = $('.space-detail-inner').attr("id");
@@ -7105,7 +7128,7 @@ var requests = [];
 
 function static_url(base) {
     /*return window.spacescout_static_url + base;*/
-    return 'https://spacescout.uw.edu/static/612/' + base;
+    return 'https://spacescout.uw.edu/static/612/' + base;  /*Brendan_Change*/
 }
 
 function monthname_from_month(month) {
@@ -7213,16 +7236,18 @@ function replaceReservationNotesUrls() {
             return o ? o.id : null;
         },
         parse_path: function(path) {
+            console.log('sent to parse_path = ' + path);
+            //alert('inside Parse_path');
             var state = {},
                 m = path.match(/^\/([a-zA-Z]+)?(\/([a-z][^/]*))?((\/(\d*))?(\/.*)?)?$/);
-            if (m) {
+            if (m) {/*will set the state.campus according to what selected*/
                 $('#location_select option').each(function(i) {
                     var location = $(this).val().split(',');
                     if (location[2] == m[1]) {
                         state.campus = m[1];
                     }
                 });
-                if (state.campus) {
+                if (state.campus) {//sets the local path if there is a state.campus selected
                     state.local_path = '';
                 } else {
                     state.local_path = m[1];
@@ -7848,7 +7873,7 @@ function setupRatingsAndReviews(data) {
     $('.space-ratings-and-reviews').html(Handlebars.compile($('#space_reviews').html())());
     if (data && data.length) {
         showRatingEditorButton();
-    }
+    } /* will show the rating editor if click on right a review*/
     $('.space-ratings-and-reviews .write-a-review.add-a-review').on('click', function(e) {
         showRatingEditor();
     });
@@ -7871,7 +7896,7 @@ function setupRatingsAndReviews(data) {
         } else {
             disableSubmitButton();
         }
-    });
+    }); /*function that will allow to type in the review button*/
     $('button#space-review-cancel').click(function(e) {
         $('.space-review-compose').hide(400);
         if ($('.space-reviews-none').length) {
@@ -7880,7 +7905,7 @@ function setupRatingsAndReviews(data) {
             showRatingEditorButton();
         }
         tidyUpRatesComposer();
-    });
+    });/*will exit the review popup */
     $('button#space-review-submit').click(function(e) {
         var id = $(e.target).closest('div[id^=detail_container_]').attr('id').match(/_(\d+)$/)[1],
             review = {
@@ -7906,7 +7931,7 @@ function setupRatingsAndReviews(data) {
         } else {
             showRatingEditorButton();
         }
-    });
+    }); /*will close out the review section once submitted*/
     $("input[name=star-rating]").change(function(e) {
         var target = $(e.target),
             rating = parseInt(target.val()),
@@ -7923,14 +7948,15 @@ function setupRatingsAndReviews(data) {
         if ($('.space-review-compose textarea').val().length) {
             enableSubmitButton();
         }
-    });
+    }); /* manages the input[name=star-rating] and put stars next to them*/
     $('#review_guidelines').on('click', function() {
         if ($(this).next().is(':visible')) {
             hideReviewGuidelines();
         } else {
             showReviewGuidelines();
         }
-    });
+    }); /*will toggle the review box*/
+
     $(document).on('loadSpaceReviews', function(e, id) {
         var review = $.cookie('space_review');
         if (review && window.spacescout_authenticated_user.length > 0) {
@@ -7965,7 +7991,7 @@ function setupRatingsAndReviews(data) {
 
 function loadRatingsAndReviews(id, review_container, rating_container) {
     $.ajax({
-        url: '/web_api/v1/space/' + id + '/reviews',
+        url: '/web_api/v1/space/' + id + '/reviews',  /*Brendan_Change*/
         success: function(data) {
             var template = Handlebars.compile($('#space_reviews_review').html()),
                 rating_sum = 0,
@@ -8063,7 +8089,7 @@ function loadRatingsAndReviews(id, review_container, rating_container) {
 
 function postRatingAndReview(id, review) {
     $.ajax({
-        url: '/web_api/v1/space/' + id + '/reviews',
+        url: '/web_api/v1/space/' + id + '/reviews', /*Brendan_Change*/
         dataType: 'json',
         contentType: "application/json",
         data: JSON.stringify(review),
@@ -8143,7 +8169,7 @@ function hideReviewGuidelines() {
     link.next().hide();
     link.attr('title', 'Click to see review guidelines');
     $('i', link).switchClass('fa-angle-double-up', 'fa-angle-double-down');
-};
+};  /*********End of review section*/
 var spacescout_map = null,
     spacescout_markers = [],
     speed = 800,
@@ -8153,11 +8179,13 @@ var spacescout_map = null,
     var youarehere = null;
 
     function openAllMarkerInfoWindow(data) {
-        /*alert('used openAllMarkerInfoWidnow');*********BC_alert*********/
-        var source = $('#all_markers').html();
+        console.log('inside openAllMarkers');
+        var source = $('#all_markers').html(); /*** handlebars template for right side*/
         var template = H.compile(source);
         data = buildingNameHeaders(data);
+        console.log('Data returned from buildingNameHeaders = ' + data);
         $('#info_items').html(template({
+
             'data': data
         }));
         $('.loading').slideUp('fast');
@@ -8188,7 +8216,6 @@ var spacescout_map = null,
                 $spot.click();
                 $.removeCookie('spot_id');
             }
-            //var lazyload_target = isMobile ? window : '#info_list';  /*****BC_changed********/
             var lazyload_target = '#info_list';
             $(lazyload_target).lazyScrollLoading({
                 lazyItemSelector: ".lazyloader",
@@ -8197,6 +8224,7 @@ var spacescout_map = null,
                         var $img = $(this);
                         var src = $img.data('src');
                         $img.css('background', 'transparent url("' + src + '") no-repeat 50% 50%');
+                        $img.css('background-size','cover');
                     });
                 }
             });
@@ -8253,6 +8281,7 @@ var spacescout_map = null,
     };
 
     function _lazyLoadSpaceImages() {
+        console.log('tried to use laxyLoadSpaceImages');
         if ($('#info_list').hasScrollBar()) {
             $("img.lazy").lazyload({
                 container: $("#info_list")
@@ -8263,6 +8292,7 @@ var spacescout_map = null,
     }
 
     function repopulate_filters(form_opts) {
+        console.log('inside repopulate_filters');
         try {
             if (form_opts) {
                 if (form_opts.hasOwnProperty('type')) {
@@ -8345,6 +8375,7 @@ var spacescout_map = null,
     window.repopulate_filters = repopulate_filters;
 
     function clear_filter() {
+        console.log('inside clear_filter');
         $('input[type=checkbox]').each(function() {
             var $this = $(this);
             if ($this.prop('checked')) {
@@ -8363,6 +8394,7 @@ var spacescout_map = null,
     window.clear_filter = clear_filter;
 
     function reset_location_filter() {
+        console.log('inside reset_location_filter');
         var $node;
         $('#entire_campus').prop('checked', true);
         $('#entire_campus').parent().removeClass("selected");
@@ -8381,7 +8413,7 @@ var spacescout_map = null,
     }
     window.reset_location_filter = reset_location_filter;
 
-    function run_custom_search() {
+    function run_custom_search() { console.log('inside custom search');
         var event_results;
         window.update_count = true;
         for (var i = 0; i < window.spacescout_markers.length; i++) {
@@ -8520,12 +8552,12 @@ var spacescout_map = null,
     }
     window.run_custom_search = run_custom_search;
 
-    function clear_custom_search() {
+    function clear_custom_search() { console.log('inside clear_custom_search');
         window.spacescout_search_options = [];
         _fetchData();
     }
 
-    function initialize() {
+    function initialize() { console.log('inside initialize');
         window.spacescout_search_options = {};
         window.update_count = true;
         if ($.cookie('spacescout_search_opts')) {
@@ -8544,7 +8576,7 @@ var spacescout_map = null,
     }
     window.initialize = initialize;
 
-    function _loadMap(latitude, longitude, zoom) {
+    function _loadMap(latitude, longitude, zoom) { console.log('inside load map');
         $('.loading').show();
         var myOptions = {
             center: new GM.LatLng(latitude, longitude),
@@ -8590,6 +8622,7 @@ var spacescout_map = null,
         updatePins(data);
         dataLoaded(data.length);
     }
+    window._loadData = _loadData;
 
     function _reloadOnIdle() {
         if (window.initial_load) {
@@ -8599,19 +8632,25 @@ var spacescout_map = null,
             _fetchData();
         }
     }
+    window._reloadOnIdle = _reloadOnIdle;
 
-    function _fetchData() {
+    function _fetchData() { console.log('inside _fetchData');
+        console.log('inside _fetchData');
         $('.loading').show();
+        //will first abort all the current requests
         for (var i = 0; i < window.requests.length; i++) {
             window.requests[i].abort();
         }
         var args = window.spacescout_search_options;
+        console.log("Args = "+args);
+
         if (!args) {
             args = {};
         }
         if (!args.open_at) {
             args.open_now = 1;
         }
+        //getting the different bounds for the map
         var display_bounds = window.spacescout_map.getBounds();
         var ne = display_bounds.getNorthEast();
         var sw = display_bounds.getSouthWest();
@@ -8632,8 +8671,9 @@ var spacescout_map = null,
         if (!window.spacescout_search_options.hasOwnProperty('type')) {
             window.spacescout_search_options.type = [];
         }
+        //starting to make the query string
         var url_args = ["/search/?"];
-        for (var key in args) {
+        for (var key in args) {/*iterating the window.spacescout_search_options*/
             if (args.hasOwnProperty(key)) {
                 var val = args[key];
                 if (typeof(val) == "object") {
@@ -8645,10 +8685,14 @@ var spacescout_map = null,
                 }
             }
         }
-        var location = $('#location_select option:selected');
+
+        console.log("url_args after going through spacescout_search_options = " + url_args);
+        var location = $('#location_select option:selected'); /*if have special location then tacks it on to end*/
         if (location.length) {
             url_args.push("extended_info:campus=", encodeURIComponent(location.val().split(',')[2]), '&');
         }
+
+        console.log("url_args after going through which location selected = " + url_args);
         url_args.pop();
         var query = url_args.join("");
         window.requests.push($.ajax({
@@ -8656,7 +8700,7 @@ var spacescout_map = null,
             success: _loadData
         }));
     }
-
+    window._fetchData = _fetchData;
     function _distanceBetweenPoints(lat1, lon1, lat2, lon2) {
         var R = 6371;
         var dLat = (lat2 - lat1) * Math.PI / 180;
@@ -8714,6 +8758,7 @@ function dataLoaded(count) {
     $(document).ready(function() {
 
         if ($('#id_recipient').length) {
+            console.log('inside id_recipient line:8735');
             var node = $('#id_recipient');
             var engine = new Bloodhound({
                 datumTokenizer: function(d) {
@@ -8736,12 +8781,13 @@ function dataLoaded(count) {
             });
             return;
         }
-        $('a#suggest').click(function(e) {
-            if (window.location.pathname != "/") {
+        $('a#suggest').click(function(e) { /*Brendan_Change*/
+            /*if (window.location.pathname != "/") {
                 window.location.href = '/suggest/?back=' + encodeURIComponent(window.location.pathname);
             } else {
                 window.location.href = '/suggest/';
-            }
+            }*/
+            window.location.href = '/suggestSpace.html;';
         });
         _desktopContent();
         if ($("#map_canvas").length == 1) {
@@ -8788,11 +8834,12 @@ function dataLoaded(count) {
             $.removeCookie('initial_load');
         });
         $(document).on('click', '.view-details', function(e) {
+            console.log('view-details button pressed');
             var id = $(this).find('.space-detail-list-item').attr('id');
             e.preventDefault();
             $('#info_items li').removeClass('selected');
             fetchSpaceDetails(id);
-            window.spacescout_url.push(id);
+            //window.spacescout_url.push(id);  /*Brendan_Change*/
         });
         $(document).on('loadSpaceDetail', function(e, id) {
             if (id) {
@@ -8828,6 +8875,7 @@ function dataLoaded(count) {
     }
 
     function _showSpaceDetails(data) {
+        console.log('inside _showSpaceDetails');
         var last_mod = new Date(data["last_modified"]);
         var month = last_mod.getMonth() + 1;
         var day = last_mod.getDate();
@@ -8844,12 +8892,14 @@ function dataLoaded(count) {
                 }
             });
         }
+
+
         data["has_notes"] = ((data.extended_info.access_notes != null) || (data.extended_info.reservation_notes != null));
         data["has_resources"] = (data.extended_info.has_computers != null || data.extended_info.has_displays != null || data.extended_info.has_outlets != null || data.extended_info.has_printing != null || data.extended_info.has_projector != null || data.extended_info.has_scanner != null || data.extended_info.has_whiteboards != null);
         data["review_count"] = (data.extended_info.review_count) || 0;
         data["stars"] = [];
         var rating = parseFloat(data.extended_info.rating) || 0;
-        for (var star_pos = 1; star_pos <= 5; star_pos++) {
+        for (var star_pos = 1; star_pos <= 5; star_pos++) { /*puts as many stars up there as rated*/
             if (rating == star_pos - 0.5) {
                 data.stars.push({
                     "icon": "fa-star-half-o"
@@ -8870,6 +8920,8 @@ function dataLoaded(count) {
         var template = H.compile(source);
         $('#map_canvas').append(template(data));
         initMapCarouselButtons();
+
+        /*sets the height of the space*/
         $('.space-detail-inner').show();
         $('.space-detail-container').show();
         $('.space-detail-container').height($('#map_canvas').height());
@@ -8913,11 +8965,15 @@ function dataLoaded(count) {
         loadRatingsAndReviews(data.id, $('.space-reviews-content'), $('.space-actions'));
         $('button#share_space').unbind('click');
         $('button#share_space').click(function(e) {
+            /*
             window.location.href = '/share/' + data.id + '?back=' + encodeURIComponent(window.location.pathname);
-        });
+        */
+            window.location.href = '/shareSpacePage.html';  /*Brendan_Change*/
+            });
         $('button#' + data.id).closest('.view-details').addClass('selected');
         $('a.close').focus();
     }
+    window._showSpaceDetails = _showSpaceDetails;
 
     function _desktopContent() {
         var windowH = $(window).height();
@@ -8958,7 +9014,7 @@ function dataLoaded(count) {
     }
     window.updatePins = updatePins;
 
-    function _updateMarkers(spots) {
+    function _updateMarkers(spots) { console.log('spots in _updateMarkers = ' + spots);
         window.spacescout_markers = [];
         for (var i = 0; i < spots.length; i++) {
             var holderspot = new GM.Marker({
@@ -9065,6 +9121,7 @@ function dataLoaded(count) {
         });
         visible_markers.push(marker);
     }
+    window._createMarker = _createMarker;
 
     function _getGroupCenter(group) {
         if (group.length > 1) {
@@ -9123,14 +9180,18 @@ function dataLoaded(count) {
         $('#info_items').html(template({
             data: data
         }));
-        var lazyload_target = isMobile ? window : '#info_list';
+        //var lazyload_target = isMobile ? window : '#info_list';
+        var lazyload_target = '#info_list';
         $(lazyload_target).lazyScrollLoading({
             lazyItemSelector: ".lazyloader",
             onLazyItemFirstVisible: function(e, $lazyItems, $firstVisibleLazyItems) {
                 $firstVisibleLazyItems.each(function() {
                     var $img = $(this);
+                    console.log('inside lazy item');
+                    console.log($img);
                     var src = $img.data('src');
                     $img.css('background', 'transparent url("' + src + '") no-repeat 50% 50%');
+                    $img.css('background-size','cover');
                 });
             }
         });
@@ -9138,6 +9199,7 @@ function dataLoaded(count) {
         $('.loading').slideUp('fast');
         dataLoaded(visible_markers.length);
     }
+    window._loadMarkerSpots = _loadMarkerSpots;
 
     function _clearMap() {
         for (var i = 0; i < visible_markers.length; i++) {
@@ -9145,6 +9207,8 @@ function dataLoaded(count) {
         }
         visible_markers = [];
     }
+    window._clearMap = _clearMap;
+
 })(Handlebars, jQuery, google.maps);
 var _ga = _ga || {};
 var _gaq = _gaq || [];

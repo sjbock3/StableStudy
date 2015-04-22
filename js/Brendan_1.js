@@ -1,3 +1,87 @@
+/**
+ * Created by Brendan on 4/10/2015.
+ */
+var dummyClassData = {
+    "capacity": null,
+    "name": "Brendan's Dorm",
+    "external_id": null,
+    "extended_info": {
+        "rating": "3.0",
+        "review_count": "1",
+        "orientation": "1st floor; near hughest trig",
+        "noise_level": "variable",
+        "location_description": "Physics/Astronomy Tower, near H-Bar",
+        "has_natural_light": "true",
+        "food_nearby": "building",
+        "campus": "SMU"
+    },
+    "uri": "/api/v1/spot/666", /*********Need to change********/
+    "available_hours": {
+        "monday": [
+            ["00:00", "23:59"]
+        ],
+        "tuesday": [
+            ["00:00", "23:59"]
+        ],
+        "friday": [
+            ["00:00", "23:59"]
+        ],
+        "wednesday": [
+            ["00:00", "23:59"]
+        ],
+        "thursday": [
+            ["00:00", "23:59"]
+        ],
+        "sunday": [
+            ["00:00", "23:59"]
+        ],
+        "saturday": [
+            ["00:00", "23:59"]
+        ]
+    },
+    "manager": "",
+    "last_modified": "2014-12-01T19:35:17+00:00",
+    "etag": "01603d4ae534fbc1b329d1da04f4e8013e545b4d",
+    "type": "Outdoor area",
+    "images": [{
+        "upload_user": "cstimmel",
+        "thumbnail_root": "/api/v1/spot/591/image/1324/thumb", /*********Need to change********/
+        "modification_date": "2014-07-29T17:10:13+00:00",
+        "url": "/api/v1/spot/591/image/1324",
+        "upload_application": "spotseeker_admin_1.0",
+        "display_index": 0,
+        "height": 2000,
+        "width": 3008,
+        "creation_date": "2012-08-30T10:25:27+00:00",
+        "content-type": "image/jpeg",
+        "id": 1,
+        "description": ""
+    }, {
+        "upload_user": "cstimmel",
+        "thumbnail_root": "/api/v1/spot/591/image/1325/thumb", /*********Need to change********/
+        "modification_date": "2014-07-29T17:10:13+00:00",
+        "url": "/api/v1/spot/591/image/1325", /*********Need to change********/
+        "upload_application": "spotseeker_admin_1.0",
+        "display_index": 1,
+        "height": 2000,
+        "width": 3008,
+        "creation_date": "2012-08-30T10:26:00+00:00",
+        "content-type": "image/jpeg",
+        "id": 2,
+        "description": ""
+    }],
+    "organization": "",
+    "display_access_restrictions": "",
+    "id": 666,
+    "location": {
+        "floor": "1st floor",
+        "height_from_sea_level": null,
+        "room_number": "",
+        "longitude": -96.786326,
+        "latitude": 32.840536,
+        "building_name": "Brendans_Dorm"
+    }
+};
 $(document).ready(function() {
 
     //add the user's name in right corner
@@ -40,7 +124,49 @@ $(document).ready(function() {
         window.location.href = '/userAccount#share';
     });
 
+    //load all the spaces from the initial json
+    window.window.initial_load = true;
+    window._reloadOnIdle();
 
+    //make sure every image loaded as background
+   /* $('#info_list').lazyScrollLoading({
+        lazyItemSelector: ".lazyloader",
+        onLazyItemFirstVisible: function(e, $lazyItems, $firstVisibleLazyItems) {
+            $firstVisibleLazyItems.each(function() {
+                var $img = $(this);
+                console.log('inside lazy item');
+                console.log($img);
+                var src = $img.data('src');
+                $img.css('background', 'transparent url("' + src + '") no-repeat 50% 50%');
+                $img.css('background-size','cover');
+            });
+        }
+    });*/
+
+    //makes sure all the pictures will load
+    $('#info_list .lazyloader').each(function(){
+        var $img = $(this);
+        console.log('inside lazy item');
+        console.log($img);
+        var src = $img.data('src');
+        $img.css('background', 'transparent url("' + src + '") no-repeat 50% 50%');
+        $img.css('background-size','cover');
+
+    });
+
+    setTimeout(function(){
+        var dummyBuildings = ["","Brendan's Dorm", "Fondren Library", "Fondren Science"];
+        console.log("dummyBuildings = " + dummyBuildings);
+        window._formatLocationFilter(dummyBuildings);
+    }, 5000)//mock formatting the building list
+
+
+    //wait before popping up with the images as if pressed
+    setTimeout(function (){
+
+        window._showSpaceDetails(dummyClassData);
+
+    }, 10000); // How long do you want the delay to be (in milliseconds)?
 
 });
 
