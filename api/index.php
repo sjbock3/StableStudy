@@ -116,6 +116,7 @@
         return;
         
     });
+    // 1 -classroom, 2 - outdoor, 3 - open_space, 4 - study_room
 
     $app->get('/locinfo', function(){
         global $mysqli;

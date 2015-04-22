@@ -12,7 +12,7 @@ DROP SCHEMA IF EXISTS `stablestudy` ;
 -- -----------------------------------------------------
 -- Schema stablestudy
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `stablestudy` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+CREATE SCHEMA IF NOT EXISTS `stablestudy` DEFAULT CHARACTER SET utf8 ;
 USE `stablestudy` ;
 
 -- -----------------------------------------------------
@@ -26,9 +26,28 @@ CREATE TABLE IF NOT EXISTS `stablestudy`.`users` (
   `fName` VARCHAR(20) NOT NULL,
   `lName` VARCHAR(20) NOT NULL,
   `password` VARCHAR(20) NOT NULL,
-  `school` VARCHAR(45) NULL,
+  `school` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`email`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `stablestudy`.`pictures`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `stablestudy`.`pictures` ;
+
+CREATE TABLE IF NOT EXISTS `stablestudy`.`pictures` (
+  `picture_id` INT NOT NULL,
+  `room_id` INT NULL DEFAULT NULL,
+  `pictureurl` VARCHAR(100) NULL DEFAULT NULL,
+  PRIMARY KEY (`picture_id`),
+  INDEX `room_id` (`room_id` ASC),
+  CONSTRAINT `room_id`
+    FOREIGN KEY (`room_id`)
+    REFERENCES `stablestudy`.`locations` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -39,22 +58,19 @@ DROP TABLE IF EXISTS `stablestudy`.`locations` ;
 
 CREATE TABLE IF NOT EXISTS `stablestudy`.`locations` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `latitude` VARCHAR(45) NULL,
-  `longitude` VARCHAR(45) NULL,
-  `floor` INT NULL,
-  `buildingName` VARCHAR(45) NULL,
-  `roomNumber` VARCHAR(20) NULL,
-  `classroom` TINYINT(1),
-  `outdoor` TINYINT(1),
-  `open_space` TINYINT(1),
-  `study_room` TINYINT(1),
-  `chairs` INT NULL,
-  `computers` INT NULL,
-  `whiteboards` INT NULL,
-  `printers` INT NULL,
-  `projectors` INT NULL,
-  `restricted` TINYINT(1) NULL,
-  `pictureurl` VARCHAR(100) NULL,
+  `latitude` VARCHAR(45) NULL DEFAULT NULL,
+  `longitude` VARCHAR(45) NULL DEFAULT NULL,
+  `floor` INT NULL DEFAULT NULL,
+  `buildingName` VARCHAR(45) NULL DEFAULT NULL,
+  `roomNumber` VARCHAR(20) NULL DEFAULT NULL,
+  `ctype` TINYINT(4) NULL DEFAULT NULL,
+  `chairs` INT NULL DEFAULT NULL,
+  `computers` INT NULL DEFAULT NULL,
+  `whiteboards` INT NULL DEFAULT NULL,
+  `printers` INT NULL DEFAULT NULL,
+  `projectors` INT NULL DEFAULT NULL,
+  `restricted` TINYINT(1) NULL DEFAULT NULL,
+  `pictureid` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -66,8 +82,8 @@ DROP TABLE IF EXISTS `stablestudy`.`favorites` ;
 
 CREATE TABLE IF NOT EXISTS `stablestudy`.`favorites` (
   `favID` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(20) NULL,
-  `favRoom` INT NULL,
+  `username` VARCHAR(20) NULL DEFAULT NULL,
+  `favRoom` INT NULL DEFAULT NULL,
   PRIMARY KEY (`favID`),
   INDEX `username_idx` (`username` ASC),
   INDEX `favRoom_idx` (`favRoom` ASC),
@@ -91,9 +107,9 @@ DROP TABLE IF EXISTS `stablestudy`.`meetings` ;
 
 CREATE TABLE IF NOT EXISTS `stablestudy`.`meetings` (
   `meetingID` INT NOT NULL AUTO_INCREMENT,
-  `hostName` VARCHAR(20) NULL,
-  `meetingTime` DATETIME,
-  `roomID` INT NULL,
+  `hostName` VARCHAR(20) NULL DEFAULT NULL,
+  `meetingTime` DATETIME NULL DEFAULT NULL,
+  `roomID` INT NULL DEFAULT NULL,
   PRIMARY KEY (`meetingID`),
   INDEX `hostName_idx` (`hostName` ASC),
   INDEX `roomID_idx` (`roomID` ASC),
@@ -127,6 +143,32 @@ CREATE TABLE IF NOT EXISTS `stablestudy`.`meetingUsers` (
     ON UPDATE NO ACTION,
   CONSTRAINT `users`
     FOREIGN KEY (`users`)
+    REFERENCES `stablestudy`.`users` (`username`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `stablestudy`.`reviews`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `stablestudy`.`reviews` ;
+
+CREATE TABLE IF NOT EXISTS `stablestudy`.`reviews` (
+  `review_id` INT NOT NULL AUTO_INCREMENT,
+  `room` INT NULL,
+  `writer` VARCHAR(20) NULL,
+  `comment` VARCHAR(140) NULL,
+  PRIMARY KEY (`review_id`),
+  INDEX `username_idx` (`writer` ASC),
+  INDEX `roomID_idx` (`room` ASC),
+  CONSTRAINT `room`
+    FOREIGN KEY (`room`)
+    REFERENCES `stablestudy`.`locations` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `writer`
+    FOREIGN KEY (`writer`)
     REFERENCES `stablestudy`.`users` (`username`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
