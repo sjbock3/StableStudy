@@ -66,14 +66,16 @@ CREATE TABLE IF NOT EXISTS `stablestudy`.`locations` (
   `floor` INT NULL DEFAULT NULL,
   `buildingName` VARCHAR(45) NULL DEFAULT NULL,
   `roomNumber` VARCHAR(20) NULL DEFAULT NULL,
-  `ctype` TINYINT(4) NULL DEFAULT NULL,
+  `classroom` TINYINT(1),
+  `outdoor` TINYINT(1),
+  `open_space` TINYINT(1),
+  `study_room` TINYINT(1),
   `chairs` INT NULL DEFAULT NULL,
   `computers` INT NULL DEFAULT NULL,
   `whiteboards` INT NULL DEFAULT NULL,
   `printers` INT NULL DEFAULT NULL,
   `projectors` INT NULL DEFAULT NULL,
   `restricted` TINYINT(1) NULL DEFAULT NULL,
-  `pictureid` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
