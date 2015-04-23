@@ -407,6 +407,88 @@
 
     });
 
+$app->get('/search', function(){
+        global $mysqli;
+        $classroom = $_GET['classroom'];
+        $outdoor = $_GET['outdoor'];
+        $open_space = $_GET['open_space'];
+        $study_room = $_GET['study_room'];
+        $chairs = $_GET['chairs'];
+        $computers = $_GET['computers'];
+        $whiteboards = $_GET['whiteboards'];
+        $printers = $_GET['printers'];
+        $projectors = $_GET['projectors'];
+        $restricted = $_GET['restricted'];
+
+        $finalArr = array();
+
+        if ($classroom) {
+            $result = $mysqli->query("SELECT id FROM locations WHERE classroom = 1 AND
+              chairs >= '$chairs' AND computers >= '$computers' AND whiteboards >= '$whiteboards' AND
+              printers >= '$printers' AND projectors >= '$projectors' AND restricted >= '$restricted'");
+
+            $result = $result->fetch_all(MYSQL_NUM);
+            $len = count($result);
+
+            for($i = 0; $i < $len; $i++){
+                array_push($finalArr, getRoom($result[$i][0]));
+            }
+        }
+
+        if ($outdoor) {
+            $result = $mysqli->query("SELECT id FROM locations WHERE outdoor = 1 AND
+              chairs >= '$chairs' AND computers >= '$computers' AND whiteboards >= '$whiteboards' AND
+              printers >= '$printers' AND projectors >= '$projectors' AND restricted >= '$restricted'");
+
+            $result = $result->fetch_all(MYSQL_NUM);
+            $len = count($result);
+
+            for($i = 0; $i < $len; $i++){
+                array_push($finalArr, getRoom($result[$i][0]));
+            }
+        }
+
+        if ($open_space) {
+            $result = $mysqli->query("SELECT id FROM locations WHERE open_space = 1 AND
+              chairs >= '$chairs' AND computers >= '$computers' AND whiteboards >= '$whiteboards' AND
+              printers >= '$printers' AND projectors >= '$projectors' AND restricted >= '$restricted'");
+
+            $result = $result->fetch_all(MYSQL_NUM);
+            $len = count($result);
+
+            for($i = 0; $i < $len; $i++){
+                array_push($finalArr, getRoom($result[$i][0]));
+            }
+        }
+
+        if ($study_room) {
+            $result = $mysqli->query("SELECT id FROM locations WHERE study_room = 1 AND
+              chairs >= '$chairs' AND computers >= '$computers' AND whiteboards >= '$whiteboards' AND
+              printers >= '$printers' AND projectors >= '$projectors' AND restricted >= '$restricted'");
+
+            $result = $result->fetch_all(MYSQL_NUM);
+            $len = count($result);
+
+            for($i = 0; $i < $len; $i++){
+                array_push($finalArr, getRoom($result[$i][0]));
+            }
+        }
+
+        echo json_encode($finalArr);
+        return;
+
+
+    });
+
+	$app->post('/getRoom', function(){
+		global $mysqli;
+		$roomID = $_POST['roomID'];
+		$json = getRoom($roomID);
+		echo json_encode($json);
+		return;
+	});
+
+
     $app->post('/addFavorite', function(){
         global $mysqli;
         $username = $_POST['username'];
@@ -439,7 +521,7 @@
     $app->post('/seeFavorites', function(){
         global $mysqli;
         $username = $_POST['username'];
-        $favorite_arr = $mysqli->query("SELECT latitude, longitude, floor, buildingName, roomNumber, chairs, computers, whiteboards, printers, projectors, restricted, pictureid
+        $favorite_arr = $mysqli->query("SELECT latitude, longitude, floor, buildingName, roomNumber, chairs, computers, whiteboards, printers, projectors, restricted
             FROM favorites INNER JOIN locations on favorites.favRoom = locations.id WHERE username = '$username'");
         $faves = $favorite_arr->fetch_all(MYSQLI_ASSOC);
         echo json_encode($faves);
