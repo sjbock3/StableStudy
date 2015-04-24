@@ -179,6 +179,33 @@ CREATE TABLE IF NOT EXISTS `stablestudy`.`reviews` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `stablestudy`.`reviews`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `stablestudy`.`shares` ;
+
+CREATE TABLE IF NOT EXISTS `stablestudy`.`shares` (
+  `share_id` INT NOT NULL AUTO_INCREMENT,
+  `shared_room` INT NULL,
+  `host` VARCHAR(20) NULL,
+  `other` VARCHAR(20) NULL,
+  PRIMARY KEY (`share_id`),
+  CONSTRAINT `shared_room`
+    FOREIGN KEY (`shared_room`)
+    REFERENCES `stablestudy`.`locations` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `other`
+    FOREIGN KEY (`other`)
+    REFERENCES `stablestudy`.`users` (`username`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `host`
+  	FOREIGN KEY (`host`)
+  	REFERENCES `stablestudy`.`users` (`username`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
