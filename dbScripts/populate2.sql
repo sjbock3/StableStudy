@@ -65,3 +65,11 @@ INSERT INTO pictures(picture_id, room_id, pictureurl) VALUES
 	(11, 11, '/img/Florence/106'),
 	(12, 12, '/img/Florence/106'),
 	(13, 12, '/img/Florence/106');
+
+INSERT INTO favorites(username, favRoom) VALUES
+	('danhn', 1),
+	('danhn', 2),
+	('danhn', 3),
+	('danhn', 4),
+	('afulsom', 1),
+	('afulsom', 12);
