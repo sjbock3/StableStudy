@@ -334,6 +334,18 @@
         return;
     });
 
+    $app->post('/getReviews', function(){
+        global $mysqli;
+        $room = $_POST['roomid'];
+        $reviewList = $mysqli->query("SELECT writer, comment FROM reviews WHERE room ='$room'");
+        $reviews = $reviewList->fetch_all(MYSQLI_ASSOC);
+        echo json_encode($reviews);
+        return;
+
+
+
+    });
+
     $app->post('/filter', function(){
         global $mysqli;
         $classroom = $_POST['classroom'];
@@ -488,7 +500,6 @@ $app->get('/search', function(){
 		return;
 	});
 
-
     $app->post('/addFavorite', function(){
         global $mysqli;
         $username = $_POST['username'];
@@ -608,4 +619,9 @@ $app->get('/search', function(){
 
         return $json;
     }
+
+
+
+
+
 ?>
