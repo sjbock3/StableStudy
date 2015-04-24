@@ -1,5 +1,12 @@
 /* Changes: BC 3.30 */
 
+/*change background of drop down to green */
+#filter_container{
+    background-color: rgb(13, 236, 13);
+}
+
+
+
 html {
     background-image: url("../img/chalkboard3.jpg");
     background-repeat: no-repeat;
@@ -57,4 +64,12 @@ body {
 
 .location_container{
     float: right;
+}
+#info_list #info_items ol li ol .view-details button {
+    float: right;
+    width: 45%;
+}
+
+.loading .loading-inner{
+    display: none
 }

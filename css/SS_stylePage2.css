@@ -1358,9 +1358,10 @@ div.actions a {
 }
 .loading {
     position: relative;
-    width: 200px;
-    left: 50%;
-    margin-left: -100px;
+    width: 80%;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 .loading .loading-inner {
     padding: 0px 10px 10px 20px;
