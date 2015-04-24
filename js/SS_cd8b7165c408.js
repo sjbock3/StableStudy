@@ -8426,13 +8426,44 @@ var spacescout_map = null,
         if ($.cookie('spacescout_search_opts')) {
             set_cookie = true;
         }
-        var checked = [];
+        /*var checked = [];
         $.each($("input[name='type']:checked"), function() {
             checked.push($(this).val());
         });
         if (checked.length > 0) {
             window.spacescout_search_options.type = checked;
             set_cookie = true;
+        }*/ //old
+        var checked = [];
+        var typeNames = [];
+        $.each($("input[name='type']"), function(){
+            typeNames.push($(this).val());
+        });
+        console.log('typeNames = ' + typeNames);
+        //typeName = ["study_room","study_area","computer_lab","studio","]
+        $.each($("input[name='type']:checked"), function() {
+            checked.push($(this).val());
+        });
+        var typeVals = [];
+        if (checked.length > 0) {
+            //assemble a json
+
+            var i;
+            console.log('checked = '+checked);
+            console.log('length of typeName = '+typeNames.length);
+            for(i = 0;i<typeNames.length;i++){
+                if(checked.indexOf(typeNames[i])>=0){
+                    typeVals[i] = 1;
+
+                }else{
+                    typeVals[i] = 0;
+                }
+                /*else{
+                 typeVals{i] = 0;
+                 }*/
+            }
+            /*window.spacescout_search_options.type = checked;
+             set_cookie = true;*/
         }
         if ($("#reservable").is(":checked")) {
             window.spacescout_search_options["extended_info:reservable"] = "true";
@@ -8532,7 +8563,7 @@ var spacescout_map = null,
         $('#space_count_container').show();
         window.spacescout_map.setCenter(new GM.LatLng(window.default_latitude, window.default_longitude));
         window.spacescout_map.setZoom(parseInt(window.default_zoom));
-        _fetchData();
+        _fetchData(typeNames, typeVals);
         $("#filter_block").slideUp(400, function() {
             var icon = $('.fa-angle-double-up');
             if (icon.length) {
@@ -8634,7 +8665,7 @@ var spacescout_map = null,
     }
     window._reloadOnIdle = _reloadOnIdle;
 
-    function _fetchData() { console.log('inside _fetchData');
+    function _fetchData(typeNames, typeVals) { console.log('inside _fetchData');
         console.log('inside _fetchData');
         $('.loading').show();
         //will first abort all the current requests
@@ -8695,6 +8726,26 @@ var spacescout_map = null,
         console.log("url_args after going through which location selected = " + url_args);
         url_args.pop();
         var query = url_args.join("");
+        //add on the query from the different types of spaces
+        var addOn = ''; //Brendan_Celii
+        var i;
+        for (i = 0;i<typeNames.length;i++){
+
+            addOn = addOn+"&"+typeNames[i]+ "="+ typeVals[i];
+        }
+        query = query + addOn;
+        //replace capacity with chairs
+        var replaceWord = 'capacity';
+        var queryLength = query.length;
+        var capacityIndex = query.indexOf('capacity');
+        var queryBefore = query.substr(0,capacityIndex);
+        var queryAfter = query.substr(capacityIndex+replaceWord.length);
+        var newQuery = queryBefore + 'chairs' +queryAfter;
+        console.log('queryBefore = '+ queryBefore + ' queryAfter = ' +queryAfter);
+
+        query = newQuery;
+
+        console.log("query after add on = "+ query);
         window.requests.push($.ajax({
             url: query,
             success: _loadData
