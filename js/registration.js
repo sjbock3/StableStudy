@@ -66,7 +66,7 @@ function registrationForm(form) {
           console.log(values);
           setMultipleCookies(names,values);
           console.log(document.cookie);
-          window.location.href = '/index.html';
+          window.location.href = 'index.html';
 		//window.location.href = "registrationPage.html";
   	  }
 	};
