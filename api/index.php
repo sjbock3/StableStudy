@@ -390,16 +390,17 @@
 
     $app->post('/filter', function(){
         global $mysqli;
-        $classroom = $_POST['classroom'];
-        $outdoor = $_POST['outdoor'];
-        $open_space = $_POST['open_space'];
-        $study_room = $_POST['study_room'];
-        $chairs = $_POST['chairs'];
-        $computers = $_POST['computers'];
-        $whiteboards = $_POST['whiteboards'];
-        $printers = $_POST['printers'];
-        $projectors = $_POST['projectors'];
-        $restricted = $_POST['restricted'];
+
+		$chairs = $_GET['chairs'];
+        $classroom = $_GET['classroom'];
+        $outdoor = $_GET['outdoor'];
+        $open_space = $_GET['open'];
+        $study_room = $_GET['study_room'];
+        $computers = 0;//$_POST['computers'];
+        $whiteboards = 1;//$_POST['whiteboards'];
+        $printers = 0;//$_POST['printers'];
+        $projectors = 1;// $_POST['projectors'];
+        $restricted = 0;//$_POST['restricted'];
 
         $finalArr = array();
 
