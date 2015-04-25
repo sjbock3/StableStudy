@@ -6601,6 +6601,7 @@ var requests = [];
         return new H.SafeString(formatted.join("<br/>"));
     });
     H.registerHelper('alphaOptGroupsHTML', function (list) {
+        var isMobile = null;
         list.sort();
         var firstletter = null;
         var out = [];
@@ -7056,10 +7057,10 @@ var requests = [];
     function _getLocationBuildings() {
         console.log('in _getLocationBuildings');
         //just ask for buildings
-        var url = '/api/index.php/buildings';
-        if (window.default_location !== null) {
+        var url = 'api/index.php/buildings';
+        /*if (window.default_location !== null) {
             url = url + '?campus=' + window.default_location; //Brendan_Change: will add on the locatoins
-        }
+        }*/
 
         $.ajax({
             //going and getting the building information
@@ -8666,7 +8667,8 @@ var spacescout_map = null,
     window._reloadOnIdle = _reloadOnIdle;
 
     function _fetchData(typeNames, typeVals) { console.log('inside _fetchData');
-        console.log('inside _fetchData');
+
+
         $('.loading').show();
         //will first abort all the current requests
         for (var i = 0; i < window.requests.length; i++) {
@@ -8703,7 +8705,7 @@ var spacescout_map = null,
             window.spacescout_search_options.type = [];
         }
         //starting to make the query string
-        var url_args = ["/search/?"];
+        var url_args = ["?"];
         for (var key in args) {/*iterating the window.spacescout_search_options*/
             if (args.hasOwnProperty(key)) {
                 var val = args[key];
@@ -8727,29 +8729,43 @@ var spacescout_map = null,
         url_args.pop();
         var query = url_args.join("");
         //add on the query from the different types of spaces
-        var addOn = ''; //Brendan_Celii
-        var i;
-        for (i = 0;i<typeNames.length;i++){
-
-            addOn = addOn+"&"+typeNames[i]+ "="+ typeVals[i];
+        if(!typeNames) {
+            var typeNames = [];
+            typeVals = [];
+            $.each($("input[name='type']"), function () {
+                typeNames.push($(this).val());
+            });
+            for(var i = 0;i<typeNames.length;i++) {
+                typeVals[i] = 0;
+            }
         }
-        query = query + addOn;
-        //replace capacity with chairs
-        var replaceWord = 'capacity';
-        var queryLength = query.length;
-        var capacityIndex = query.indexOf('capacity');
-        var queryBefore = query.substr(0,capacityIndex);
-        var queryAfter = query.substr(capacityIndex+replaceWord.length);
-        var newQuery = queryBefore + 'chairs' +queryAfter;
-        console.log('queryBefore = '+ queryBefore + ' queryAfter = ' +queryAfter);
+            var addOn = ''; //Brendan_Celii
+            var i;
+            for (i = 0; i < typeNames.length; i++) {
 
-        query = newQuery;
+                addOn = addOn + "&" + typeNames[i] + "=" + typeVals[i];
+            }
+            query = query + addOn;
+            //replace capacity with chairs
+            var replaceWord = 'capacity';
+            var queryLength = query.length;
+            var capacityIndex = query.indexOf('capacity');
+            var queryBefore = query.substr(0, capacityIndex);
+            var queryAfter = query.substr(capacityIndex + replaceWord.length);
+            var newQuery = queryBefore + 'chairs' + queryAfter;
+            console.log('queryBefore = ' + queryBefore + ' queryAfter = ' + queryAfter);
 
+            query = newQuery;
+
+        var filterURL = 'api/index.php/filter';
         console.log("query after add on = "+ query);
-        window.requests.push($.ajax({
-            url: query,
+        $.post(filterURL+query,function(data){
+            _loadData(data);
+        });
+        /*window.requests.push($.ajax({
+            url: filterURL + query,
             success: _loadData
-        }));
+        }));*/
     }
     window._fetchData = _fetchData;
     function _distanceBetweenPoints(lat1, lon1, lat2, lon2) {
@@ -8920,7 +8936,7 @@ function dataLoaded(count) {
             this.abort();
         });
         window.requests.push($.ajax({
-            url: '/space/' + id + '/json/',
+            url: '/api/index.php/getRoom?',
             success: _showSpaceDetails
         }));
     }

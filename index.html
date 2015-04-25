@@ -94,7 +94,22 @@
 </head>
 
 <body id="top">
-<div id="preload"></div>
+    <!--button that will load the spaces that are outdoor spaces if weather is good-->
+
+    <div id="weather_Alert">
+        <script id="weatherScript" type="text/x-handlebars-template">
+            <h1 id="weatherTitle">{{weatherInfo}}</h1>
+            <button class="btn" type="button" aria-label="Outdoor Spaces" id="weatherButton"><em>{{IndoorOutdoor}}<br>Spaces</em></button>
+        </script>
+        <!--
+        <h1 id="sunnyTitle">It's Sunny Out!</h1>
+        <h1 id="rainingTitle">It's Raining Out!</h1>
+        <br>
+        <button class="btn" type="button" aria-label="Outdoor Spaces" id="weatherButton"><em>Outdoor<br>Spaces</em></button>
+        -->
+    </div>
+
+    <div id="preload"></div>
 <div id="container">
 
 
@@ -111,7 +126,7 @@
             </div>
             <div class="location_container">
             <!--Drop Down heading for picking the school-->
-
+            <!--
             <span aria-labelledby="location_select_heading">
               <label id="location_select_heading" for="location_select"  class="visuallyhidden">Select campus:</label>
               <select id='location_select'>
@@ -123,7 +138,10 @@
                   <option value="32.8441,-96.7849,dallas,15">UT</option>
 
               </select>
-            </span>
+            </span> -->
+                <br>
+                <!--button to click for favorites-->
+                <button class="btn" type="button" aria-label="Apply Filters" id="favSpaces"><em>Favorite Spaces</em></button>
 
             </div>
             <!-- hidden for now, until cool stuff for logged in users is finished.-->
@@ -1484,7 +1502,7 @@
     if (failed) {
         window.default_latitude = 32.8441;
         window.default_longitude = -96.7849;
-        window.default_location = "dallas";
+        //window.default_location = "dallas";
         window.default_zoom = 15;
     }
     var state = window.spacescout_url.parse_path(window.location.pathname);
