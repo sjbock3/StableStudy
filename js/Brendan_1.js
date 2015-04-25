@@ -82,8 +82,15 @@ var dummyClassData = {
         "building_name": "Brendans_Dorm"
     }
 };
-$(document).ready(function() {
 
+//return true if raining and false if not raining
+function getRainyInfo(){
+    //query the weather database
+
+    return false;
+}
+$(document).ready(function() {
+    var baseURL = 'http://192.168.33.10';
     //add the user's name in right corner
     var username = getCookie('fName');
 
@@ -96,6 +103,59 @@ $(document).ready(function() {
 
     //insert the new HTML
     $('#user_Greet').html(newHTML);
+
+
+
+    //get the weather info
+    var rainy = getRainyInfo();
+    //get the script for weather alert:
+    var beforeTemplate_1 = $('#weatherScript').html();
+    var Template_1 = Handlebars.compile(beforeTemplate_1);
+    var data_1 = {};
+    if(rainy == true){
+        data_1 = {
+            weatherInfo:"It's Raining Out!",
+            IndoorOutdoor: "Indoor"
+        }
+    }
+    else{
+        data_1 = {
+            weatherInfo:"It's Sunny Out!",
+            IndoorOutdoor: "Outdoor"
+        }
+    }
+
+    var newHTML_1 = Template(data_1);
+    $('#weatherScript').html(newHTML_1);
+
+    //add the event handlers
+    $("#weatherButton").click(function(){
+        //clear the filter
+        clear_filter();
+        if(rainy == true){
+
+            //check the outdoor spaces
+            var dummy = true;
+            $('#filter_space_types [type="checkbox"]').each(function() {
+                if(dummy == true){
+                /*name is not outdoor*/
+                    this.checkbox();
+                }
+
+            })
+
+        }
+        else{
+            //check all but outdoor spaces
+            $('#filter_space_types #outdoor').checkbox();
+
+        }
+        //call the apply_custom_filter
+        run_custom_search();
+
+
+    });
+
 
     //console.log($('#userGreeting').html());
 
@@ -124,9 +184,44 @@ $(document).ready(function() {
         window.location.href = '/userAccount#share';
     });
 
-    //load all the spaces from the initial json
-    window.window.initial_load = true;
-    window._reloadOnIdle();
+
+    //load all the spaces from the initial json stored in the html
+    /*window.window.initial_load = true;
+    window._reloadOnIdle();*/
+
+    //get all the spaces from the database on initial load
+    var AllInfoQuery = 'api/index.php/locinfo';
+    $.get(AllInfoQuery,function(allRooms){
+        window._loadData(JSON.parse(allRooms));
+    });
+
+    var userSpaces = {};
+    //get all the favorite spaces for username
+    username = getCookie('username');
+    var favQuery = 'api/index.php/favorites?username=' + username;
+    var data2 = {
+        'username':username
+    };
+
+
+    $.post(favQuery,data2, function(dataReceived){
+        userSpaces = JSON.parse(dataReceived);
+    });
+
+    //click function when hit favorites button:
+    $("favSpaces").click(function() {
+        if (userSpace != []) {
+            _loadData(userSpaces)
+        }
+        else{
+            alert('No current saved Favorite spaces');
+        }
+
+    });
+
+
+
+
 
     //make sure every image loaded as background
    /* $('#info_list').lazyScrollLoading({
@@ -162,12 +257,12 @@ $(document).ready(function() {
 
 
     //wait before popping up with the images as if pressed
-    setTimeout(function (){
+/*    setTimeout(function (){
 
         window._showSpaceDetails(dummyClassData);
 
     }, 10000); // How long do you want the delay to be (in milliseconds)?
-
+*/
 });
 
     //initialize carousel function is what adds the list of images
