@@ -58,6 +58,55 @@
         
         
     });
+
+    /*
+     * if option == 1, send email
+     * if option == 2, send username
+     * if option == 3, send first and last name
+     */
+
+    $app->post('/getUser', function(){
+        global $mysqli;
+        $option = $_POST['option'];
+
+        if ($option == 1){
+            $email = $_POST['email'];
+            echo json_encode(fromEmail($email));
+        }
+
+        else if ($option == 2){
+            $username = $_POST['username'];
+            echo json_encode(fromUsername($username));
+        }
+
+        else if ($option == 3){
+            $first = $_POST['firstName'];
+            $last = $_POST['lastName'];
+            echo json_encode(fromName($first, $last));
+        }
+
+        else{
+            echo json_encode(array());
+        }
+
+        return;
+    });
+
+    $app->post('/getFavorites', function(){
+        global $mysqli;
+        $username = $_POST['username'];
+        $faves = $mysqli->query("SELECT favRoom FROM favorites WHERE username = '$username'");
+        $faves = $faves->fetch_all(MYSQL_NUM);
+        $len = count($faves);
+        $favArr = array();
+        for($i = 0; $i < $len; $i++){
+            $favArr[$i] = getRoom($faves[$i][0]);
+        }
+
+        echo json_encode($favArr);
+        return;
+
+    });
     
     $app->post('/user', function(){
     
@@ -328,22 +377,15 @@
     $app->post('/getMeetings', function(){
         global $mysqli;
         $hostName = $_POST['hostName'];
-        $meeting_list = $mysqli->query("SELECT meetingTime, buildingName, roomNumber, users FROM meetings INNER JOIN meetingUsers ON meetings.meetingID = meetingUsers.meeting_id INNER JOIN locations ON meetings.roomID = locations.id WHERE hostName = '$hostName'");
-        $result = $meeting_list->fetch_all(MYSQLI_ASSOC);
+        $host_list = $mysqli->query("SELECT meetingTime, buildingName, roomNumber FROM meetings INNER JOIN locations ON meetings.roomID = locations.id WHERE hostName = '$hostName'");
+        $meeting_list = $mysqli->query("SELECT meetingTime, buildingName, roomNumber FROM meetings INNER JOIN meetingUsers ON meetings.meetingID = meetingUsers.meeting_id
+                                        INNER JOIN locations ON meetings.roomID = locations.id WHERE users = '$hostName'");
+
+        $meeting_list = $meeting_list->fetch_all(MYSQLI_ASSOC);
+        $host_list = $host_list->fetch_all(MYSQLI_ASSOC);
+        $result = array_merge($host_list, $meeting_list);
         echo json_encode($result);
         return;
-    });
-
-    $app->post('/getReviews', function(){
-        global $mysqli;
-        $room = $_POST['roomid'];
-        $reviewList = $mysqli->query("SELECT writer, comment FROM reviews WHERE room ='$room'");
-        $reviews = $reviewList->fetch_all(MYSQLI_ASSOC);
-        echo json_encode($reviews);
-        return;
-
-
-
     });
 
     $app->post('/filter', function(){
@@ -500,6 +542,7 @@ $app->get('/search', function(){
 		return;
 	});
 
+
     $app->post('/addFavorite', function(){
         global $mysqli;
         $username = $_POST['username'];
@@ -620,8 +663,21 @@ $app->get('/search', function(){
         return $json;
     }
 
+    function fromEmail($email){
+        global $mysqli;
+        $result = $mysqli->query("SELECT * FROM users WHERE email = '$email'");
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 
+    function fromUsername($username){
+        global $mysqli;
+        $result = $mysqli->query("SELECT * FROM users WHERE username = '$username'");
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 
-
-
+    function fromName($first, $last){
+        global $mysqli;
+        $result = $mysqli->query("SELECT * FROM users WHERE fName = '$first' AND lName = '$last'");
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 ?>
