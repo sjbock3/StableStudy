@@ -1,4 +1,6 @@
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -37,5 +39,20 @@
         android:layout_below="@+id/linearLayout2"
         android:layout_centerHorizontal="true" />
 
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:src="@drawable/ic_action_new"
+        fab:fab_colorNormal="#ff007a02"
+        fab:fab_colorPressed="#ff00CC00"
+        fab:fab_colorRipple="#ff00B200"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="53dp"
+        android:layout_marginEnd="76dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
