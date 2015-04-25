@@ -4,9 +4,14 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <!--
+ The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but are recommended.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +20,9 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".Login"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,23 +32,40 @@
         <activity
             android:name=".MainPage"
             android:label="@string/title_activity_main_page"
-            android:parentActivityName=".Login" >
+            android:parentActivityName=".Login"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fontenotsquad.stablestudy.Login" />
         </activity>
         <activity
             android:name=".RegisterPage"
-            android:label="@string/title_activity_register_page" >
+            android:label="@string/title_activity_register_page"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".RoomDetails"
-            android:label="@string/title_activity_room_details" >
+            android:label="@string/title_activity_room_details"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".AddRoom"
-            android:label="@string/title_activity_add_room" >
+            android:label="@string/title_activity_add_room"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDoe9zr5NGMSpJnhOhcKPQQ3GHQh7eKkog"/>
+
+
 
     </application>
 
