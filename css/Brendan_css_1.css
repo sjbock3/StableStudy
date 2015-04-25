@@ -5,6 +5,39 @@
     background-color: rgb(13, 236, 13);
 }
 
+#favSpaces{
+    color: green;
+
+    //background-color: blue;
+}
+
+/*styles the button that will load outdoor or indoor spaces*/
+#weather_Alert{
+    position: absolute;
+    float: right;
+    margin-top: -25px;
+    /*length: 75px;*/
+    width: auto;
+    margin-right: 0;
+    margin-left: 85%;
+    /*margin-top:20px;*/
+
+}
+
+#weather_Alert h1{
+    float: right;
+    color: white;
+    font-size: 20px;
+    line-height: 22px;
+}
+
+#weatherButton{
+    width: 80%;
+    length: 50%
+    margin-top: 0px;
+    float: right;
+    max-width: 150px;
+}
 
 
 html {
