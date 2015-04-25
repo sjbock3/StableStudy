@@ -195,22 +195,22 @@ public class AddRoom extends ActionBarActivity {
                     .getExternalStorageDirectory()
                     + File.separator
                     + "Phoenix" + File.separator + "default";
-
-            f.delete();
-            OutputStream outFile = null;
-            image = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
-            try {
-                outFile = new FileOutputStream(image);
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile);
-                outFile.flush();
-                outFile.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            image = f;
+//            f.delete();
+//            OutputStream outFile = null;
+//            image = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
+//            try {
+//                outFile = new FileOutputStream(image);
+//                bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile);
+//                outFile.flush();
+//                outFile.close();
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -13,6 +13,8 @@ public class RoomInfo {
     private String buildingName;
     private int roomNumber;
     private int floor;
+    private double latitude;
+    private double longitude;
 
 
     private String classType;
@@ -28,6 +30,8 @@ public class RoomInfo {
         buildingName = "none";
         roomNumber = 0;
         floor = 0;
+        latitude = 0;
+        longitude = 0;
     }
 
     public RoomInfo(boolean computers, boolean printers, boolean projectors, boolean whiteboards, boolean restricted, String buildingName, int roomNumber, String classType, String rmSize, int floor) {
@@ -85,6 +89,8 @@ public class RoomInfo {
 
 
     }
+
+
 
     public boolean hasComputers() {
         return computers;
@@ -167,6 +173,19 @@ public class RoomInfo {
         return floor;
     }
 
+    public double getLongitude() {
+        return longitude;
+    }
 
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
 
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
 }
