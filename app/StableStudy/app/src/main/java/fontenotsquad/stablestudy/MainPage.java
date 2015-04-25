@@ -90,6 +90,8 @@ public class MainPage extends ActionBarActivity {
         extras.putString("type", rList.get(position).getClassType());
         extras.putString("size", rList.get(position).getRmSize());
         extras.putInt("floor", rList.get(position).getFloor());
+        extras.putDouble("latitude", rList.get(position).getLatitude());
+        extras.putDouble("longitude", rList.get(position).getLongitude());
         Intent rDetails = new Intent(getApplicationContext(), RoomDetails.class);
         rDetails.putExtras(extras);
         startActivity(rDetails);
@@ -168,6 +170,7 @@ public class MainPage extends ActionBarActivity {
             int type3 = tempInfo.getInt("open_space");
             int type4 = tempInfo.getInt("study_room");
 
+
             if (type1 == 1) {
                 rTemp.setClassType(1);
             }
@@ -204,6 +207,8 @@ public class MainPage extends ActionBarActivity {
                 rTemp.setRoomNumber(0);
             }
             rTemp.setWhiteboards(tempInfo.getInt("whiteboards"));
+            rTemp.setLongitude(tempInfo.getDouble("longitude"));
+            rTemp.setLatitude(tempInfo.getDouble("latitude"));
 
             Log.v(TAG, rTemp.toString());
             rList.add(rTemp);

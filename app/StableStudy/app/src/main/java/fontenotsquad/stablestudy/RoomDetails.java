@@ -7,11 +7,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
+//AIzaSyDoe9zr5NGMSpJnhOhcKPQQ3GHQh7eKkog - key
 
-public class RoomDetails extends ActionBarActivity {
+public class RoomDetails extends ActionBarActivity implements OnMapReadyCallback {
 
 
     private boolean computers;
@@ -24,6 +33,9 @@ public class RoomDetails extends ActionBarActivity {
     private int floor;
     private String classType;
     private String rmSize;
+    private double longitude;
+    private double latitude;
+    private LatLng roomLoc;
 
 
 
@@ -37,6 +49,7 @@ public class RoomDetails extends ActionBarActivity {
     @InjectView(R.id.detSize) TextView size;
     @InjectView(R.id.detRestrict) TextView restrict;
     @InjectView(R.id.detFloor) TextView fl;
+
 
 
 
@@ -59,6 +72,8 @@ public class RoomDetails extends ActionBarActivity {
         classType = bundle.getString("type");
         rmSize = bundle.getString("size");
         floor = bundle.getInt("floor");
+        latitude = bundle.getDouble("latitude");
+        longitude = bundle.getDouble("longitude");
 
         bName.setText(buildingName);
 
@@ -105,6 +120,9 @@ public class RoomDetails extends ActionBarActivity {
         else {
             comp.setText("Computers: Yes");
         }
+        roomLoc = new LatLng(latitude, longitude);
+        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
 
 
@@ -112,24 +130,13 @@ public class RoomDetails extends ActionBarActivity {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        googleMap.addMarker(new MarkerOptions().position(roomLoc).title(buildingName + " " + roomNumber));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 10));
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(roomLoc).zoom(17).build();
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+    }
 
 
 //    @Override
