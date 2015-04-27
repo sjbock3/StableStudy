@@ -1,10 +1,5 @@
 USE stablestudy;
 
-INSERT INTO users(username, email, fName, lName, password, school) VALUES
-	('danhn', 'danhn@smu.edu', 'Danh', 'Nguyen', 'Password1', 'SMU'),
-	('afulsom', 'afulsom@smu.edu', 'Drew', 'Fulsom', 'password', 'SMU'),
-	('nroberts', 'robertsn@smu.edu', 'Nick', 'Roberts', 'Tester1', 'SMU');
-
 INSERT INTO locations(latitude, longitude, floor, buildingName, roomNumber, classroom, outdoor, open_space, study_room,chairs, computers, whiteboards, printers, projectors, restricted) VALUES
 	(32.845576, -96.786349, 1, 'Florence', '106', 1, 0, 0, 0, 50, 0, 1, 0, 1, FALSE),
 	(32.845576, -96.786360, 1, 'Florence', '107', 1, 0, 0, 0, 50, 0, 1, 0, 1, FALSE),

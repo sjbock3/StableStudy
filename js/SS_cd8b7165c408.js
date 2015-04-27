@@ -8936,7 +8936,7 @@ function dataLoaded(count) {
             this.abort();
         });
         window.requests.push($.ajax({
-            url: '/api/index.php/getRoom?',
+            url: '/api/index.php/getRoom?id='+id,
             success: _showSpaceDetails
         }));
     }

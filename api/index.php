@@ -579,9 +579,9 @@ $app->get('/search', function(){
 
     });
 
-	$app->post('/getRoom', function(){
+	$app->get('/getRoom', function(){
 		global $mysqli;
-		$roomID = $_POST['roomID'];
+		$roomID = $_GET['id'];
 		$json = getRoom($roomID);
 		echo json_encode($json);
 		return;
