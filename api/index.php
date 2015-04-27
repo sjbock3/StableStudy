@@ -267,6 +267,43 @@
 
     });
 
+    $app->get('/getWeather', function(){
+       $dallasLatitude = 32.7767;
+       $dallasLongitude = -96.7970;
+       $weatherInfo = file_get_contents("https://api.forecast.io/forecast/437b36f288ccf42bfab7b22ecd179110/32.7767,-96.7970");
+       //echo $weatherInfo;
+       $weatherJSON = json_decode($weatherInfo, true);
+       $temperature = $weatherJSON['currently']['temperature'];
+       $precipitation = $weatherJSON['currently']['precipProbability'];
+       $windSpeed = $weatherJSON['currently']['windSpeed'];
+       $storm = $weatherJSON['currently']['nearestStormDistance'];
+       if ($storm < 8) {
+        $storm = 'true';
+       }
+       else {
+        $storm = 'false';
+       }
+       if($windSpeed > 20) {
+        $windSpeed = 'true';
+       }
+       else {
+        $windSpeed = 'false';
+       }
+       if ($precipitation > 0.2) {
+        $precipitation = 'true';
+       }
+       else {
+        $precipitation = 'false';
+       }
+
+       $weatherArray = array('temperature' => $temperature,
+        'precipitation' => $precipitation, 'windy' => $windSpeed, 'storm' => $storm);
+       echo json_encode($weatherArray);
+       
+
+       return;
+   });
+
     $app->post('/addLocation', function(){
        global $mysqli;
         $buildingName = $_POST['buildingName'];
