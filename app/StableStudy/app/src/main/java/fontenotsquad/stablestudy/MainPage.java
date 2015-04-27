@@ -2,6 +2,7 @@ package fontenotsquad.stablestudy;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.ActionBarActivity;
@@ -11,7 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
@@ -44,9 +47,14 @@ public class MainPage extends ActionBarActivity {
     private ArrayList<RoomInfo> rList;
     private ArrayAdapter<RoomInfo> rListAdapter;
     private String username;
+    private String wData;
+    private String wColor;
+    private String wString;
 
     @InjectView(R.id.roomListView) ListView roomView;
     @InjectView(R.id.fab) FloatingActionButton fab;
+    @InjectView(R.id.weatherBar) LinearLayout wBar;
+    @InjectView(R.id.weatherText) TextView wText;
 
 
 
@@ -62,6 +70,137 @@ public class MainPage extends ActionBarActivity {
         username = intent.getStringExtra("user");
         fab.attachToListView(roomView);
         getRoomInfo();
+        getWeatherInfo();
+    }
+
+    private void getWeatherInfo() {
+
+        if (isNetWorkAvailable()) {
+
+
+
+            OkHttpClient client = new OkHttpClient();
+
+
+
+            Request request = new Request.Builder().url("http://52.11.111.78/api/index.php/getWeather").build();
+
+
+            Call call = client.newCall(request);
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(Request request, IOException e) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                        }
+                    });
+                }
+
+                @Override
+                public void onResponse(Response response) throws IOException {
+                    try {
+
+                        wData = response.body().string();
+
+                        //
+                        pickWeather();
+                        //
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                displayWeather();
+                            }
+                        });
+
+                    }
+                    catch (IOException e) {
+                        Log.e(TAG, "Exception caught: ", e);
+                    } catch (JSONException e) {
+                        Log.e(TAG, "JSONEXCEPTION",e);
+                    }
+                }
+            });
+            Log.d(TAG, "MAIN UI code is running!");
+        }
+        else {
+            Toast.makeText(this, getString(R.string.no_net_toast), Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    private void pickWeather() throws JSONException{
+        JSONObject weatherData = new JSONObject(wData);
+        boolean rain = weatherData.getBoolean("precipitation");
+        boolean windy = weatherData.getBoolean("windy");
+        boolean stormy = weatherData.getBoolean("storm");
+        boolean sunny = weatherData.getBoolean("sunny");
+        double temp = weatherData.getDouble("temperature");
+        String tempMessage = "";
+        String tempColor = "white";
+
+
+        if (temp > 85 || sunny == true) {
+            tempMessage = "Hot and sunny, stay hydrated!";
+            tempColor = "red";
+        }
+        if (temp < 85 || sunny == true) {
+            tempMessage = "Perfect weather for studying!";
+            tempColor = "lBlue";
+        }
+
+        if (sunny == false) {
+            tempMessage = "Gloomy outside, you should study";
+            tempColor = "grey";
+        }
+        if (temp < 45) {
+            tempMessage = "Bring a sweater";
+            tempColor = "dBlue";
+        }
+        if (rain == true) {
+            tempMessage = "Bring an umbrella";
+            tempColor = "blue";
+        }
+        if (rain == true && temp < 32) {
+            tempMessage = "It's Snowing! (maybe)";
+            tempColor = "offwhite";
+
+        }
+        if (stormy == true) {
+            tempMessage = "Dont go outside, it's stormy";
+            tempColor = "orange";
+        }
+
+        wColor = tempColor;
+        wString = tempMessage;
+
+
+    }
+    private void displayWeather() {
+        wText.setText(wString);
+        if (wColor.equals("orange")) {
+            wBar.setBackgroundColor(Color.parseColor("#FF9400"));
+        }
+        else if (wColor.equals("offwhite")) {
+            wBar.setBackgroundColor(Color.parseColor("#FAFAFA"));
+            wText.setTextColor(Color.parseColor("#000000"));
+        }
+        else if (wColor.equals("blue")) {
+            wBar.setBackgroundColor(Color.parseColor("#3F51B5"));
+        }
+        else if (wColor.equals("dBlue")) {
+            wBar.setBackgroundColor(Color.parseColor("#6A1B9A"));
+        }
+        else if (wColor.equals("grey")) {
+            wBar.setBackgroundColor(Color.parseColor("#424242"));
+        }
+        else if (wColor.equals("lBlue")) {
+            wBar.setBackgroundColor(Color.parseColor("#55C9EC"));
+        }
+        else {
+            wBar.setBackgroundColor(Color.parseColor("#B71C1C"));
+        }
     }
 
     @OnClick(R.id.fab)
