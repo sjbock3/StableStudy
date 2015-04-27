@@ -19,4 +19,8 @@
     <string name="regButton">Register</string>
     <string name="account_create_failed">Account Creation Failed</string>
     <string name="account_create_success">Account Created!</string>
+    <string name="title_activity_room_details">RoomDetails</string>
+    <string name="title_activity_add_room">AddRoom</string>
+    <string name="title_activity_take_picture">TakePicture</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

@@ -46,7 +46,8 @@
         android:layout_below="@+id/linearLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="119dp"
-        android:text="Email"
+        android:hint="Email"
+        android:textColorHint="#FFFFFF"
         android:textColor="@android:color/white" />
 
     <EditText
@@ -60,7 +61,8 @@
         android:layout_marginTop="25dp"
         android:password="false"
         android:autoText="false"
-        android:text="password"
+        android:hint="Password"
+        android:textColorHint="#FFFFFF"
         android:textColor="@android:color/white" />
 
     <Button
