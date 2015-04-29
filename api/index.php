@@ -579,8 +579,29 @@ $app->get('/search', function(){
 
     });
 
+    $app->post('/share', function(){
+        global $mysqli;
+        $host = $_POST['hostName'];
+        $shared_room = $_POST['id'];
+        $other = $_POST['username'];
+        $check = $mysqli->query("SELECT share_id FROM shares WHERE shared_room = '$shared_room' AND host = '$host' AND other = '$other'");
+        if($check->fetch_assoc() !== NULL){
+            echo json_encode(array("status"=>"failed"));
+            return;
+        }
+        if($mysqli->query("INSERT INTO shares(shared_room, host, other) VALUES('$shared_room', '$host', '$other')")){
+            echo json_encode(array("status"=>"success"));
+        }
+
+        else {
+            echo json_encode(array("status"=>"failed"));
+        }
+
+        return;
+
+    });
+
 	$app->get('/getRoom', function(){
-		global $mysqli;
 		$roomID = $_GET['id'];
 		$json = getRoom($roomID);
 		echo json_encode($json);
@@ -627,6 +648,16 @@ $app->get('/search', function(){
         return;
 
     });
+
+    $app->get('/getReviews', function(){
+        global $mysqli;
+        $room = $_POST['roomid'];
+        $reviewList = $mysqli->query("SELECT writer, comment FROM reviews WHERE room ='$room'");
+        $reviews = $reviewList->fetch_all(MYSQLI_ASSOC);
+        echo json_encode($reviews);
+        return;
+    });
+
     
     $app->run();
 
