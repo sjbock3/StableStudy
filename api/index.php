@@ -277,6 +277,7 @@
        $precipitation = $weatherJSON['currently']['precipProbability'];
        $windSpeed = $weatherJSON['currently']['windSpeed'];
        $storm = $weatherJSON['currently']['nearestStormDistance'];
+       $sunny = $weatherJSON['currently']['cloudCover'];
        if ($storm < 8) {
         $storm = 'true';
        }
@@ -295,9 +296,15 @@
        else {
         $precipitation = 'false';
        }
+       if ($sunny < .5) {
+        $sunny = 'true';
+       }
+       else {
+        $sunny = 'false';
+       }
 
        $weatherArray = array('temperature' => $temperature,
-        'precipitation' => $precipitation, 'windy' => $windSpeed, 'storm' => $storm);
+        'precipitation' => $precipitation, 'windy' => $windSpeed, 'storm' => $storm, 'sunny' => $sunny);
        echo json_encode($weatherArray);
        
 
@@ -572,9 +579,9 @@ $app->get('/search', function(){
 
     });
 
-	$app->post('/getRoom', function(){
+	$app->get('/getRoom', function(){
 		global $mysqli;
-		$roomID = $_POST['roomID'];
+		$roomID = $_GET['id'];
 		$json = getRoom($roomID);
 		echo json_encode($json);
 		return;
