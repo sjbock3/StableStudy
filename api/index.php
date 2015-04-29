@@ -581,8 +581,15 @@ $app->get('/search', function(){
     $app->post('/share', function(){
         global $mysqli;
         $host = $_POST['hostName'];
-        $shared_room = $_POST['id'];
+        $buildingName = $_POST['buildingName'];
+        $roomNumber = $_POST['roomNumber'];
         $other = $_POST['username'];
+
+        $search = $mysqli->query("SELECT id FROM locations WHERE buildingName = '$buildingName' AND roomNumber = '$roomNumber'");
+        $search = $search->fetch_assoc();
+        $shared_room = $search['id'];
+
+        echo $shared_room;
         $check = $mysqli->query("SELECT share_id FROM shares WHERE shared_room = '$shared_room' AND host = '$host' AND other = '$other'");
         if($check->fetch_assoc() !== NULL){
             echo json_encode(array("status"=>"failed"));
@@ -657,7 +664,19 @@ $app->get('/search', function(){
         return;
     });
 
-    
+    $app->post('/writeReview', function(){
+       global $mysqli;
+        $review = $_POST['review'];
+        $writer = $_POST['username'];
+        $buildingName = $_POST['building'];
+        $roomNumber = $_POST['roomNumber'];
+
+        $search = $mysqli->query("SELECT id FROM locations WHERE buildingName = '$buildingName' AND $roomNumber = '$roomNumber'");
+        $search = $search->fetch_assoc();
+        $roomID = $search['id'];
+
+        $mysqli->query("INSERT INTO reviews(room, writer, comment) VALUES('$roomID', '$writer', '$review')");
+    });
     $app->run();
 
     function getRoom($roomID){
