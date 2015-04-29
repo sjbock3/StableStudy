@@ -1,10 +1,5 @@
 USE stablestudy;
 
-INSERT INTO users(username, email, fName, lName, password, school) VALUES
-	('danhn', 'danhn@smu.edu', 'Danh', 'Nguyen', 'Password1', 'SMU'),
-	('afulsom', 'afulsom@smu.edu', 'Drew', 'Fulsom', 'password', 'SMU'),
-	('nroberts', 'robertsn@smu.edu', 'Nick', 'Roberts', 'Tester1', 'SMU');
-
 INSERT INTO locations(latitude, longitude, floor, buildingName, roomNumber, classroom, outdoor, open_space, study_room,chairs, computers, whiteboards, printers, projectors, restricted) VALUES
 	(32.845576, -96.786349, 1, 'Florence', '106', 1, 0, 0, 0, 50, 0, 1, 0, 1, FALSE),
 	(32.845576, -96.786360, 1, 'Florence', '107', 1, 0, 0, 0, 50, 0, 1, 0, 1, FALSE),
@@ -52,19 +47,18 @@ INSERT INTO locations(latitude, longitude, floor, buildingName, roomNumber, clas
 	(32.839658, -96.784334, NULL, 'Outside', NULL, 0, 1, 0, 0, NULL, 0, 0, 0, 0, FALSE);
 
 INSERT INTO pictures(picture_id, room_id, pictureurl) VALUES
-	(1, 1, '/img/Florence/106'),
-	(2, 2, '/img/Florence/106'),
-	(3, 3, '/img/Florence/106'),
-	(4, 4, '/img/Florence/106'),
-	(5, 5, '/img/Florence/106'),
-	(6, 6, '/img/Florence/106'),
-	(7, 7, '/img/Florence/106'),
-	(8, 8, '/img/Florence/106'),
-	(9, 9, '/img/Florence/106'),
-	(10, 10, '/img/Florence/106'),
-	(11, 11, '/img/Florence/106'),
-	(12, 12, '/img/Florence/106'),
-	(13, 12, '/img/Florence/106');
+	(1, 1, '../img/Florence/106'),
+	(2, 2, '../img/Florence/107'),
+	(3, 3, '../img/Florence/308'),
+	(4, 4, '../img/Florence/307'),
+	(5, 5, '../img/Florence/305'),
+	(6, 6, '../img/Florence/306'),
+	(7, 7, '../img/Florence/304'),
+	(8, 8, '../img/Florence/302'),
+	(9, 9, '../img/Florence/201'),
+	(10, 10, '../img/Florence/207'),
+	(11, 11, '../img/Florence/100'),
+	(12, 12, '../img/Florence/101');
 
 INSERT INTO favorites(username, favRoom) VALUES
 	('danhn', 1),

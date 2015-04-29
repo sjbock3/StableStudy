@@ -95,6 +95,7 @@ public class Login extends ActionBarActivity {
     private void goToMainPage() {
             Log.v(TAG, "is valid!");
             Intent mainPage = new Intent(getApplicationContext(), MainPage.class);
+            mainPage.putExtra("user", details.getUsername());
             startActivity(mainPage);
     }
     private void showErrorMessage() {
@@ -102,7 +103,7 @@ public class Login extends ActionBarActivity {
     }
 
 
-    private void loginUser(String emailText, String pwText) {
+    private void loginUser(final String emailText, String pwText) {
 
 
 
