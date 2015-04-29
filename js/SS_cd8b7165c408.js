@@ -8757,7 +8757,7 @@ var spacescout_map = null,
 
             query = newQuery;
 
-        var filterURL = 'api/index.php/filter';
+        var searchURL = 'api/index.php/search';  /*Brendan_Change*/F
         console.log("query after add on = "+ query);
         $.post(filterURL+query,function(data){
             _loadData(data);
@@ -8936,7 +8936,7 @@ function dataLoaded(count) {
             this.abort();
         });
         window.requests.push($.ajax({
-            url: '/api/index.php/getRoom?',
+            url: '/api/index.php/getRoom?id='+id,
             success: _showSpaceDetails
         }));
     }

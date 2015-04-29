@@ -143,7 +143,7 @@ function askDatabaseIfUser(userEmail, password){
             var values = [returnData.status, returnData.fName, returnData.lName, returnData.school, returnData.username]
             setMultipleCookies(names,values);
             console.log(document.cookie);
-            window.location.href = '/index.html';
+            window.location.href = 'StableStudy/index.html';
             return true;
 
         }
