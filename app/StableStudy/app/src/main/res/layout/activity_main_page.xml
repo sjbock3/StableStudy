@@ -1,4 +1,6 @@
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -34,8 +36,43 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/roomListView"
-        android:layout_below="@+id/linearLayout2"
+        android:layout_below="@+id/weatherBar"
         android:layout_centerHorizontal="true" />
 
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:src="@drawable/ic_action_new"
+        fab:fab_colorNormal="#ff007a02"
+        fab:fab_colorPressed="#ff00CC00"
+        fab:fab_colorRipple="#ff00B200"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="53dp"
+        android:layout_marginEnd="76dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/weatherBar"
+        android:background="@android:color/black">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Loading Weather Information"
+            android:textStyle="italic"
+            android:id="@+id/weatherText"
+            android:padding="8dp"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
 
 </RelativeLayout>

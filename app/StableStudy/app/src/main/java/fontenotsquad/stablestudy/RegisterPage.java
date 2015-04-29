@@ -32,7 +32,7 @@ import butterknife.OnClick;
 
 public class RegisterPage extends ActionBarActivity {
 
-    public static final String TAG = Login.class.getSimpleName();
+    public static final String TAG = RegisterPage.class.getSimpleName();
     @InjectView(R.id.fName) EditText fName;
     @InjectView(R.id.lName) EditText lName;
     @InjectView(R.id.regemailField) EditText email;
