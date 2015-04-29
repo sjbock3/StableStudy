@@ -328,7 +328,6 @@
         $projectors = $_POST['projectors'];
         $printers = $_POST['printers'];
         $restricted = $_POST['restricted'];
-        $pictureurl = $_POST['pictureurl'];
 
         $existingRoom = $mysqli->query("SELECT * FROM locations WHERE buildingName = '$buildingName' AND roomNumber = '$roomNumber'");
         if($existingRoom->fetch_assoc() === NULL){
