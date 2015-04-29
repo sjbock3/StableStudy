@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="css/addRoom_and_registration.css">
+
+	<title>Stable Study</title>
+
+</head>
+
+<header>
+
+	<div id="logo-container">
+		<div id="logo">Stable Study</div>
+		<br>
+	</div>
+
+</header>
+
+<!--
+INSERT INTO locations(latitude, longitude, floor, buildingName, roomNumber, classroom, outdoor, open_space, study_room,chairs, computers, whiteboards, printers, projectors, restricted) VALUES
+	(32.845576, -96.786349, 1, 'Florence', '106', 1, 0, 0, 0, 50, 0, 1, 0, 1, FALSE)
+-->
+<body>
+	<div id="content">
+		<section class="row">
+			<div class="col-borderless">
+				<form name="addRoom" id="addRoom" enctype="application/json"  method="post">
+					<table>
+						<tbody>
+							<tr><td><h4>Longitude: </td><td><input type="number" name="longitude" ></h4></td></tr>
+							<tr><td><h4>Latitude: </td><td><input type="number" name="latitude" ></h4></td></tr>
+							<tr><td><h4>Building Name: </td><td><input type="text" name="buildingName" ></h4></td></tr>
+							<tr><td><h4>Floor: </td><td><input type="number" name="floor" ></h4></td></tr>
+							<tr><td><h4>Room Number: </td><td><input type="number" name="roomNumber" ></h4></td></tr>
+							<tr><td><h4>Classroom: </td><td><input type="number" name="classroom" ></h4></td></tr>
+							<tr><td><h4>Outdoor: </td><td><input type="radio" name="outdoor" value="true"></h4> True</td></tr>
+							<tr><td></td><td><input type="radio" name="outdoor" value="false"></h4> False</td></tr>
+							<tr><td><h4>Open Space: </td><td><input type="radio" name="open_space" value="true"></h4> True</td></tr>
+							<tr><td></td><td><input type="radio" name="open_space" value="false"></h4> False</td></tr>
+							<tr><td><h4>Study Room: </td><td><input type="radio" name="study_room" value="true"></h4> True</td></tr>
+							<tr><td></td><td><input type="radio" name="study_room" value="false"></h4> False</td></tr>
+							<tr><td><h4>Chairs: </td><td><input type="number" name="chairs" ></h4></td></tr>
+							<tr><td><h4>Computers: </td><td><input type="number" name="computers" ></h4></td></tr>
+							<tr><td><h4>Whiteboards: </td><td><input type="number" name="whiteboards" ></h4></td></tr>
+							<tr><td><h4>Printers: </td><td><input type="number" name="printers" ></h4></td></tr>
+							<tr><td><h4>Projectors: </td><td><input type="number" name="projectors" ></h4></td></tr>
+							<tr><td><h4>Restricted: </td><td><input type="radio" name="restricted" value="true"></h4> True</td></tr>
+							<tr><td></td><td><input type="radio" name="restricted" value="false"></h4> False</td></tr>
+							
+						</tbody>
+					</table>
+					<br><input type="button" onclick="addRoomForm(addRoom)" name="Submit" value="Submit">
+				</form>
+			</div>
+		</section>
+	</div>
+	<script src="js/addRoom.js"></script>
+</body>
+
+</html>
