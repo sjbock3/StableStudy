@@ -688,9 +688,14 @@ $app->get('/search', function(){
 
     });
 
-    $app->get('/getReviews', function(){
+    $app->post('/getReviews', function(){
         global $mysqli;
-        $room = $_POST['roomid'];
+        $buildingName = $_POST['building'];
+        $roomNumber = $_POST['roomNumber'];
+
+        $search = $mysqli->query("SELECT id FROM locations WHERE buildingName = '$buildingName' AND $roomNumber = '$roomNumber'");
+        $search = $search->fetch_assoc();
+        $room = $search['id'];
         $reviewList = $mysqli->query("SELECT writer, comment FROM reviews WHERE room ='$room'");
         $reviews = $reviewList->fetch_all(MYSQLI_ASSOC);
         echo json_encode($reviews);
