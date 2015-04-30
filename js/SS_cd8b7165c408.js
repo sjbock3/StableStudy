@@ -8193,9 +8193,11 @@ var spacescout_map = null,
     function openAllMarkerInfoWindow(data) {
         console.log('inside openAllMarkers');
         var source = $('#all_markers').html(); /*** handlebars template for right side*/
+        console.log('data send to buildingNameHeaders = '+ typeof data );
         var template = H.compile(source);
         data = buildingNameHeaders(data);
-        console.log('Data returned from buildingNameHeaders = ' + data);
+
+        console.log('Data returned from buildingNameHeaders = ' + JSON.stringify(data[0]));
         $('#info_items').html(template({
 
             'data': data
@@ -8245,6 +8247,10 @@ var spacescout_map = null,
     window.openAllMarkerInfoWindow = openAllMarkerInfoWindow;
 
     function _sortByBuildingName(data) {
+        //data = JSON.parse(data);
+        console.log("Data before error type = "+ typeof(data));
+        console.log( "Data before error = "+  data);
+
         data.sort(function(one, two) {
             var abuilding = one.location.building_name.toLowerCase(),
                 bbuilding = two.location.building_name.toLowerCase();
@@ -8258,7 +8264,9 @@ var spacescout_map = null,
     }
 
     function buildingNameHeaders(data) {
+
         data = _sortByBuildingName(data);
+        console.log("data in builidingNameHeaders = "+typeof data);
         var byBuilding = {};
         var nobuilding = 'no building';
         for (var i = 0; i < data.length; i++) {
@@ -8662,6 +8670,8 @@ var spacescout_map = null,
     }
 
     function _loadData(data) {
+        //data = JSON.parse(data);
+        console.log('type of data in _loadData = '+ typeof data);
         updatePins(data);
         dataLoaded(data.length);
     }
@@ -8673,6 +8683,7 @@ var spacescout_map = null,
             _fetchData();
             window.initial_load = false;
         } else if (!$('.space-detail-container').is(":visible")) {
+            //_loadData(initial_json);
             _fetchData();
         }
     }
@@ -8827,7 +8838,7 @@ var spacescout_map = null,
         var filterURL = 'api/index.php/search';  /*Brendan_Change*/
         console.log("query after add on = "+ query);
         $.get(filterURL+query,function(data){
-            _loadData(data);
+            _loadData(JSON.parse(data));
         });
         /*window.requests.push($.ajax({
             url: filterURL + query,
@@ -9133,6 +9144,8 @@ function dataLoaded(count) {
             }));
             window.update_count = false;
         }
+
+        console.log("spots inside updatePins = "+ JSON.stringify(spots[0])+'    '+JSON.stringify(spots[1]));
         _clearActiveMarker();
         openAllMarkerInfoWindow(spots);
         _updateMarkers(spots);
@@ -9144,6 +9157,8 @@ function dataLoaded(count) {
         } else {
             pins = _groupByDistance(ss_markers);
         }
+        console.log("pins = "+pins);
+        console.log('right before showMarkers');
         _showMarkers(pins);
     }
     window.updatePins = updatePins;
@@ -9310,6 +9325,7 @@ function dataLoaded(count) {
         }
         var source = $('#cluster_list').html();
         var template = H.compile(source);
+        console.log('data send to buildingNameHeaders = '+ data );
         data = buildingNameHeaders(data);
         $('#info_items').html(template({
             data: data

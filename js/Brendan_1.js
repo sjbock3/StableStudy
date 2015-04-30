@@ -194,6 +194,7 @@ $(document).ready(function() {
     //get all the spaces from the database on initial load
     var AllInfoQuery = 'api/index.php/locinfo';
     $.get(AllInfoQuery,function(allRooms){
+        console.log("allRooms type = "+ allRooms);
         window._loadData(JSON.parse(allRooms));
     });
 
