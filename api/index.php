@@ -328,16 +328,30 @@
         $projectors = $_POST['projectors'];
         $printers = $_POST['printers'];
         $restricted = $_POST['restricted'];
+        
+        $tempQuery = $mysqli->query("SELECT * FROM locations"); //used to generate picture file name
+        $fileNumber = mysqli_num_rows($tempQuery) + 1;
+        
+        
+        $target_file = $_FILES['pictureurl']['name'];
+        $url = '/var/www/upload/'. $fileNumber.".jpg";
+
+        
+        $pictureurl = $url;
+
+
+
 
         $existingRoom = $mysqli->query("SELECT * FROM locations WHERE buildingName = '$buildingName' AND roomNumber = '$roomNumber'");
-        if($existingRoom->fetch_assoc() === NULL){
+        if($existingRoom->fetch_assoc() !== NULL){
             echo json_encode(array('status'=>'failed', 'problem'=>1));
             return;
         }
         else{
-            $mysqli->query("INSERT INTO locations(latitude, longitude, floor, buildingName, roomNumber, classroom, outdoor, open_space, study_room, chairs, computers, whiteboards, printers, projectors, restricted)
-                            VALUES('$latitude', '$longitude', '$floor', '$buildingName', '$roomNumber', '$classroom', '$outdoor', '$open_space', '$study_room', '$chairs', '$computers', '$whiteboards', '$printers', '$projectors', '$restricted')");
+            $mysqli->query("INSERT INTO locations(latitude, longitude, floor, buildingName, roomNumber, classroom, outdoor, open_space, study_room, chairs, computers, whiteboards, printers, projectors, restricted, pictureurl)
+                            VALUES('$latitude', '$longitude', '$floor', '$buildingName', '$roomNumber', '$classroom', '$outdoor', '$open_space', '$study_room', '$chairs', '$computers', '$whiteboards', '$printers', '$projectors', '$restricted', '$pictureurl')");
             echo json_encode(array('status'=>'success', 'problem'=>0));
+            move_uploaded_file($_FILES['pictureurl']['tmp_name'], $url);
             return;
         }
 
