@@ -41,7 +41,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `stablestudy`.`pictures` ;
 
 CREATE TABLE IF NOT EXISTS `stablestudy`.`pictures` (
-  `picture_id` INT NOT NULL,
+  `picture_id` INT NOT NULL AUTO_INCREMENT,
   `room_id` INT NULL DEFAULT NULL,
   `pictureurl` VARCHAR(100) NULL DEFAULT NULL,
   PRIMARY KEY (`picture_id`),
