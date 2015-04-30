@@ -12,28 +12,36 @@ var databaseURL = './api/index.php';
 
 $(document).keyup(function(e) {
 
- if (e.keyCode == 27) { //alert("An escape key has been pressed")
-    //make sure background is not blurred
+    if (e.keyCode == 27) { //alert("An escape key has been pressed")
+        //make sure background is not blurred
+        console.log('escape key pressed');
 
 
-     //make the element hidden again
-     $(".userLogin").css("display","none");
-     $(".header").css("-webkit-filter","blur(0px)");
+        //make the element hidden again 
+        $(".userLogin").css("display", "none");
+        $(".header").css("-webkit-filter", "blur(0px)");
 
 
-     /*//remove the html added earlier
-     var oldHTML = $("body").html();
-     //console.log(oldHTML);
-     //find where added old html
-     var index = oldHTML.indexOf('<div class="userLogin">');
-     //console.log("index = " + index);
-     if(index >= 0 ){
+        /*//remove the html added earlier
+         var oldHTML = $("body").html();
+         //console.log(oldHTML);
+         //find where added old html
+         var index = oldHTML.indexOf('<div class="userLogin">');
+         //console.log("index = " + index);
+         if(index >= 0 ){
          $("body").html(oldHTML.substring(0,index-1));
+         }
+         */
+    }
+     if (13 == e.keyCode) {
+         console.log('enter key was pressed');
+         //check to see that user login is displayed
+         if($(".userLogin").css("display") == 'block'){
+             $('#loginButton').click();
+         }
      }
-    */
 
-
- }   // escape key maps to keycode `27`
+   // escape key maps to keycode `27`
  });
 
 $( "#sign" ).click(function(){
@@ -61,6 +69,7 @@ $( "#sign" ).click(function(){
 
     $("body").append(loginHTML);*/
 
+    /*add event listener for hitting enter that will do Login  */
 
 });
 

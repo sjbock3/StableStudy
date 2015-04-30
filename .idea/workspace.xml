@@ -2,57 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a763ef7f-73c3-4fb4-80cd-77964b02920c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/StableStudyLogo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/StableStudyLogoSmall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/drawable-hdpi/ic_action_new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/drawable-mdpi/ic_action_new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/drawable-xhdpi/ic_action_new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/drawable-xxhdpi/ic_action_new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/drawable-hdpi/ic_add.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/drawable-mdpi/ic_add.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/drawable-xhdpi/ic_add.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/drawable-xxhdpi/ic_add.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/java/fontenotsquad/stablestudy/AddRoom.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/java/fontenotsquad/stablestudy/RoomDetails.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/layout/activity_add_room.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/layout/activity_maps.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/layout/activity_room_details.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/addRoom.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/addRoom.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/addRoom_and_registration.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/drawable/addbutton.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/release/res/values/google_maps_api.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/menu/menu_add_room.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/menu/menu_room_details.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/menu/menu_take_picture.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/personal.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/personalPage.html" />
-      <change type="DELETED" beforePath="C:\Users\Brendan\Desktop\GUI_Project\StableStudy\api\indexOld.php" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\Brendan\Desktop\GUI_Project\StableStudy\images\Thumbs.db" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\Brendan\Desktop\GUI_Project\StableStudy\images\shelves.jpg" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\Brendan\Desktop\GUI_Project\StableStudy\images\triangular.png" afterPath="" />
       <change type="DELETED" beforePath="C:\Users\Brendan\Desktop\GUI_Project\StableStudy\images\triangular_@2X.png" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Brendan\Desktop\GUI_Project\StableStudy\test.txt" afterPath="$PROJECT_DIR$/css/personal.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/Thumbs.db" afterPath="$PROJECT_DIR$/img/Thumbs.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/img/SS_img/Thumbs.db" afterPath="$PROJECT_DIR$/img/SS_img/Thumbs.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/StableStudy/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BC_LandingPage.html" afterPath="$PROJECT_DIR$/BC_LandingPage.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/BC_landingPage.js" afterPath="$PROJECT_DIR$/js/BC_landingPage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/StableStudy/app/src/main/java/fontenotsquad/stablestudy/Login.java" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/java/fontenotsquad/stablestudy/Login.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/StableStudy/app/src/main/java/fontenotsquad/stablestudy/MainPage.java" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/java/fontenotsquad/stablestudy/MainPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/StableStudy/app/src/main/java/fontenotsquad/stablestudy/RegisterPage.java" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/java/fontenotsquad/stablestudy/RegisterPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/StableStudy/app/src/main/java/fontenotsquad/stablestudy/RoomInfo.java" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/java/fontenotsquad/stablestudy/RoomInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/layout/activity_login.xml" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/layout/activity_login.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/layout/activity_main_page.xml" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/layout/activity_main_page.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/StableStudy/app/app.iml" afterPath="$PROJECT_DIR$/app/StableStudy/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/StableStudy/app/build.gradle" afterPath="$PROJECT_DIR$/app/StableStudy/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/index.php" afterPath="$PROJECT_DIR$/api/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/meeting.js" afterPath="$PROJECT_DIR$/js/meeting.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meetingForm.html" afterPath="$PROJECT_DIR$/meetingForm.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dbScripts/populate2.sql" afterPath="$PROJECT_DIR$/dbScripts/populate2.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/registration.js" afterPath="$PROJECT_DIR$/js/registration.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/registrationPage.html" afterPath="$PROJECT_DIR$/registrationPage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/StableStudy/app/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/Brendan_1.js" afterPath="$PROJECT_DIR$/js/Brendan_1.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/SS_cd8b7165c408.js" afterPath="$PROJECT_DIR$/js/SS_cd8b7165c408.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/SS_stylePage2.css" afterPath="$PROJECT_DIR$/css/SS_stylePage2.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/landingPageStyle2.css" afterPath="$PROJECT_DIR$/css/landingPageStyle2.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="StableStudy.iws" />
@@ -76,7 +36,7 @@
     <favorites_list name="StableStudy" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.41">
+    <splitter split-orientation="horizontal" split-proportion="0.49810368">
       <split-first>
         <leaf>
           <file leaf-file-name="Brendan_css_1.css" pinned="false" current-in-tab="false">
@@ -122,18 +82,18 @@
           <file leaf-file-name="SS_stylePage2.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/css/SS_stylePage2.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="22799" max-vertical-offset="48093">
-                  <caret line="1363" column="23" selection-start-line="1363" selection-start-column="23" selection-end-line="1363" selection-end-column="23" />
+                <state vertical-scroll-proportion="-23.48276" vertical-offset="28491" max-vertical-offset="48093">
+                  <caret line="1716" column="0" selection-start-line="1710" selection-start-column="0" selection-end-line="1716" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="BC_LandingPage.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="BC_LandingPage.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/BC_LandingPage.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.049928673" vertical-offset="713" max-vertical-offset="2924">
-                  <caret line="44" column="6" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
+                <state vertical-scroll-proportion="-3.290909" vertical-offset="2250" max-vertical-offset="2924">
+                  <caret line="143" column="14" selection-start-line="143" selection-start-column="14" selection-end-line="143" selection-end-column="14" />
                   <folding />
                 </state>
               </provider>
@@ -149,11 +109,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-0.115384616" vertical-offset="1221" max-vertical-offset="26265">
-                  <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.74923545" vertical-offset="3845" max-vertical-offset="26265">
+                  <caret line="255" column="38" selection-start-line="255" selection-start-column="38" selection-end-line="255" selection-end-column="38" />
                   <folding>
                     <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#0;n#fieldset#0;n#fieldset#0;n#div#1;n#div#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -180,14 +140,14 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="SS_cd8b7165c408.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="SS_cd8b7165c408.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/SS_cd8b7165c408.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="151714" max-vertical-offset="158423">
-                  <caret line="8941" column="5" selection-start-line="8941" selection-start-column="5" selection-end-line="8941" selection-end-column="5" />
+                <state vertical-scroll-proportion="0.2" vertical-offset="149362" max-vertical-offset="159562">
+                  <caret line="8794" column="18" selection-start-line="8794" selection-start-column="18" selection-end-line="8794" selection-end-column="18" />
                   <folding>
-                    <marker date="1430338654659" expanded="true" signature="83324:83379" placeholder="..." />
-                    <marker date="1430338654659" expanded="true" signature="257623:257645" placeholder="..." />
+                    <marker date="1430372784511" expanded="true" signature="83324:83379" placeholder="..." />
+                    <marker date="1430372784511" expanded="true" signature="257623:257645" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -196,18 +156,18 @@
           <file leaf-file-name="Brendan_1.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/js/Brendan_1.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="3842" max-vertical-offset="5321">
-                  <caret line="226" column="24" selection-start-line="226" selection-start-column="22" selection-end-line="226" selection-end-column="24" />
+                <state vertical-scroll-proportion="-4.1034484" vertical-offset="0" max-vertical-offset="5372">
+                  <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="BC_landingPage.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="BC_landingPage.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/js/BC_landingPage.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.8596974" vertical-offset="2282" max-vertical-offset="3009">
-                  <caret line="171" column="0" selection-start-line="171" selection-start-column="0" selection-end-line="171" selection-end-column="0" />
+                <state vertical-scroll-proportion="-8.0" vertical-offset="431" max-vertical-offset="3162">
+                  <caret line="39" column="17" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="17" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                   </folding>
@@ -215,11 +175,21 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="landingPageStyle2.css" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/css/landingPageStyle2.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-8.034483" vertical-offset="294" max-vertical-offset="3400">
+                  <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="Brendan_css_1.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/css/Brendan_css_1.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1921">
-                  <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
+                <state vertical-scroll-proportion="-16.37931" vertical-offset="86" max-vertical-offset="1921">
+                  <caret line="33" column="8" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="8" />
                   <folding />
                 </state>
               </provider>
@@ -237,25 +207,25 @@
       <list>
         <option value="$PROJECT_DIR$/css/style_Login.css" />
         <option value="$PROJECT_DIR$/css/stylish-portfolio.css" />
-        <option value="$PROJECT_DIR$/css/landingPageStyle2.css" />
         <option value="$PROJECT_DIR$/SpaceScout_Mock/css/SS_stylePage2.css" />
         <option value="$PROJECT_DIR$/js/BC_dummy_classroom.js" />
         <option value="$PROJECT_DIR$/api/index.php" />
         <option value="$PROJECT_DIR$/mainPageCookies.js" />
-        <option value="$PROJECT_DIR$/BC_LandingPage.html" />
         <option value="$PROJECT_DIR$/js/cookie.js" />
         <option value="$PROJECT_DIR$/registrationPage2.html" />
         <option value="$PROJECT_DIR$/js/registration.js" />
         <option value="$PROJECT_DIR$/suggestSpace.html" />
         <option value="$PROJECT_DIR$/Network_Requests_Responses/shareSpacePage.html" />
-        <option value="$PROJECT_DIR$/css/SS_stylePage2.css" />
         <option value="$PROJECT_DIR$/css/Brendan_css_1.css" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/Brendan_1.js" />
         <option value="$PROJECT_DIR$/js/loginPageCookies.js" />
         <option value="$PROJECT_DIR$/js/mainPageCookies.js" />
-        <option value="$PROJECT_DIR$/js/SS_cd8b7165c408.js" />
+        <option value="$PROJECT_DIR$/css/landingPageStyle2.css" />
+        <option value="$PROJECT_DIR$/BC_LandingPage.html" />
         <option value="$PROJECT_DIR$/js/BC_landingPage.js" />
+        <option value="$PROJECT_DIR$/css/SS_stylePage2.css" />
+        <option value="$PROJECT_DIR$/js/Brendan_1.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/SS_cd8b7165c408.js" />
       </list>
     </option>
   </component>
@@ -263,10 +233,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1616" />
-    <option name="height" value="876" />
+    <option name="x" value="1" />
+    <option name="y" value="1" />
+    <option name="width" value="1598" />
+    <option name="height" value="858" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -279,7 +249,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -290,7 +260,19 @@
       <autoscrollFromSource />
       <sortByType />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="S" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -370,7 +352,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="1" y="1" width="1598" height="858" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -378,7 +360,9 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13631406" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -386,19 +370,17 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294271" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294271" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294271" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -407,7 +389,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13631406" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -431,7 +413,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -488,6 +470,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1479">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#43#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -511,8 +496,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="119798" max-vertical-offset="156162">
           <caret line="7069" column="21" selection-start-line="7069" selection-start-column="21" selection-end-line="7069" selection-end-column="21" />
           <folding>
-            <marker date="1430338654659" expanded="true" signature="83324:83379" placeholder="..." />
-            <marker date="1430338654659" expanded="true" signature="257623:257645" placeholder="..." />
+            <marker date="1430372784511" expanded="true" signature="83324:83379" placeholder="..." />
+            <marker date="1430372784511" expanded="true" signature="257623:257645" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -575,6 +560,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="741" max-vertical-offset="1479">
           <caret line="64" column="18" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#43#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -721,13 +709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/landingPageStyle2.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="2771">
-          <caret line="0" column="7" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.5566038" vertical-offset="1093" max-vertical-offset="2176">
@@ -767,14 +748,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="519" max-vertical-offset="1479">
           <caret line="49" column="5" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/SS_stylePage2.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="22799" max-vertical-offset="48093">
-          <caret line="1363" column="23" selection-start-line="1363" selection-start-column="23" selection-end-line="1363" selection-end-column="23" />
-          <folding />
+          <folding>
+            <element signature="e#0#43#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -790,22 +766,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="255">
           <caret line="7" column="46" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/Brendan_css_1.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1921">
-          <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/Brendan_1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3842" max-vertical-offset="5321">
-          <caret line="226" column="24" selection-start-line="226" selection-start-column="22" selection-end-line="226" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -826,21 +786,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/SS_cd8b7165c408.js">
+    <entry file="file://$PROJECT_DIR$/css/landingPageStyle2.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="151714" max-vertical-offset="158423">
-          <caret line="8941" column="5" selection-start-line="8941" selection-start-column="5" selection-end-line="8941" selection-end-column="5" />
+        <state vertical-scroll-proportion="-8.034483" vertical-offset="294" max-vertical-offset="3400">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/SS_stylePage2.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.48276" vertical-offset="28491" max-vertical-offset="48093">
+          <caret line="1716" column="0" selection-start-line="1710" selection-start-column="0" selection-end-line="1716" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/BC_landingPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.0" vertical-offset="431" max-vertical-offset="3162">
+          <caret line="39" column="17" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="17" />
           <folding>
-            <marker date="1430338654659" expanded="true" signature="83324:83379" placeholder="..." />
-            <marker date="1430338654659" expanded="true" signature="257623:257645" placeholder="..." />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/Brendan_css_1.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.37931" vertical-offset="86" max-vertical-offset="1921">
+          <caret line="33" column="8" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BC_LandingPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.290909" vertical-offset="2250" max-vertical-offset="2924">
+          <caret line="143" column="14" selection-start-line="143" selection-start-column="14" selection-end-line="143" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Brendan_1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.1034484" vertical-offset="0" max-vertical-offset="5372">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.115384616" vertical-offset="1221" max-vertical-offset="26265">
-          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.74923545" vertical-offset="3845" max-vertical-offset="26265">
+          <caret line="255" column="38" selection-start-line="255" selection-start-column="38" selection-end-line="255" selection-end-column="38" />
           <folding>
             <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#fieldset#0;n#fieldset#0;n#div#1;n#div#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -862,20 +861,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BC_LandingPage.html">
+    <entry file="file://$PROJECT_DIR$/js/SS_cd8b7165c408.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.049928673" vertical-offset="713" max-vertical-offset="2924">
-          <caret line="44" column="6" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/BC_landingPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8596974" vertical-offset="2282" max-vertical-offset="3009">
-          <caret line="171" column="0" selection-start-line="171" selection-start-column="0" selection-end-line="171" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.2" vertical-offset="149362" max-vertical-offset="159562">
+          <caret line="8794" column="18" selection-start-line="8794" selection-start-column="18" selection-end-line="8794" selection-end-column="18" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <marker date="1430372784511" expanded="true" signature="83324:83379" placeholder="..." />
+            <marker date="1430372784511" expanded="true" signature="257623:257645" placeholder="..." />
           </folding>
         </state>
       </provider>

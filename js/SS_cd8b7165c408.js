@@ -7077,10 +7077,21 @@ var requests = [];
 
     function _formatLocationFilter(data) {
         //console.log(data.length = 'data.length');
-        console.log(data[0]);
+
         if (data != '[]') {
 
             console.log('data = ' + data);
+            var data = JSON.parse(data);
+            console.log('data after parse = ' + data);
+            var classArray = [""];
+
+            //compile an array of the names
+            for( var i = 0;i<data.length;i++){
+                classArray[i+1] = data[i].buildingName;
+            }
+            data = classArray;
+            console.log('**********building array is **** = '+ data);
+
 
             console.log('in _formatLocationFilter');
             //will populate the list of buildings in the filter list
@@ -8658,7 +8669,8 @@ var spacescout_map = null,
 
     function _reloadOnIdle() {
         if (window.initial_load) {
-            _loadData(initial_json);
+            //_loadData(initial_json);
+            _fetchData();
             window.initial_load = false;
         } else if (!$('.space-detail-container').is(":visible")) {
             _fetchData();
@@ -8684,7 +8696,7 @@ var spacescout_map = null,
             args.open_now = 1;
         }
         //getting the different bounds for the map
-        var display_bounds = window.spacescout_map.getBounds();
+        /*var display_bounds = window.spacescout_map.getBounds();
         var ne = display_bounds.getNorthEast();
         var sw = display_bounds.getSouthWest();
         var center = window.spacescout_map.getCenter();
@@ -8700,7 +8712,7 @@ var spacescout_map = null,
         args.center_latitude = center.lat();
         args.center_longitude = center.lng();
         args.distance = distance;
-        args.limit = 0;
+        args.limit = 0;*/
         if (!window.spacescout_search_options.hasOwnProperty('type')) {
             window.spacescout_search_options.type = [];
         }
@@ -8719,13 +8731,13 @@ var spacescout_map = null,
             }
         }
 
-        console.log("url_args after going through spacescout_search_options = " + url_args);
+        //console.log("url_args after going through spacescout_search_options = " + url_args);
         var location = $('#location_select option:selected'); /*if have special location then tacks it on to end*/
         if (location.length) {
             url_args.push("extended_info:campus=", encodeURIComponent(location.val().split(',')[2]), '&');
         }
 
-        console.log("url_args after going through which location selected = " + url_args);
+        //console.log("url_args after going through which location selected = " + url_args);
         url_args.pop();
         var query = url_args.join("");
         //add on the query from the different types of spaces
@@ -8746,20 +8758,75 @@ var spacescout_map = null,
                 addOn = addOn + "&" + typeNames[i] + "=" + typeVals[i];
             }
             query = query + addOn;
+            //console.log("query before everything = "+query);
             //replace capacity with chairs
             var replaceWord = 'capacity';
             var queryLength = query.length;
             var capacityIndex = query.indexOf('capacity');
-            var queryBefore = query.substr(0, capacityIndex);
-            var queryAfter = query.substr(capacityIndex + replaceWord.length);
-            var newQuery = queryBefore + 'chairs' + queryAfter;
-            console.log('queryBefore = ' + queryBefore + ' queryAfter = ' + queryAfter);
+            if(capacityIndex != -1){
+                var queryBefore = query.substr(0, capacityIndex);
+                var queryAfter = query.substr(capacityIndex + replaceWord.length);
+                var newQuery = queryBefore + 'chairs' + queryAfter;
+                //console.log('queryBefore = ' + queryBefore + ' queryAfter = ' + queryAfter);
 
-            query = newQuery;
+                query = newQuery;
+            }
+        console.log('query before replacements = '+ query);
+        //remove all the occurances of 'extended_info%3'
+        query = query.replace(/extended_info%3/g, '');
 
-        var searchURL = 'api/index.php/search';  /*Brendan_Change*/F
+        //add on the fields that may not be present
+        var fields = ["chairs","classroom","outdoor","open_space","study_room","computers","whiteboards","printers","projectors"];
+        //need to have other fields for the resources
+        for(var j = 0;j<fields.length;j++){
+            //checka and see if field already exists
+            var fieldIndex = query.indexOf(fields[j]);
+            //if already exists then must replace with valid value
+            var beforeString;
+            var afterString;
+            var endString;
+            var ampIndex;
+
+            //get the value of that field
+            var value = 0;
+            if (fields[i] == "chairs") {
+                value = $('#capacity').val();
+            }
+            else {
+
+                if ($('#' + fields[j]).is(":checked")) {
+                    value = 1;
+                }
+            }
+            if(fieldIndex>=0) {
+                console.log('*******checking for: ' + fields[j] + '   *******');
+                //find the index of the next query
+                beforeString = query.substr(0, fieldIndex);
+                console.log('beforeString = ' + beforeString);
+                afterString = query.substr(fieldIndex);
+                //search the after string for next ampersand
+                ampIndex = afterString.indexOf('&');
+                endString = afterString.substr(ampIndex);
+                console.log('endString = ' + endString);
+
+                //need to create the middle portion that should be inserted by checking if clicked
+
+                query = beforeString + fields[j] + '=' + value + endString;
+                console.log("new query for cycle " + j + " = "+query);
+
+            }
+            else{
+                //add the key value pair to the end of the query
+                query = query + '&'+ fields[j]+'='+value;
+            }
+        }
+
+        //add restricted to the end of the list
+        query = query +'&restricted=0';
+
+        var filterURL = 'api/index.php/search';  /*Brendan_Change*/
         console.log("query after add on = "+ query);
-        $.post(filterURL+query,function(data){
+        $.get(filterURL+query,function(data){
             _loadData(data);
         });
         /*window.requests.push($.ajax({
