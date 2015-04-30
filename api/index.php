@@ -328,17 +328,34 @@
         $projectors = $_POST['projectors'];
         $printers = $_POST['printers'];
         $restricted = $_POST['restricted'];
-        $pictureurl = $_POST['pictureurl'];
+        
+        $tempQuery = $mysqli->query("SELECT * FROM locations"); //used to generate picture file name
+        $fileNumber = mysqli_num_rows($tempQuery) + 1;
+        
+        
+        $target_file = $_FILES['pictureurl']['name'];
+        $url = '/var/www/upload/'. $fileNumber.".jpg";
+
+        
+        $pictureurl = $url;
+
+
+
 
         $existingRoom = $mysqli->query("SELECT * FROM locations WHERE buildingName = '$buildingName' AND roomNumber = '$roomNumber'");
-        if($existingRoom->fetch_assoc() === NULL){
+        if($existingRoom->fetch_assoc() !== NULL){
             echo json_encode(array('status'=>'failed', 'problem'=>1));
             return;
         }
         else{
-            $mysqli->query("INSERT INTO locations(latitude, longitude, floor, buildingName, roomNumber, classroom, outdoor, open_space, study_room, chairs, computers, whiteboards, printers, projectors, restricted, pictureurl)
-                            VALUES('$latitude', '$longitude', '$floor', '$buildingName', '$roomNumber', '$classroom', '$outdoor', '$open_space', '$study_room', '$chairs', '$computers', '$whiteboards', '$printers', '$projectors', '$restricted', '$pictureurl')");
+            $mysqli->query("INSERT INTO locations(latitude, longitude, floor, buildingName, roomNumber, classroom, outdoor, open_space, study_room, chairs, computers, whiteboards, printers, projectors, restricted)
+                            VALUES('$latitude', '$longitude', '$floor', '$buildingName', '$roomNumber', '$classroom', '$outdoor', '$open_space', '$study_room', '$chairs', '$computers', '$whiteboards', '$printers', '$projectors', '$restricted')");
+            $getRoomid = $mysqli->query("SELECT id FROM locations WHERE buidlingName = '$buildingName' AND roomNumber = '$roomNumber'");
+            $getRoomid = $getRoomid->fetch_assoc();
+            $roomid = $getRoomid['id'];
+            $mysqli->query("INSERT INTO pictures(room_id, pictureurl) VALUES('$roomid', '$pictureurl')");
             echo json_encode(array('status'=>'success', 'problem'=>0));
+            move_uploaded_file($_FILES['pictureurl']['tmp_name'], $url);
             return;
         }
 
@@ -521,6 +538,21 @@ $app->get('/search', function(){
 
         $finalArr = array();
 
+        if ($classroom == 0 && $outdoor == 0 && $open_space == 0 && $study_room == 0){
+        	$result = $mysqli->query("SELECT id FROM locations WHERE
+              chairs >= '$chairs' AND computers >= '$computers' AND whiteboards >= '$whiteboards' AND
+              printers >= '$printers' AND projectors >= '$projectors' AND restricted >= '$restricted'");
+
+            $result = $result->fetch_all(MYSQL_NUM);
+            $len = count($result);
+
+            for($i = 0; $i < $len; $i++){
+                array_push($finalArr, getRoom($result[$i][0]));
+            }
+            echo json_encode($finalArr);
+        	return;
+        }
+
         if ($classroom) {
             $result = $mysqli->query("SELECT id FROM locations WHERE classroom = 1 AND
               chairs >= '$chairs' AND computers >= '$computers' AND whiteboards >= '$whiteboards' AND
@@ -579,8 +611,36 @@ $app->get('/search', function(){
 
     });
 
+    $app->post('/share', function(){
+        global $mysqli;
+        $host = $_POST['hostName'];
+        $buildingName = $_POST['buildingName'];
+        $roomNumber = $_POST['roomNumber'];
+        $other = $_POST['username'];
+
+        $search = $mysqli->query("SELECT id FROM locations WHERE buildingName = '$buildingName' AND roomNumber = '$roomNumber'");
+        $search = $search->fetch_assoc();
+        $shared_room = $search['id'];
+
+        echo $shared_room;
+        $check = $mysqli->query("SELECT share_id FROM shares WHERE shared_room = '$shared_room' AND host = '$host' AND other = '$other'");
+        if($check->fetch_assoc() !== NULL){
+            echo json_encode(array("status"=>"failed"));
+            return;
+        }
+        if($mysqli->query("INSERT INTO shares(shared_room, host, other) VALUES('$shared_room', '$host', '$other')")){
+            echo json_encode(array("status"=>"success"));
+        }
+
+        else {
+            echo json_encode(array("status"=>"failed"));
+        }
+
+        return;
+
+    });
+
 	$app->get('/getRoom', function(){
-		global $mysqli;
 		$roomID = $_GET['id'];
 		$json = getRoom($roomID);
 		echo json_encode($json);
@@ -627,7 +687,29 @@ $app->get('/search', function(){
         return;
 
     });
-    
+
+    $app->get('/getReviews', function(){
+        global $mysqli;
+        $room = $_POST['roomid'];
+        $reviewList = $mysqli->query("SELECT writer, comment FROM reviews WHERE room ='$room'");
+        $reviews = $reviewList->fetch_all(MYSQLI_ASSOC);
+        echo json_encode($reviews);
+        return;
+    });
+
+    $app->post('/writeReview', function(){
+       global $mysqli;
+        $review = $_POST['review'];
+        $writer = $_POST['username'];
+        $buildingName = $_POST['building'];
+        $roomNumber = $_POST['roomNumber'];
+
+        $search = $mysqli->query("SELECT id FROM locations WHERE buildingName = '$buildingName' AND $roomNumber = '$roomNumber'");
+        $search = $search->fetch_assoc();
+        $roomID = $search['id'];
+
+        $mysqli->query("INSERT INTO reviews(room, writer, comment) VALUES('$roomID', '$writer', '$review')");
+    });
     $app->run();
 
     function getRoom($roomID){
