@@ -145,7 +145,7 @@ public class MainPage extends ActionBarActivity {
             tempMessage = "Hot and sunny, stay hydrated!";
             tempColor = "red";
         }
-        if (temp < 85 || sunny == true) {
+        if (temp <= 85 || sunny == true) {
             tempMessage = "Perfect weather for studying!";
             tempColor = "lBlue";
         }
@@ -157,7 +157,13 @@ public class MainPage extends ActionBarActivity {
         if (temp < 45) {
             tempMessage = "Bring a sweater";
             tempColor = "dBlue";
+
         }
+        if (stormy == true) {
+            tempMessage = "There's a storm, be careful!";
+            tempColor = "orange";
+        }
+
         if (rain == true) {
             tempMessage = "Bring an umbrella";
             tempColor = "blue";
@@ -167,10 +173,7 @@ public class MainPage extends ActionBarActivity {
             tempColor = "offwhite";
 
         }
-        if (stormy == true) {
-            tempMessage = "Dont go outside, it's stormy";
-            tempColor = "orange";
-        }
+
 
         wColor = tempColor;
         wString = tempMessage;
@@ -248,7 +251,7 @@ public class MainPage extends ActionBarActivity {
 
 
 
-            Request request = new Request.Builder().url("http://52.11.111.78/api/index.php/locations").build();
+            Request request = new Request.Builder().url("http://52.11.111.78/StableStudy/api/index.php/locations").build();
 
 
             Call call = client.newCall(request);

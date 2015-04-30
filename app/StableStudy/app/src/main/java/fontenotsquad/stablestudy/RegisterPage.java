@@ -96,7 +96,7 @@ public class RegisterPage extends ActionBarActivity {
                 .add("email", emailText).add("password", pwText)
                 .build();
 
-        Request request = new Request.Builder().url("http://52.11.111.78/api/index.php/user").post(formBody).build();
+        Request request = new Request.Builder().url("http://52.11.111.78/StableStudy/api/index.php/user").post(formBody).build();
 
 
         Call call = client.newCall(request);
