@@ -87,7 +87,7 @@ var dummyClassData = {
 function getRainyInfo(){
     //query the weather database
 
-    return false;
+    return true;
 }
 $(document).ready(function() {
     var baseURL = 'http://192.168.33.10';
@@ -104,7 +104,9 @@ $(document).ready(function() {
     //insert the new HTML
     $('#user_Greet').html(newHTML);
 
-
+    //will load all the sources from the database
+    window._fetchData();
+    window._reloadOnIdle();
 
     //get the weather info
     var rainy = getRainyInfo();
@@ -125,8 +127,8 @@ $(document).ready(function() {
         }
     }
 
-    var newHTML_1 = Template(data_1);
-    $('#weatherScript').html(newHTML_1);
+    var newHTML_1 = Template_1(data_1);
+    $('#weather_Alert').html(newHTML_1);
 
     //add the event handlers
     $("#weatherButton").click(function(){
@@ -251,8 +253,9 @@ $(document).ready(function() {
 
     setTimeout(function(){
         var dummyBuildings = ["","Brendan's Dorm", "Fondren Library", "Fondren Science"];
-        console.log("dummyBuildings = " + dummyBuildings);
-        window._formatLocationFilter(dummyBuildings);
+        /*console.log("dummyBuildings = " + dummyBuildings);
+        window._formatLocationFilter(dummyBuildings);*/
+
     }, 5000)//mock formatting the building list
 
 
