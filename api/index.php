@@ -353,6 +353,7 @@
             $getRoomid = $mysqli->query("SELECT id FROM locations WHERE buidlingName = '$buildingName' AND roomNumber = '$roomNumber'");
             $getRoomid = $getRoomid->fetch_assoc();
             $roomid = $getRoomid['id'];
+            echo $roomid;
             $mysqli->query("INSERT INTO pictures(room_id, pictureurl) VALUES('$roomid', '$pictureurl')");
             echo json_encode(array('status'=>'success', 'problem'=>0));
             move_uploaded_file($_FILES['pictureurl']['tmp_name'], $url);
