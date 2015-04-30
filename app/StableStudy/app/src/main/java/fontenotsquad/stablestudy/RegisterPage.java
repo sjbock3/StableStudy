@@ -60,7 +60,7 @@ public class RegisterPage extends ActionBarActivity {
         String lNameText = lName.getText().toString();
         String emailText = email.getText().toString();
         String pwText = pw.getText().toString();
-        String userText = pw.getText().toString();
+        String userText = userF.getText().toString();
 
 
         if (fNameText.length() < 1 || lNameText.length() < 1)
