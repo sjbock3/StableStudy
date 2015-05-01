@@ -179,6 +179,12 @@ function createWeather(){
 
 }
 $(document).ready(function() {
+
+    /*BC_edit*/
+    $("#meetingButton").click(function(){
+        window.location.href = "meetingForm.html";
+    });
+
     var baseURL = 'http://192.168.33.10';
     //add the user's name in right corner
     var username = getCookie('fName');
