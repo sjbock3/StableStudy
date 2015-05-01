@@ -6,10 +6,10 @@ function meetingForm(form) {
 	alert("Please enter a valid time.");
 	return false;
     }
-   /*
+   
         var Request = new XMLHttpRequest();
 
-	Request.open('POST', './api/index.php/user', true);
+	Request.open('POST', './api/index.php/createMeeting', true);
 
 	Request.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");	
 
@@ -19,14 +19,19 @@ function meetingForm(form) {
     		console.log('Status:', this.status);
     		console.log('Headers:', this.getAllResponseHeaders());
     		console.log('Body:', this.responseText);
-		window.location.href = "registrationPage.html";
+		window.location.href = "index.html";
   	  }
 	};
-	
-	var body = "fName="+form.firstname.value+"&lName="+form.lastname.value+"&school="+form.school.value+"&username="+form.username.value+"&email="+form.email.value+"&password="+form.password.value;
+	var users = "[";
+	for (i = 0; i < counter; i++){
+	users += users[i];
+	users += ","; 
+	}
+	users += "]"
+	var body = "hostName="+"afulsom"+"&buildingName="+form.buildingName.value+"&roomNumber="+form.roomNumber.value+"&meetingTime="+form.date.value + " " +form.time.value+"&users="+users;
 
 
-	Request.send(body);*/
+	Request.send(body);
 
 }
 
@@ -34,7 +39,7 @@ var counter = 1;
 var limit = 5;
 function addInput(divName){
      if (counter == limit)  {
-          alert("You have reached the limit of adding " + counter + " users");
+          alert("You have reached the limit of adding " + limi + " users");
      }
      else {
 	  var tableRef = document.getElementById('formTable').getElementsByTagName('tbody')[0];
