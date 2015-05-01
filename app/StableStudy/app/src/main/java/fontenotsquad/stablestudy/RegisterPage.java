@@ -60,7 +60,7 @@ public class RegisterPage extends ActionBarActivity {
         String lNameText = lName.getText().toString();
         String emailText = email.getText().toString();
         String pwText = pw.getText().toString();
-        String userText = pw.getText().toString();
+        String userText = userF.getText().toString();
 
 
         if (fNameText.length() < 1 || lNameText.length() < 1)
@@ -96,7 +96,7 @@ public class RegisterPage extends ActionBarActivity {
                 .add("email", emailText).add("password", pwText)
                 .build();
 
-        Request request = new Request.Builder().url("http://52.11.111.78/api/index.php/user").post(formBody).build();
+        Request request = new Request.Builder().url("http://52.11.111.78/StableStudy/api/index.php/user").post(formBody).build();
 
 
         Call call = client.newCall(request);
