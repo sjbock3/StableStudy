@@ -350,7 +350,7 @@
         else{
             $mysqli->query("INSERT INTO locations(latitude, longitude, floor, buildingName, roomNumber, classroom, outdoor, open_space, study_room, chairs, computers, whiteboards, printers, projectors, restricted)
                             VALUES('$latitude', '$longitude', '$floor', '$buildingName', '$roomNumber', '$classroom', '$outdoor', '$open_space', '$study_room', '$chairs', '$computers', '$whiteboards', '$printers', '$projectors', '$restricted')");
-            $getRoomid = $mysqli->query("SELECT id FROM locations WHERE buidlingName = '$buildingName' AND roomNumber = '$roomNumber'");
+            $getRoomid = $mysqli->query("SELECT id FROM locations WHERE buildingName = '$buildingName' AND roomNumber = '$roomNumber'");
             $getRoomid = $getRoomid->fetch_assoc();
             $roomid = $getRoomid['id'];
             $mysqli->query("INSERT INTO pictures(room_id, pictureurl) VALUES('$roomid', '$pictureurl')");
