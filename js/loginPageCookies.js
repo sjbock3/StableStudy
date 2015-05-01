@@ -28,7 +28,7 @@ function checkCookie() {
         alert("Welcome again " + user);
     } else {
         alert("cookie not set");
-        window.location.href = '/BC_LandingPage.html';
+        window.location.href = 'BC_LandingPage.html';
     }
 }
 

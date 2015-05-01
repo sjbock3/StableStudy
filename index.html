@@ -98,8 +98,17 @@
 
     <div id="weather_Alert">
         <script id="weatherScript" type="text/x-handlebars-template">
-            <h1 id="weatherTitle">{{weatherInfo}}</h1>
-            <button class="btn" type="button" aria-label="Outdoor Spaces" id="weatherButton"><em>{{IndoorOutdoor}}<br>Spaces</em></button>
+            <br>
+            <br>
+            <h1>Weather Report:</h1>
+            <br>
+
+            <div id="weatherInfo">
+            Temp: {{temperature}} F<br>
+            Sky: {{sky}}<br>
+            Conditions: {{condition}}
+            </div>
+
         </script>
         <!--
         <h1 id="sunnyTitle">It's Sunny Out!</h1>
@@ -107,6 +116,11 @@
         <br>
         <button class="btn" type="button" aria-label="Outdoor Spaces" id="weatherButton"><em>Outdoor<br>Spaces</em></button>
         -->
+    </div>
+    <div id="weatherButtonCont">
+        <script id="weatherButtonScript" type="text/x-handlebars-template">
+            <button type="button" id="weatherButton"><em>Find <br>{{IndoorOutdoor}}Spaces</em></button>
+        </script>
     </div>
 
     <div id="preload"></div>
@@ -121,7 +135,7 @@
         <div class="spacescout-header clearfix" id="overallHeader">
             <div class="logo-container pull-left">
                 <div class="logo">
-                    <h1 id="app_header" class=""><img id="headerLogo" src="img/Stable_Study_Logo.png"> StableStudy</h1>
+                    <h1 id="app_header" class=""><img id="headerLogo" src="img/StableStudyLogoSmall.png"> StableStudy</h1>
                 </div>
             </div>
             <div class="location_container">
@@ -197,14 +211,14 @@
               <input type="checkbox" name="type" id="study_area" value="study_area">
               <label class="inline" for="study_area">Study area</label>
            </span>
-           <span class="checkbox">
+           <!--<span class="checkbox">
               <input type="checkbox" name="type" id="computer_lab" value="computer_lab">
               <label class="inline" for="computer_lab">Computer lab</label>
-           </span>
-           <span class="checkbox">
-              <input type="checkbox" name="type" id="studio" value="studio">
+           </span>-->
+           <!--<span class="checkbox">
+              <input type="checkbox" name="type" id="studio" value="studiextended_info:has_>
               <label class="inline" for="studio">Production studio</label>
-           </span>
+           </span>-->
            <span class="checkbox">
               <input type="checkbox" name="type" id="classroom" value="classroom">
               <label class="inline" for="classroom">Conference/<wbr><a class=wbr></a>classroom</label>
@@ -213,17 +227,17 @@
 
                                     <div style="width:auto;float:left">
            <span class="checkbox">
-              <input type="checkbox" name="type" id="open" value="open">
-              <label class="inline" for="open">Open space</label>
+              <input type="checkbox" name="type" id="open_space" value="open">
+              <label class="inline" for="open_space">Open space</label>
            </span>
            <span class="checkbox">
               <input type="checkbox" name="type" id="lounge" value="lounge">
               <label class="inline" for="lounge">Lounge</label>
            </span>
-           <span class="checkbox">
+           <!--<span class="checkbox">
               <input type="checkbox" name="type" id="cafe" value="cafe">
               <label class="inline" for="cafe">Café</label>
-           </span>
+           </span>-->
            <span class="checkbox">
               <input type="checkbox" name="type" id="outdoor" value="outdoor">
               <label class="inline" for="outdoor">Outdoor area</label>
@@ -406,16 +420,16 @@
 
                                 <div style="width:auto;float:left; margin-right:15px;">
         <span class="checkbox">
-            <input type="checkbox" id="has_whiteboards" name="equipment" value="has_whiteboards">
-            <label class="inline" for="has_whiteboards">Whiteboard</label>
+            <input type="checkbox" id="whiteboards" name="equipment" value="whiteboards">
+            <label class="inline" for="whiteboards">Whiteboard</label>
         </span>
         <span class="checkbox">
-            <input type="checkbox" id="has_outlets" name="equipment" value="has_outlets">
-            <label class="inline" for="has_outlets">Outlets</label>
+            <input type="checkbox" id="outlets" name="equipment" value="outlets">
+            <label class="inline" for="outlets">Outlets</label>
         </span>
         <span class="checkbox">
-            <input type="checkbox" id="has_computers" name="equipment" value="has_computers">
-            <label class="inline" for="has_computers">Computer</label>
+            <input type="checkbox" id="computers" name="equipment" value="computers">
+            <label class="inline" for="computers">Computer</label>
         </span>
         <span class="checkbox">
             <input type="checkbox" id="has_scanner" name="equipment" value="has_scanner">
@@ -429,12 +443,12 @@
             <label class="inline" for="has_displays">Large display (for laptop)</label>
         </span>
         <span class="checkbox">
-            <input type="checkbox" id="has_projector" name="equipment" value="has_projector">
-            <label class="inline" for="has_projector">Projector</label>
+            <input type="checkbox" id="projectors" name="equipment" value="projectors">
+            <label class="inline" for="projectors">Projector</label>
         </span>
         <span class="checkbox">
-            <input type="checkbox" id="has_printing" name="equipment" value="has_printing">
-            <label class="inline" for="has_printing">Printing</label>
+            <input type="checkbox" id="printers" name="equipment" value="printers">
+            <label class="inline" for="printers">Printing</label>
         </span>
                                 </div>
                             </fieldset>
@@ -602,8 +616,10 @@
 
                                             <!--will have all the notes content on the right-->
                                             <div class="space-info-detail pull-left">
-                                                {{#if extended_info.access_notes}}<p>{{extended_info.access_notes}}</p>{{/if}}
-                                                {{#if extended_info.reservation_notes}}<p class="ei_reservation_notes">{{extended_info.reservation_notes}}</p>{{/if}}
+                                                {{#if extended_info}}
+                                                    {{#if extended_info.access_notes}}<p>{{extended_info.access_notes}}</p>{{/if}}
+                                                    {{#if extended_info.reservation_notes}}<p class="ei_reservation_notes">{{extended_info.reservation_notes}}</p>{{/if}}
+                                                {{/if}}
                                             </div>
                                         </li>
                                         {{/if}}
@@ -732,7 +748,7 @@
                 <div class="list-arrow"><a id="filter_link" title="List of spaces" href="#"><img alt="" src="img/SS_img/list.png" /></a></div>
 
                 <!-- TODO: need to implement if/else logic for spinner and info_items -->
-                <div class="loading"><div class="loading-inner" role="alert">&nbsp;&nbsp;Loading spaces...</div>
+                <div class="loading"><div class="loading-inner" role="alert">&nbsp;&nbsp;Loading spaces...</div></div>
 
 
                 <div id="info_items"></div>
@@ -853,6 +869,8 @@
             </div>
         </div>
     </div>
+
+
 
 
 
@@ -1028,6 +1046,7 @@
         <div class="pull-right suggest" id="smallSuggest">Have a space to add? <a href="javascript:void(0);" id="suggest">Suggest it</a></div>
         <!--<div class="pull-left partners">Brought to you by SMU GUI 2015 under the direction of professor Jackson</div>
     </div>-->
+
 </div>
 
 <!-- jQuery -->
@@ -1046,7 +1065,7 @@
 <script type="text/javascript" src="js/SS_js.js"></script> -->
 
 <!--same as spacescout.uw.edu/ and defines the get text library with the catalog dictionary-->
-<script type="text/javascript" src="js/SS_jsi18n.js"></script>
+<script type="text/javascript" src="js/initial_json_BC.js"></script>
 
 <!--API resonse not sure what used for -->
 <!--<script type="text/javascript" src="js/SS_vt_resources.js"></script>-->
@@ -1054,428 +1073,21 @@
 <!--other javascript files-->
 
 <!--Google Maps  javascripts-->
-<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyAKp8I19VjVf4sOzkRnKXKbdvSOKsqbubE&amp;libraries=geometry&amp;sensor=false></script>
-<script type="text/javascript" src="js/SS_maps_main.js"></script>
-<script type="text/javascript" src="js/SS_respond.js"></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyAKp8I19VjVf4sOzkRnKXKbdvSOKsqbubE&amp;libraries=geometry&amp;sensor=false"></script>
+        <!--<script type="text/javascript" src="js/SS_maps_main.js"></script>-->
+<!--<script type="text/javascript" src="js/SS_respond.js"></script>
 
 <!--this script will probably not work because uses wrong key...-->
 
 <!--
-<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.15&key=AIzaSyAKp8I19VjVf4sOzkRnKXKbdvSOKsqbubE&libraries=geometry&sensor=false"></script>-->
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.15&key=AIzaSyAKp8I19VjVf4sOzkRnKXKbdvSOKsqbubE&libraries=geometry&sensor=false"></script>
 
 
-<script type="text/javascript" src="js/SS_maps_geometry.js"></script>
+<script type="text/javascript" src="js/SS_maps_geometry.js"></script>-->
 <!--deals with cookies and storage and event handlers-->
+    <script type="text/javascript" src="js/SS_jsi18n.js"></script>
 <script type="text/javascript" src="js/SS_cd8b7165c408.js"></script>
 
-
-<script type="text/javascript">
-    var initial_json = [{
-        "capacity": null,
-        "name": "Florence 106",
-        "external_id": null,
-        "extended_info": {
-            "rating": "3.0",
-            "review_count": "1",
-            "orientation": "1st floor; near Hughes trig",
-            "noise_level": "variable",
-            "location_description": "Physics/Astronomy Tower, near H-Bar",
-            "has_natural_light": "true",
-            "food_nearby": "building",
-            "campus": "SMU"
-        },
-        "uri": "/api/v1/spot/591", /*********Need to change********/
-        "available_hours": {
-            "monday": [
-                ["00:00", "23:59"]
-            ],
-            "tuesday": [
-                ["00:00", "23:59"]
-            ],
-            "friday": [
-                ["00:00", "23:59"]
-            ],
-            "wednesday": [
-                ["00:00", "23:59"]
-            ],
-            "thursday": [
-                ["00:00", "23:59"]
-            ],
-            "sunday": [
-                ["00:00", "23:59"]
-            ],
-            "saturday": [
-                ["00:00", "23:59"]
-            ]
-        },
-        "manager": "",
-        "last_modified": "2014-12-01T19:35:17+00:00",
-        "etag": "01603d4ae534fbc1b329d1da04f4e8013e545b4d",
-        "type": "Classroom",
-        "images": [{
-            "upload_user": "cstimmel",
-            "thumbnail_root": "img/FlorenceHall", /*********Need to change********/
-            "modification_date": "2014-07-29T17:10:13+00:00",
-            "url": "img/FlorenceHall",
-            "upload_application": "spotseeker_admin_1.0",
-            "display_index": 0,
-            "height": 2000,
-            "width": 3008,
-            "creation_date": "2012-08-30T10:25:27+00:00",
-            "content-type": "image/jpeg",
-            "id": 1,
-            "description": ""
-        }, {
-            "upload_user": "cstimmel",
-            "thumbnail_root": "img/FlorenceHall", /*********Need to change********/
-            "modification_date": "2014-07-29T17:10:13+00:00",
-            "url": "img/FlorenceHall", /*********Need to change********/
-            "upload_application": "spotseeker_admin_1.0",
-            "display_index": 1,
-            "height": 2000,
-            "width": 3008,
-            "creation_date": "2012-08-30T10:26:00+00:00",
-            "content-type": "image/jpeg",
-            "id": 2,
-            "description": ""
-        }],
-        "organization": "",
-        "display_access_restrictions": "",
-        "id": 591,
-        "location": {
-            "floor": "1st floor",
-            "height_from_sea_level": null,
-            "room_number": "",
-            "longitude": -96.786349,
-            "latitude": 32.845576,
-            "building_name": "Florence"
-        }
-    },{
-        "capacity": null,
-        "name": "Ford Stadium",
-        "external_id": null,
-        "extended_info": {
-            "rating": "3.0",
-            "review_count": "1",
-            "orientation": "1st floor; near Hughes trig",
-            "noise_level": "variable",
-            "location_description": "Physics/Astronomy Tower, near H-Bar",
-            "has_natural_light": "true",
-            "food_nearby": "building",
-            "campus": "SMU"
-        },
-        "uri": "/api/v1/spot/591", /*********Need to change********/
-        "available_hours": {
-            "monday": [
-                ["00:00", "23:59"]
-            ],
-            "tuesday": [
-                ["00:00", "23:59"]
-            ],
-            "friday": [
-                ["00:00", "23:59"]
-            ],
-            "wednesday": [
-                ["00:00", "23:59"]
-            ],
-            "thursday": [
-                ["00:00", "23:59"]
-            ],
-            "sunday": [
-                ["00:00", "23:59"]
-            ],
-            "saturday": [
-                ["00:00", "23:59"]
-            ]
-        },
-        "manager": "",
-        "last_modified": "2014-12-01T19:35:17+00:00",
-        "etag": "01603d4ae534fbc1b329d1da04f4e8013e545b4d",
-        "type": "Classroom",
-        "images": [{
-            "upload_user": "cstimmel",
-            "thumbnail_root": "img/FlorenceHall", /*********Need to change********/
-            "modification_date": "2014-07-29T17:10:13+00:00",
-            "url": "img/FlorenceHall",
-            "upload_application": "spotseeker_admin_1.0",
-            "display_index": 0,
-            "height": 2000,
-            "width": 3008,
-            "creation_date": "2012-08-30T10:25:27+00:00",
-            "content-type": "image/jpeg",
-            "id": 1,
-            "description": ""
-        }, {
-            "upload_user": "cstimmel",
-            "thumbnail_root": "img/FlorenceHall", /*********Need to change********/
-            "modification_date": "2014-07-29T17:10:13+00:00",
-            "url": "img/FlorenceHall", /*********Need to change********/
-            "upload_application": "spotseeker_admin_1.0",
-            "display_index": 1,
-            "height": 2000,
-            "width": 3008,
-            "creation_date": "2012-08-30T10:26:00+00:00",
-            "content-type": "image/jpeg",
-            "id": 2,
-            "description": ""
-        }],
-        "organization": "",
-        "display_access_restrictions": "",
-        "id": 505,
-        "location": {
-            "floor": "1st floor",
-            "height_from_sea_level": null,
-            "room_number": "",
-            "longitude": -96.782770,
-            "latitude": 32.839376,
-            "building_name": "Ford Stadium"
-        }
-    },{
-        "capacity": null,
-        "name": "Fondren Library",
-        "external_id": null,
-        "extended_info": {
-            "rating": "3.0",
-            "review_count": "1",
-            "orientation": "1st floor; near Hughes trig",
-            "noise_level": "variable",
-            "location_description": "The building for Pre-Meds",
-            "has_natural_light": "true",
-            "food_nearby": "building",
-            "campus": "SMU"
-        },
-        "uri": "/api/v1/spot/591", /*********Need to change********/
-        "available_hours": {
-            "monday": [
-                ["00:00", "23:59"]
-            ],
-            "tuesday": [
-                ["00:00", "23:59"]
-            ],
-            "friday": [
-                ["00:00", "23:59"]
-            ],
-            "wednesday": [
-                ["00:00", "23:59"]
-            ],
-            "thursday": [
-                ["00:00", "23:59"]
-            ],
-            "sunday": [
-                ["00:00", "23:59"]
-            ],
-            "saturday": [
-                ["00:00", "23:59"]
-            ]
-        },
-        "manager": "",
-        "last_modified": "2014-12-01T19:35:17+00:00",
-        "etag": "01603d4ae534fbc1b329d1da04f4e8013e545b4d",
-        "type": "Classroom",
-        "images": [{
-            "upload_user": "cstimmel",
-            "thumbnail_root": "img/FlorenceHall", /*********Need to change********/
-            "modification_date": "2014-07-29T17:10:13+00:00",
-            "url": "img/FlorenceHall",
-            "upload_application": "spotseeker_admin_1.0",
-            "display_index": 0,
-            "height": 2000,
-            "width": 3008,
-            "creation_date": "2012-08-30T10:25:27+00:00",
-            "content-type": "image/jpeg",
-            "id": 1,
-            "description": ""
-        }, {
-            "upload_user": "cstimmel",
-            "thumbnail_root": "img/FlorenceHall", /*********Need to change********/
-            "modification_date": "2014-07-29T17:10:13+00:00",
-            "url": "img/FlorenceHall", /*********Need to change********/
-            "upload_application": "spotseeker_admin_1.0",
-            "display_index": 1,
-            "height": 2000,
-            "width": 3008,
-            "creation_date": "2012-08-30T10:26:00+00:00",
-            "content-type": "image/jpeg",
-            "id": 2,
-            "description": ""
-        }],
-        "organization": "",
-        "display_access_restrictions": "",
-        "id": 667,
-        "location": {
-            "floor": "1st floor",
-            "height_from_sea_level": null,
-            "room_number": "",
-            "longitude": -96.783145,
-            "latitude": 32.844337,
-            "building_name": "Fondren Library"
-
-        }
-    },{
-        "capacity": null,
-        "name": "Catholic Center",
-        "external_id": null,
-        "extended_info": {
-            "rating": "3.0",
-            "review_count": "1",
-            "orientation": "1st floor; near Hughes trig",
-            "noise_level": "variable",
-            "location_description": "Physics/Astronomy Tower, near H-Bar",
-            "has_natural_light": "true",
-            "food_nearby": "building",
-            "campus": "SMU"
-        },
-        "uri": "/api/v1/spot/591", /*********Need to change********/
-        "available_hours": {
-            "monday": [
-                ["00:00", "23:59"]
-            ],
-            "tuesday": [
-                ["00:00", "23:59"]
-            ],
-            "friday": [
-                ["00:00", "23:59"]
-            ],
-            "wednesday": [
-                ["00:00", "23:59"]
-            ],
-            "thursday": [
-                ["00:00", "23:59"]
-            ],
-            "sunday": [
-                ["00:00", "23:59"]
-            ],
-            "saturday": [
-                ["00:00", "23:59"]
-            ]
-        },
-        "manager": "",
-        "last_modified": "2014-12-01T19:35:17+00:00",
-        "etag": "01603d4ae534fbc1b329d1da04f4e8013e545b4d",
-        "type": "Classroom",
-        "images": [{
-            "upload_user": "cstimmel",
-            "thumbnail_root": "img/FlorenceHall", /*********Need to change********/
-            "modification_date": "2014-07-29T17:10:13+00:00",
-            "url": "img/FlorenceHall",
-            "upload_application": "spotseeker_admin_1.0",
-            "display_index": 0,
-            "height": 2000,
-            "width": 3008,
-            "creation_date": "2012-08-30T10:25:27+00:00",
-            "content-type": "image/jpeg",
-            "id": 1,
-            "description": ""
-        }, {
-            "upload_user": "cstimmel",
-            "thumbnail_root": "img/FlorenceHall", /*********Need to change********/
-            "modification_date": "2014-07-29T17:10:13+00:00",
-            "url": "img/FlorenceHall", /*********Need to change********/
-            "upload_application": "spotseeker_admin_1.0",
-            "display_index": 1,
-            "height": 2000,
-            "width": 3008,
-            "creation_date": "2012-08-30T10:26:00+00:00",
-            "content-type": "image/jpeg",
-            "id": 2,
-            "description": ""
-        }],
-        "organization": "",
-        "display_access_restrictions": "",
-        "id": 668,
-        "location": {
-            "floor": "1st floor",
-            "height_from_sea_level": null,
-            "room_number": "",
-            "longitude":  -96.781530,
-            "latitude": 32.846232,
-            "building_name": "Catholic Center"
-        }
-    }, {
-        "capacity": null,
-        "name": "Brendan's Dorm",
-        "external_id": null,
-        "extended_info": {
-            "rating": "3.0",
-            "review_count": "1",
-            "orientation": "1st floor; near hughest trig",
-            "noise_level": "variable",
-            "location_description": "Physics/Astronomy Tower, near H-Bar",
-            "has_natural_light": "true",
-            "food_nearby": "building",
-            "campus": "SMU"
-        },
-        "uri": "/api/v1/spot/666", /*********Need to change********/
-        "available_hours": {
-            "monday": [
-                ["00:00", "23:59"]
-            ],
-            "tuesday": [
-                ["00:00", "23:59"]
-            ],
-            "friday": [
-                ["00:00", "23:59"]
-            ],
-            "wednesday": [
-                ["00:00", "23:59"]
-            ],
-            "thursday": [
-                ["00:00", "23:59"]
-            ],
-            "sunday": [
-                ["00:00", "23:59"]
-            ],
-            "saturday": [
-                ["00:00", "23:59"]
-            ]
-        },
-        "manager": "",
-        "last_modified": "2014-12-01T19:35:17+00:00",
-        "etag": "01603d4ae534fbc1b329d1da04f4e8013e545b4d",
-        "type": "Outdoor area",
-        "images": [{
-            "upload_user": "cstimmel",
-            "thumbnail_root": "/api/v1/spot/591/image/1324/thumb", /*********Need to change********/
-            "modification_date": "2014-07-29T17:10:13+00:00",
-            "url": "/api/v1/spot/591/image/1324",
-            "upload_application": "spotseeker_admin_1.0",
-            "display_index": 0,
-            "height": 2000,
-            "width": 3008,
-            "creation_date": "2012-08-30T10:25:27+00:00",
-            "content-type": "image/jpeg",
-            "id": 1,
-            "description": ""
-        }, {
-            "upload_user": "cstimmel",
-            "thumbnail_root": "/api/v1/spot/591/image/1325/thumb", /*********Need to change********/
-            "modification_date": "2014-07-29T17:10:13+00:00",
-            "url": "/api/v1/spot/591/image/1325", /*********Need to change********/
-            "upload_application": "spotseeker_admin_1.0",
-            "display_index": 1,
-            "height": 2000,
-            "width": 3008,
-            "creation_date": "2012-08-30T10:26:00+00:00",
-            "content-type": "image/jpeg",
-            "id": 2,
-            "description": ""
-        }],
-        "organization": "",
-        "display_access_restrictions": "",
-        "id": 666,
-        "location": {
-            "floor": "1st floor",
-            "height_from_sea_level": null,
-            "room_number": "",
-            "longitude": -96.786326,
-            "latitude": 32.840536,
-            "building_name": "Brendans_Dorm"
-        }
-    }
-
-    ];
-
-</script>
 <script>
     window.by_building_zooms = [15, 16, 17];
     window.by_distance_ratio = 0.04;
@@ -1531,7 +1143,6 @@
 
         <!--personal java script file-->
         <script type="text/javascript" src="js/Brendan_1.js"></script>
-
 
 
 </body>

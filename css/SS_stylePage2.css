@@ -1696,7 +1696,7 @@ CS - duplicating these styles for no-image to mobile.less 1/5/15
 #nav .spacescout-header .logo-container .logo {
     height: 60px;
     line-height: 60px;
-    width: 226px;
+    width: 250px;
     position: relative;
     /*background-image: url('https://spacescout.uw.edu/static/612/img/spacescout_logo.png?bdbed58e15e4');
     */background-size: 226px, 56px;

@@ -12,7 +12,7 @@ function addRoomForm(form) {
 						"&study_room="+form.study_room.value+"&chairs="+form.chairs.value+
 						"&computers="form.computers.value+"&whiteboards="+form.whiteboards.value+
 						"&printers="form.printers.value+"&projectors="+form.projectors.value+
-						"&restricted="form.restricted.value+"&pictureurl="+NULL;
+						"&restricted="form.restricted.value+"&pictureurl="+pictureurl;
 
 	Request.send(body);
 

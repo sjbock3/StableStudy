@@ -28,7 +28,7 @@ INSERT INTO locations(latitude, longitude, floor, buildingName, roomNumber, clas
 	<div id="content">
 		<section class="row">
 			<div class="col-borderless">
-				<form name="addRoom" id="addRoom" enctype="application/json"  method="post">
+				<form name="addRoom" id="addRoom" enctype="application/json" action="./api/index.php/addLocation" method="post">
 					<table>
 						<tbody>
 							<tr><td><h4>Longitude: </td><td><input type="number" name="longitude" ></h4></td></tr>
@@ -50,10 +50,10 @@ INSERT INTO locations(latitude, longitude, floor, buildingName, roomNumber, clas
 							<tr><td><h4>Projectors: </td><td><input type="number" name="projectors" ></h4></td></tr>
 							<tr><td><h4>Restricted: </td><td><input type="radio" name="restricted" value="true"></h4> True</td></tr>
 							<tr><td></td><td><input type="radio" name="restricted" value="false"></h4> False</td></tr>
-							
+							<tr><td><h4>Picture: </td><td><input type="file" accept="image/*" name="pictureurl"></h4></td></tr>
 						</tbody>
 					</table>
-					<br><input type="button" onclick="addRoomForm(addRoom)" name="Submit" value="Submit">
+					<br><input type="button" name="Submit" value="Submit">
 				</form>
 			</div>
 		</section>

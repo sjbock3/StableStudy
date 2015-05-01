@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="css/registration.css">
+	<link rel="stylesheet" href="css/addRoom_and_registration.css">
 
 	<title>Stable Study</title>
 
@@ -15,10 +15,10 @@
 
 <header>
 
-		<div id="logo-container">
-			<div id="logo">Stable Study</div>
-			<br>
-		</div>
+	<div id="logo-container">
+		<div id="logo"><img src="img/StableStudyLogoSmall.png"> Stable Study</div>
+		<br>
+	</div>
 
 </header>
 
@@ -29,14 +29,12 @@
 	<div class="col-borderless">
 		<table id="formTable"><tbody>
 		<form name="meeting" id="meeting" enctype="application/json"  method="post">
-		<tr><td><p>Time: </td><td><input type="text" name="time" required></td><td> <select name="am/pm" form="meeting"> 
-			<option value="am">AM</option>
-			<option value="pm">PM</option></select></p></td></tr>
+		<tr><td><p>Time: </td><td><input type="time" name="time" required></p></td></tr>
 		<tr><td><p>Date: </td><td><input type="date" name="date" required></p></td></tr>
 		<tr><td><p>Building: </td><td><input type="text" name="buildingName" required></p></td></tr>
 		<tr><td><p>Room Number: </td><td><input type="text" name="roomNumber" required></p></td></tr>
 		<div id="dynamicInput">
-			<tr><td><p>User to Invite #1: </td><td><input type ="text" name="users[]" required></p></td></tr>
+			<tr><td><p>User to Invite #1: </td><td><input type ="text" name="users[]" required></td></tr>
 		</div>
 		</tbody></table>
 		<input type="button" value="Add another user" onClick="addInput('dynamicInput');">
