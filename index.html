@@ -98,8 +98,17 @@
 
     <div id="weather_Alert">
         <script id="weatherScript" type="text/x-handlebars-template">
-            <h1 id="weatherTitle">{{weatherInfo}}</h1>
-            <button class="btn" type="button" aria-label="Outdoor Spaces" id="weatherButton"><em>{{IndoorOutdoor}}<br>Spaces</em></button>
+            <br>
+            <br>
+            <h1>Weather Report:</h1>
+            <br>
+
+            <div id="weatherInfo">
+            Temp: {{temperature}} F<br>
+            Sky: {{sky}}<br>
+            Conditions: {{condition}}
+            </div>
+
         </script>
         <!--
         <h1 id="sunnyTitle">It's Sunny Out!</h1>
@@ -107,6 +116,11 @@
         <br>
         <button class="btn" type="button" aria-label="Outdoor Spaces" id="weatherButton"><em>Outdoor<br>Spaces</em></button>
         -->
+    </div>
+    <div id="weatherButtonCont">
+        <script id="weatherButtonScript" type="text/x-handlebars-template">
+            <button type="button" id="weatherButton"><em>Find <br>{{IndoorOutdoor}}Spaces</em></button>
+        </script>
     </div>
 
     <div id="preload"></div>
@@ -602,8 +616,10 @@
 
                                             <!--will have all the notes content on the right-->
                                             <div class="space-info-detail pull-left">
-                                                {{#if extended_info.access_notes}}<p>{{extended_info.access_notes}}</p>{{/if}}
-                                                {{#if extended_info.reservation_notes}}<p class="ei_reservation_notes">{{extended_info.reservation_notes}}</p>{{/if}}
+                                                {{#if extended_info}}
+                                                    {{#if extended_info.access_notes}}<p>{{extended_info.access_notes}}</p>{{/if}}
+                                                    {{#if extended_info.reservation_notes}}<p class="ei_reservation_notes">{{extended_info.reservation_notes}}</p>{{/if}}
+                                                {{/if}}
                                             </div>
                                         </li>
                                         {{/if}}
@@ -1069,6 +1085,7 @@
 
 <script type="text/javascript" src="js/SS_maps_geometry.js"></script>-->
 <!--deals with cookies and storage and event handlers-->
+    <script type="text/javascript" src="js/SS_jsi18n.js"></script>
 <script type="text/javascript" src="js/SS_cd8b7165c408.js"></script>
 
 <script>

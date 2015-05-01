@@ -6840,7 +6840,7 @@ var requests = [];
 
                 path: '/'
             });
-            window.spacescout_url.push();
+            //window.spacescout_url.push();
             reset_location_filter();
         });
         $('#center_all').on('click', function (e) {
@@ -6909,7 +6909,7 @@ var requests = [];
             $.cookie('initial_load', false, {
                 expires: 1
             });
-            window.spacescout_url.push();
+            //window.spacescout_url.push();
             $('#filter_button').focus();
         });
         default_open_at_filter();
@@ -8247,7 +8247,7 @@ var spacescout_map = null,
     window.openAllMarkerInfoWindow = openAllMarkerInfoWindow;
 
     function _sortByBuildingName(data) {
-        //data = JSON.parse(data);
+
         console.log("Data before error type = "+ typeof(data));
         console.log( "Data before error = "+  data);
 
@@ -8787,7 +8787,7 @@ var spacescout_map = null,
         query = query.replace(/extended_info%3/g, '');
 
         //add on the fields that may not be present
-        var fields = ["chairs","classroom","outdoor","open_space","study_room","computers","whiteboards","printers","projectors"];
+        var fields = ["study_area","lounge","chairs","classroom","outdoor","open_space","study_room","computers","whiteboards","printers","projectors"];
         //need to have other fields for the resources
         for(var j = 0;j<fields.length;j++){
             //checka and see if field already exists
@@ -8817,7 +8817,12 @@ var spacescout_map = null,
                 afterString = query.substr(fieldIndex);
                 //search the after string for next ampersand
                 ampIndex = afterString.indexOf('&');
-                endString = afterString.substr(ampIndex);
+                if(ampIndex >= 0) {
+                    endString = afterString.substr(ampIndex);
+                }
+                else{
+                    endString = "";
+                }
                 console.log('endString = ' + endString);
 
                 //need to create the middle portion that should be inserted by checking if clicked
@@ -9013,51 +9018,114 @@ function dataLoaded(count) {
         $.each(window.requests, function() {
             this.abort();
         });
-        window.requests.push($.ajax({
+        var url = 'api/index.php/getRoom?id='+id;
+
+        /*window.requests.push($.ajax({
             url: '/api/index.php/getRoom?id='+id,
             success: _showSpaceDetails
-        }));
+        }));*/
+        $.get(url,_showSpaceDetails);
     }
 
     function _showSpaceDetails(data) {
+        console.log("Data inot _showSpaceDetails = " + data);
+        data = JSON.parse(data);
+
+        if(data.extended_info == null){
+            data.extended_info = {
+                "has_whiteboards":"true",
+                "access_notes":"Available to SMU students during open buisness hourse",
+                //"location_description":,
+                "has_natural_light":"true",
+                "has_outlets":"true",
+                "food_nearby":"Arnold or Umphrey Lee",
+                "has_projector":"true",
+                "campus":"dallas"};
+
+        }
+        if(data.available_hours == null){
+            data.available_hours = {
+                "monday":[
+                    [
+                        "08:00",
+                        "23:00"
+                    ]
+                ],
+                "tuesday":[
+                    [
+                        "08:00",
+                        "23:00"
+                    ]
+                ],
+                "friday":[
+                    [
+                        "08:00",
+                        "23:00"
+                    ]
+                ],
+                "wednesday":[
+                    [
+                        "08:00",
+                        "23:00"
+                    ]
+                ],
+                "thursday":[
+                    [
+                        "08:00",
+                        "23:00"
+                    ]
+                ],
+                "sunday":[
+
+                ],
+                "saturday":[
+
+                ]
+            }
+
+        }
         console.log('inside _showSpaceDetails');
         var last_mod = new Date(data["last_modified"]);
         var month = last_mod.getMonth() + 1;
         var day = last_mod.getDate();
         var year = last_mod.getFullYear();
         data["last_modified"] = month + "/" + day + "/" + year;
-        if (data['extended_info'].hasOwnProperty('campus')) {
-            $('#location_select option').each(function(i) {
-                var location = $(this).val().split(',');
-                if (location[2] == data['extended_info']['campus']) {
-                    if (!$(this).is(':selected')) {
-                        $(this).attr('selected', 'selected');
-                        $(this).trigger('change');
+        if (data['extended_info']) {
+            console.log('made inside data{extended_info]');
+            if (data['extended_info'].hasOwnProperty('campus')) {
+                $('#location_select option').each(function (i) {
+                    var location = $(this).val().split(',');
+                    if (location[2] == data['extended_info']['campus']) {
+                        if (!$(this).is(':selected')) {
+                            $(this).attr('selected', 'selected');
+                            $(this).trigger('change');
+                        }
                     }
-                }
-            });
-        }
-
-
-        data["has_notes"] = ((data.extended_info.access_notes != null) || (data.extended_info.reservation_notes != null));
-        data["has_resources"] = (data.extended_info.has_computers != null || data.extended_info.has_displays != null || data.extended_info.has_outlets != null || data.extended_info.has_printing != null || data.extended_info.has_projector != null || data.extended_info.has_scanner != null || data.extended_info.has_whiteboards != null);
-        data["review_count"] = (data.extended_info.review_count) || 0;
-        data["stars"] = [];
-        var rating = parseFloat(data.extended_info.rating) || 0;
-        for (var star_pos = 1; star_pos <= 5; star_pos++) { /*puts as many stars up there as rated*/
-            if (rating == star_pos - 0.5) {
-                data.stars.push({
-                    "icon": "fa-star-half-o"
-                });
-            } else if (star_pos <= rating) {
-                data.stars.push({
-                    "icon": "fa-star"
-                });
-            } else {
-                data.stars.push({
-                    "icon": "fa-star-o"
                 });
             }
+
+
+            data["has_notes"] = ((data.extended_info.access_notes != null) || (data.extended_info.reservation_notes != null));
+            data["has_resources"] = (data.extended_info.has_computers != null || data.extended_info.has_displays != null || data.extended_info.has_outlets != null || data.extended_info.has_printing != null || data.extended_info.has_projector != null || data.extended_info.has_scanner != null || data.extended_info.has_whiteboards != null);
+            data["review_count"] = (data.extended_info.review_count) || 0;
+            data["stars"] = [];
+            var rating = parseFloat(data.extended_info.rating) || 0;
+            for (var star_pos = 1; star_pos <= 5; star_pos++) { /*puts as many stars up there as rated*/
+                if (rating == star_pos - 0.5) {
+                    data.stars.push({
+                        "icon": "fa-star-half-o"
+                    });
+                } else if (star_pos <= rating) {
+                    data.stars.push({
+                        "icon": "fa-star"
+                    });
+                } else {
+                    data.stars.push({
+                        "icon": "fa-star-o"
+                    });
+                }
+            }
+
         }
         var open = $('.space-detail-container').is(':visible');
         $('.space-detail-container').remove();
@@ -9102,7 +9170,7 @@ function dataLoaded(count) {
         replaceReservationNotesUrls();
         $('.space-detail-header .close').on('click', function(e) {
             e.preventDefault();
-            window.spacescout_url.push();
+            //window.spacescout_url.push();
             closeSpaceDetails();
         });
         window.spacescout_favorites.update_favorites_button(data.id);
