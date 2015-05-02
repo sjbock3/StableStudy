@@ -119,8 +119,12 @@
     </div>
     <div id="weatherButtonCont">
         <script id="weatherButtonScript" type="text/x-handlebars-template">
-            <button type="button" id="weatherButton"><em>Find <br>{{IndoorOutdoor}}Spaces</em></button>
+            <button type="button" class="sideButton"><em>Find <br>{{IndoorOutdoor}}Spaces</em></button>
         </script>
+    </div>
+
+    <div id="meetingButtonCont">
+        <button type="button" class="sideButton" id="meetingButton"><em>Schedule Meeting</em></button>
     </div>
 
     <div id="preload"></div>
@@ -161,7 +165,7 @@
             <!-- hidden for now, until cool stuff for logged in users is finished.-->
             <div class="user_context pull-right" id="user_Greet">
                 <script id="userGreeting" type="text/x-handlebars-template">
-                    Welcome &nbsp;<a id="login_button" href="/login">{{firstName}}</a> <!--**********Need to change out with username*******-->
+                    Welcome &nbsp;<a id="login_button" href="personalPage.html">{{firstName}}</a> <!--**********Need to change out with username*******-->
                 </script>
             </div>
             <!-- -->
