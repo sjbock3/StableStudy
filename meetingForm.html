@@ -28,17 +28,18 @@
 	<section class="row">
 	<div class="col-borderless">
 		<table id="formTable"><tbody>
-		<form name="meeting" id="meeting" enctype="application/json"  method="post">
-		<tr><td><p>Time: </td><td><input type="time" name="time" required></p></td></tr>
+		<form name="meeting" id="meeting" action="api/index.php/createMeeting" enctype="application/json"  method="post">
+		<tr><td><p>Host Name: </td><td><input type="text" name="hostName" required></p></td></tr>
+		<tr><td><p>Time: </td><td><input type="time" name="meetingTime" required></p></td></tr>
 		<tr><td><p>Date: </td><td><input type="date" name="date" required></p></td></tr>
 		<tr><td><p>Building: </td><td><input type="text" name="buildingName" required></p></td></tr>
 		<tr><td><p>Room Number: </td><td><input type="text" name="roomNumber" required></p></td></tr>
 		<div id="dynamicInput">
-			<tr><td><p>User to Invite #1: </td><td><input type ="text" name="users[]" required></td></tr>
+			<tr><td><p>User to Invite #1: </td><td><input type ="text" name="users[0]" required></td></tr>
 		</div>
 		</tbody></table>
 		<input type="button" value="Add another user" onClick="addInput('dynamicInput');">
-		<br><input type="button" onclick="meetingForm(meeting)" name="Submit" value="Submit">
+		<br><input type="submit" name="Submit" value="Submit">
 		</form>
 	</div>
 	</section>
