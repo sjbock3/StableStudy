@@ -533,27 +533,41 @@ $app->get('/search', function(){
         list($name, $value) = explode('=', $param);
         $params[urldecode($name)][] = urldecode($value);
     }
-    $classroom = $params['classroom'];
-    $outdoor = $params['outdoor'];
-    $open_space = $params['open_space'];
-    $study_room = $params['study_room'];
-    $chairs = $params['chairs'];
-    $computers = $params['computers'];
-    $whiteboards = $params['whiteboards'];
-    $printers = $params['printers'];
-    $projectors = $params['projectors'];
-    $restricted = $params['restricted'];
-    $buidlings = array("building_name"=>"NOT NULL");
 
+    $classroom = $params['classroom'][0];
+    $outdoor = $params['outdoor'][0];
+    $open_space = $params['open_space'][0];
+    $study_room = $params['study_room'][0];
+    $chairs = $params['chairs'][0];
+    $computers = $params['computers'][0];
+    $whiteboards = $params['whiteboards'][0];
+    $printers = $params['printers'][0];
+    $projectors = $params['projectors'][0];
+    $restricted = $params['restricted'][0];
+    $buidlings = array("building_name"=>"NOT NULL");
+    $buildingquery = "";
+    $query = "CREATE OR REPLACE VIEW search AS SELECT * FROM locations";
     if (isset($params['building_name'])){
         $buildings = $params['building_name'];
-        echo var_dump($buildings);
+        $len = count($buildings);
+        for($i = 0; $i < $len; $i++){
+            $buildingquery = $buildingquery."buildingName = '$buildings[$i]' ";
+            if ($i < $len-1)
+                $buildingquery = $buildingquery."OR ";
+        }
+        //echo var_dump($buildings); //testing
+        //echo $buildingquery; //testing
+        $query = "CREATE OR REPLACE VIEW search AS SELECT * FROM locations WHERE ".$buildingquery;
+
     }
+    //echo $query;
+
+    $mysqli->query($query);
 
     $finalArr = array();
 
     if ($classroom == 0 && $outdoor == 0 && $open_space == 0 && $study_room == 0){
-        $result = $mysqli->query("SELECT id FROM locations WHERE
+        $result = $mysqli->query("SELECT id FROM search WHERE
           chairs >= '$chairs' AND computers >= '$computers' AND whiteboards >= '$whiteboards' AND
           printers >= '$printers' AND projectors >= '$projectors' AND restricted >= '$restricted'");
 
@@ -568,7 +582,7 @@ $app->get('/search', function(){
     }
 
     if ($classroom) {
-        $result = $mysqli->query("SELECT id FROM locations WHERE classroom = 1 AND
+        $result = $mysqli->query("SELECT id FROM search WHERE classroom = 1 AND
           chairs >= '$chairs' AND computers >= '$computers' AND whiteboards >= '$whiteboards' AND
           printers >= '$printers' AND projectors >= '$projectors' AND restricted >= '$restricted'");
 
@@ -581,7 +595,7 @@ $app->get('/search', function(){
     }
 
     if ($outdoor) {
-        $result = $mysqli->query("SELECT id FROM locations WHERE outdoor = 1 AND
+        $result = $mysqli->query("SELECT id FROM search WHERE outdoor = 1 AND
           chairs >= '$chairs' AND computers >= '$computers' AND whiteboards >= '$whiteboards' AND
           printers >= '$printers' AND projectors >= '$projectors' AND restricted >= '$restricted'");
 
@@ -594,7 +608,7 @@ $app->get('/search', function(){
     }
 
     if ($open_space) {
-        $result = $mysqli->query("SELECT id FROM locations WHERE open_space = 1 AND
+        $result = $mysqli->query("SELECT id FROM search WHERE open_space = 1 AND
           chairs >= '$chairs' AND computers >= '$computers' AND whiteboards >= '$whiteboards' AND
           printers >= '$printers' AND projectors >= '$projectors' AND restricted >= '$restricted'");
 
@@ -607,7 +621,7 @@ $app->get('/search', function(){
     }
 
     if ($study_room) {
-        $result = $mysqli->query("SELECT id FROM locations WHERE study_room = 1 AND
+        $result = $mysqli->query("SELECT id FROM search WHERE study_room = 1 AND
           chairs >= '$chairs' AND computers >= '$computers' AND whiteboards >= '$whiteboards' AND
           printers >= '$printers' AND projectors >= '$projectors' AND restricted >= '$restricted'");
 
@@ -618,7 +632,6 @@ $app->get('/search', function(){
             array_push($finalArr, getRoom($result[$i][0]));
         }
     }
-
     echo json_encode($finalArr);
     return;
 
