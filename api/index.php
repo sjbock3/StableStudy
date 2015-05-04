@@ -379,9 +379,7 @@
         else if (isset($_POST['time']) && isset($_POST['date'])) {
             $time = $_POST['time'];
             $date = $_POST['date'];
-            echo $time;
             $meetingTime = $date." ".$time;
-            echo $meetingTime;
 
         }
 
