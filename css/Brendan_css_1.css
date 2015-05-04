@@ -75,12 +75,23 @@
     src: url('../fonts/DK_Cool_Crayon.ttf');
 }
 
-#weatherButton {
+.sideButton {
     font-family: eraserRegular, sans-serif;
     color: white;
     background-color: transparent;
     min-width: 180px;
     /*text-align: left;*/
+}
+
+#meetingButtonCont{
+    width: auto;
+    margin-top: 420px;
+    float: right;
+    max-width: 150px;
+    position: absolute;
+    float: right;
+    margin-right: 0;
+    margin-left: 84%;
 }
 
 html {
