@@ -423,7 +423,6 @@
         $len = count($otherUsers);
 
         for ($i = 0; $i < $len; $i++){
-            echo $meetingID." ";
             $username = $otherUsers[$i];
             if($mysqli->query("INSERT INTO meetingUsers(meeting_id, users) VALUES('$meetingID', '$username')")){
             }
