@@ -372,8 +372,18 @@
         $hostName = $_POST['hostName'];
         $buildingName = $_POST['buildingName'];
         $roomNumber = $_POST['roomNumber'];
-        $meetingTime = $_POST['meetingTime'];
-        $otherUsers = $_POST['users'];
+        $otherUsers = $_POST['users'];  
+        if(isset($_POST['meetingTime'])){
+            $meetingTime = $_POST['meetingTime'];             
+        }
+        else if (isset($_POST['time']) && isset($_POST['date'])) {
+            $time = $_POST['time'];
+            $date = $_POST['date'];
+            echo $time;
+            $meetingTime = $date." ".$time;
+            echo $meetingTime;
+
+        }
 
         //get location id
         $getRoomID = $mysqli->query("SELECT id FROM locations WHERE buildingName= '$buildingName' AND roomNumber= '$roomNumber'");
@@ -415,6 +425,7 @@
         $len = count($otherUsers);
 
         for ($i = 0; $i < $len; $i++){
+            echo $meetingID." ";
             $username = $otherUsers[$i];
             if($mysqli->query("INSERT INTO meetingUsers(meeting_id, users) VALUES('$meetingID', '$username')")){
             }
