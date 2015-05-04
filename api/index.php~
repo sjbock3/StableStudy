@@ -3,11 +3,9 @@
     $app = new \Slim\Slim();
     $server = "localhost";
     $user = "root";
-    $pass = "compassstudios";
+    $pass = "rootpass";
     $dbname = "stablestudy";
-echo "here";
-    $mysqli = new mysqli("127.0.0.1", "root", "compassstudios", "stablestudy");
-echo "here";
+    $mysqli = new mysqli($server, $user, $pass, $dbname);
     if ($mysqli->connect_error)
         die("Connection failed: " . $mysqli->connect_error);
 
@@ -59,6 +57,55 @@ echo "here";
         }
         
         
+    });
+
+    /*
+     * if option == 1, send email
+     * if option == 2, send username
+     * if option == 3, send first and last name
+     */
+
+    $app->post('/getUser', function(){
+        global $mysqli;
+        $option = $_POST['option'];
+
+        if ($option == 1){
+            $email = $_POST['email'];
+            echo json_encode(fromEmail($email));
+        }
+
+        else if ($option == 2){
+            $username = $_POST['username'];
+            echo json_encode(fromUsername($username));
+        }
+
+        else if ($option == 3){
+            $first = $_POST['firstName'];
+            $last = $_POST['lastName'];
+            echo json_encode(fromName($first, $last));
+        }
+
+        else{
+            echo json_encode(array());
+        }
+
+        return;
+    });
+
+    $app->post('/getFavorites', function(){
+        global $mysqli;
+        $username = $_POST['username'];
+        $faves = $mysqli->query("SELECT favRoom FROM favorites WHERE username = '$username'");
+        $faves = $faves->fetch_all(MYSQL_NUM);
+        $len = count($faves);
+        $favArr = array();
+        for($i = 0; $i < $len; $i++){
+            $favArr[$i] = getRoom($faves[$i][0]);
+        }
+
+        echo json_encode($favArr);
+        return;
+
     });
     
     $app->post('/user', function(){
@@ -220,6 +267,50 @@ echo "here";
 
     });
 
+    $app->get('/getWeather', function(){
+       $dallasLatitude = 32.7767;
+       $dallasLongitude = -96.7970;
+       $weatherInfo = file_get_contents("https://api.forecast.io/forecast/437b36f288ccf42bfab7b22ecd179110/32.7767,-96.7970");
+       //echo $weatherInfo;
+       $weatherJSON = json_decode($weatherInfo, true);
+       $temperature = $weatherJSON['currently']['temperature'];
+       $precipitation = $weatherJSON['currently']['precipProbability'];
+       $windSpeed = $weatherJSON['currently']['windSpeed'];
+       $storm = $weatherJSON['currently']['nearestStormDistance'];
+       $sunny = $weatherJSON['currently']['cloudCover'];
+       if ($storm < 8) {
+        $storm = 'true';
+       }
+       else {
+        $storm = 'false';
+       }
+       if($windSpeed > 20) {
+        $windSpeed = 'true';
+       }
+       else {
+        $windSpeed = 'false';
+       }
+       if ($precipitation > 0.2) {
+        $precipitation = 'true';
+       }
+       else {
+        $precipitation = 'false';
+       }
+       if ($sunny < .5) {
+        $sunny = 'true';
+       }
+       else {
+        $sunny = 'false';
+       }
+
+       $weatherArray = array('temperature' => $temperature,
+        'precipitation' => $precipitation, 'windy' => $windSpeed, 'storm' => $storm, 'sunny' => $sunny);
+       echo json_encode($weatherArray);
+       
+
+       return;
+   });
+
     $app->post('/addLocation', function(){
        global $mysqli;
         $buildingName = $_POST['buildingName'];
@@ -237,17 +328,34 @@ echo "here";
         $projectors = $_POST['projectors'];
         $printers = $_POST['printers'];
         $restricted = $_POST['restricted'];
-        $pictureurl = $_POST['pictureurl'];
+        
+        $tempQuery = $mysqli->query("SELECT * FROM locations"); //used to generate picture file name
+        $fileNumber = mysqli_num_rows($tempQuery) + 1;
+        
+        
+        $target_file = $_FILES['pictureurl']['name'];
+        $url = '/var/www/upload/'. $fileNumber.".jpg";
+
+        
+        $pictureurl = $url;
+
+
+
 
         $existingRoom = $mysqli->query("SELECT * FROM locations WHERE buildingName = '$buildingName' AND roomNumber = '$roomNumber'");
-        if($existingRoom->fetch_assoc() === NULL){
+        if($existingRoom->fetch_assoc() !== NULL){
             echo json_encode(array('status'=>'failed', 'problem'=>1));
             return;
         }
         else{
-            $mysqli->query("INSERT INTO locations(latitude, longitude, floor, buildingName, roomNumber, classroom, outdoor, open_space, study_room, chairs, computers, whiteboards, printers, projectors, restricted, pictureurl)
-                            VALUES('$latitude', '$longitude', '$floor', '$buildingName', '$roomNumber', '$classroom', '$outdoor', '$open_space', '$study_room', '$chairs', '$computers', '$whiteboards', '$printers', '$projectors', '$restricted', '$pictureurl')");
+            $mysqli->query("INSERT INTO locations(latitude, longitude, floor, buildingName, roomNumber, classroom, outdoor, open_space, study_room, chairs, computers, whiteboards, printers, projectors, restricted)
+                            VALUES('$latitude', '$longitude', '$floor', '$buildingName', '$roomNumber', '$classroom', '$outdoor', '$open_space', '$study_room', '$chairs', '$computers', '$whiteboards', '$printers', '$projectors', '$restricted')");
+            $getRoomid = $mysqli->query("SELECT id FROM locations WHERE buildingName = '$buildingName' AND roomNumber = '$roomNumber'");
+            $getRoomid = $getRoomid->fetch_assoc();
+            $roomid = $getRoomid['id'];
+            $mysqli->query("INSERT INTO pictures(room_id, pictureurl) VALUES('$roomid', '$pictureurl')");
             echo json_encode(array('status'=>'success', 'problem'=>0));
+            move_uploaded_file($_FILES['pictureurl']['tmp_name'], $url);
             return;
         }
 
@@ -303,7 +411,7 @@ echo "here";
         $getMeetingID = $mysqli->query("SELECT meetingID FROM meetings WHERE hostName = '$hostName' AND roomID = '$roomID' AND meetingTime = '$meetingTime'");
         $meetingIDarr = $getMeetingID->fetch_assoc();
         $meetingID = $meetingIDarr['meetingID'];
-
+	echo $meetingID;
         $len = count($otherUsers);
 
         for ($i = 0; $i < $len; $i++){
@@ -330,24 +438,30 @@ echo "here";
     $app->post('/getMeetings', function(){
         global $mysqli;
         $hostName = $_POST['hostName'];
-        $meeting_list = $mysqli->query("SELECT meetingTime, buildingName, roomNumber, users FROM meetings INNER JOIN meetingUsers ON meetings.meetingID = meetingUsers.meeting_id INNER JOIN locations ON meetings.roomID = locations.id WHERE hostName = '$hostName'");
-        $result = $meeting_list->fetch_all(MYSQLI_ASSOC);
+        $host_list = $mysqli->query("SELECT meetingTime, buildingName, roomNumber FROM meetings INNER JOIN locations ON meetings.roomID = locations.id WHERE hostName = '$hostName'");
+        $meeting_list = $mysqli->query("SELECT meetingTime, buildingName, roomNumber FROM meetings INNER JOIN meetingUsers ON meetings.meetingID = meetingUsers.meeting_id
+                                        INNER JOIN locations ON meetings.roomID = locations.id WHERE users = '$hostName'");
+
+        $meeting_list = $meeting_list->fetch_all(MYSQLI_ASSOC);
+        $host_list = $host_list->fetch_all(MYSQLI_ASSOC);
+        $result = array_merge($host_list, $meeting_list);
         echo json_encode($result);
         return;
     });
 
     $app->post('/filter', function(){
         global $mysqli;
-        $classroom = $_POST['classroom'];
-        $outdoor = $_POST['outdoor'];
-        $open_space = $_POST['open_space'];
-        $study_room = $_POST['study_room'];
-        $chairs = $_POST['chairs'];
-        $computers = $_POST['computers'];
-        $whiteboards = $_POST['whiteboards'];
-        $printers = $_POST['printers'];
-        $projectors = $_POST['projectors'];
-        $restricted = $_POST['restricted'];
+
+		$chairs = $_GET['chairs'];
+        $classroom = $_GET['classroom'];
+        $outdoor = $_GET['outdoor'];
+        $open_space = $_GET['open'];
+        $study_room = $_GET['study_room'];
+        $computers = 0;//$_POST['computers'];
+        $whiteboards = 1;//$_POST['whiteboards'];
+        $printers = 0;//$_POST['printers'];
+        $projectors = 1;// $_POST['projectors'];
+        $restricted = 0;//$_POST['restricted'];
 
         $finalArr = array();
 
@@ -424,6 +538,21 @@ $app->get('/search', function(){
 
         $finalArr = array();
 
+        if ($classroom == 0 && $outdoor == 0 && $open_space == 0 && $study_room == 0){
+        	$result = $mysqli->query("SELECT id FROM locations WHERE
+              chairs >= '$chairs' AND computers >= '$computers' AND whiteboards >= '$whiteboards' AND
+              printers >= '$printers' AND projectors >= '$projectors' AND restricted >= '$restricted'");
+
+            $result = $result->fetch_all(MYSQL_NUM);
+            $len = count($result);
+
+            for($i = 0; $i < $len; $i++){
+                array_push($finalArr, getRoom($result[$i][0]));
+            }
+            echo json_encode($finalArr);
+        	return;
+        }
+
         if ($classroom) {
             $result = $mysqli->query("SELECT id FROM locations WHERE classroom = 1 AND
               chairs >= '$chairs' AND computers >= '$computers' AND whiteboards >= '$whiteboards' AND
@@ -482,9 +611,37 @@ $app->get('/search', function(){
 
     });
 
-	$app->post('/getRoom', function(){
-		global $mysqli;
-		$roomID = $_POST['roomID'];
+    $app->post('/share', function(){
+        global $mysqli;
+        $host = $_POST['hostName'];
+        $buildingName = $_POST['buildingName'];
+        $roomNumber = $_POST['roomNumber'];
+        $other = $_POST['username'];
+
+        $search = $mysqli->query("SELECT id FROM locations WHERE buildingName = '$buildingName' AND roomNumber = '$roomNumber'");
+        $search = $search->fetch_assoc();
+        $shared_room = $search['id'];
+
+        echo $shared_room;
+        $check = $mysqli->query("SELECT share_id FROM shares WHERE shared_room = '$shared_room' AND host = '$host' AND other = '$other'");
+        if($check->fetch_assoc() !== NULL){
+            echo json_encode(array("status"=>"failed"));
+            return;
+        }
+        if($mysqli->query("INSERT INTO shares(shared_room, host, other) VALUES('$shared_room', '$host', '$other')")){
+            echo json_encode(array("status"=>"success"));
+        }
+
+        else {
+            echo json_encode(array("status"=>"failed"));
+        }
+
+        return;
+
+    });
+
+	$app->get('/getRoom', function(){
+		$roomID = $_GET['id'];
 		$json = getRoom($roomID);
 		echo json_encode($json);
 		return;
@@ -530,7 +687,29 @@ $app->get('/search', function(){
         return;
 
     });
-    
+
+    $app->get('/getReviews', function(){
+        global $mysqli;
+        $room = $_POST['roomid'];
+        $reviewList = $mysqli->query("SELECT writer, comment FROM reviews WHERE room ='$room'");
+        $reviews = $reviewList->fetch_all(MYSQLI_ASSOC);
+        echo json_encode($reviews);
+        return;
+    });
+
+    $app->post('/writeReview', function(){
+       global $mysqli;
+        $review = $_POST['review'];
+        $writer = $_POST['username'];
+        $buildingName = $_POST['building'];
+        $roomNumber = $_POST['roomNumber'];
+
+        $search = $mysqli->query("SELECT id FROM locations WHERE buildingName = '$buildingName' AND $roomNumber = '$roomNumber'");
+        $search = $search->fetch_assoc();
+        $roomID = $search['id'];
+
+        $mysqli->query("INSERT INTO reviews(room, writer, comment) VALUES('$roomID', '$writer', '$review')");
+    });
     $app->run();
 
     function getRoom($roomID){
@@ -609,5 +788,23 @@ $app->get('/search', function(){
         );
 
         return $json;
+    }
+
+    function fromEmail($email){
+        global $mysqli;
+        $result = $mysqli->query("SELECT * FROM users WHERE email = '$email'");
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    function fromUsername($username){
+        global $mysqli;
+        $result = $mysqli->query("SELECT * FROM users WHERE username = '$username'");
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    function fromName($first, $last){
+        global $mysqli;
+        $result = $mysqli->query("SELECT * FROM users WHERE fName = '$first' AND lName = '$last'");
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 ?>
