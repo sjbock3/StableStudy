@@ -1,15 +1,9 @@
 function meetingForm(form) {
-
-    var re = /^([0-9]|1[0-2]):[0-5][0-9]$/;
-    if(!re.test(form.time.value))
-    {
-	alert("Please enter a valid time.");
-	return false;
-    }
-   /*
+	var users = document.forms.meeting;
+	console.log(users);
         var Request = new XMLHttpRequest();
 
-	Request.open('POST', './api/index.php/user', true);
+	Request.open('POST', './api/index.php/createMeeting', true);
 
 	Request.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");	
 
@@ -19,14 +13,20 @@ function meetingForm(form) {
     		console.log('Status:', this.status);
     		console.log('Headers:', this.getAllResponseHeaders());
     		console.log('Body:', this.responseText);
-		window.location.href = "registrationPage.html";
+
+		//window.location.href = "index.html";
   	  }
 	};
-	
-	var body = "fName="+form.firstname.value+"&lName="+form.lastname.value+"&school="+form.school.value+"&username="+form.username.value+"&email="+form.email.value+"&password="+form.password.value;
+	/*var users; //= "[";
+	for (i = 0; i < counter; i++){
+	users += form.users.value;
+	users += ","; 
+	}
+	users += "]"*/
+	var body = "hostName="+"afulsom"+"&buildingName="+form.buildingName.value+"&roomNumber="+form.roomNumber.value+"&meetingTime="+form.date.value + " " +form.time.value+"&users="+form.elements['users[]'].value;
+	console.log(body);
 
-
-	Request.send(body);*/
+	Request.send(body);
 
 	}
 
@@ -34,7 +34,7 @@ var counter = 1;
 var limit = 5;
 function addInput(divName){
      if (counter == limit)  {
-          alert("You have reached the limit of adding " + counter + " users");
+          alert("You have reached the limit of adding " + limit + " users");
      }
      else {
 	  var tableRef = document.getElementById('formTable').getElementsByTagName('tbody')[0];
@@ -42,7 +42,7 @@ function addInput(divName){
 	  var newCell1  = newRow.insertCell(0);
 	  var newCell2  = newRow.insertCell(1);
           newCell1.innerHTML = "<p>User to invite #" + (counter + 1) + ": </p>";
-	  newCell2.innerHTML = "<input type='text' name='users[]'>";
+	  newCell2.innerHTML = "<input type=\"text\" name=\"users[" + counter + "]\" form=\"meeting\">";
           counter++;
      }
 }
