@@ -6,7 +6,7 @@ function addRoomForm(form) {
 
 	Request.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");	
 	
-	var body = "latitude="+form.latitude.value+"&longitude="+forom.longitude.value+
+	var body = "latitude="+form.latitude.value+"&longitude="+form.longitude.value+
 						"&floor="+form.floor.value+"&buildingName="+form.buildingName.value+
 						"&outdoor="+form.outdoor.value+"&open_space="+form.open_space.value+
 						"&study_room="+form.study_room.value+"&chairs="+form.chairs.value+
