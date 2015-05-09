@@ -2,8 +2,8 @@
     require 'vendor/autoload.php';
     $app = new \Slim\Slim();
     $server = "localhost";
-    $user = "root";
-    $pass = "rootpass";
+    $user = "stableuser";
+    $pass = "guestpass";
     $dbname = "stablestudy";
     $mysqli = new mysqli($server, $user, $pass, $dbname);
     if ($mysqli->connect_error)
