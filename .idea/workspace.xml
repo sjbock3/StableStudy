@@ -29,7 +29,7 @@
     <favorites_list name="StableStudy" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.54">
+    <splitter split-orientation="horizontal" split-proportion="0.445">
       <split-first>
         <leaf>
           <file leaf-file-name="Brendan_css_1.css" pinned="false" current-in-tab="false">
@@ -146,10 +146,10 @@
           <file leaf-file-name="SS_cd8b7165c408.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/SS_cd8b7165c408.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.42979944" vertical-offset="159874" max-vertical-offset="161143">
-                  <caret line="9422" column="13" selection-start-line="9422" selection-start-column="13" selection-end-line="9422" selection-end-column="13" />
+                <state vertical-scroll-proportion="0.30802292" vertical-offset="139950" max-vertical-offset="161143">
+                  <caret line="8245" column="26" selection-start-line="8245" selection-start-column="26" selection-end-line="8245" selection-end-column="26" />
                   <folding>
-                    <marker date="1431144011077" expanded="true" signature="83324:83379" placeholder="..." />
+                    <marker date="1431144870615" expanded="true" signature="83324:83379" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -900,10 +900,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/SS_cd8b7165c408.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42979944" vertical-offset="159874" max-vertical-offset="161143">
-          <caret line="9422" column="13" selection-start-line="9422" selection-start-column="13" selection-end-line="9422" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.30802292" vertical-offset="139950" max-vertical-offset="161143">
+          <caret line="8245" column="26" selection-start-line="8245" selection-start-column="26" selection-end-line="8245" selection-end-column="26" />
           <folding>
-            <marker date="1431144011077" expanded="true" signature="83324:83379" placeholder="..." />
+            <marker date="1431144870615" expanded="true" signature="83324:83379" placeholder="..." />
           </folding>
         </state>
       </provider>
