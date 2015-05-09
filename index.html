@@ -773,7 +773,7 @@
                                 <div class="space-detail-list-image pull-left">
                                     {{#if images.0.id}}
                                     <!--will have the image of the classroom-->   <!--BC change-->
-                                    <div class="space-detail-list-image-inner lazyloader" data-src="  space/{{id}}/{{images.0.id}}/thumb/constrain/picture.jpg">&nbsp;</div>  <!--Brendan_Change where teh image is being loaded from -->
+                                    <div class="space-detail-list-image-inner lazyloader" data-src="  {{images.0.url}}">&nbsp;</div>  <!--Brendan_Change where teh image is being loaded from -->
                                     {{else}}
                                     <div class="space-detail-list-image-inner space-detail-no-image">&nbsp;</div>
                                     {{/if}}
@@ -831,7 +831,7 @@
                             <li class="clearfix view-details">
                                 <div class="space-detail-list-image pull-left">
                                     {{#if images.0.id}}
-                                    <div class="space-detail-list-image-inner lazyloader " data-src="/image/space/{{id}}/{{images.0.id}}/thumb/constrain/width:150">&nbsp;</div>
+                                    <div class="space-detail-list-image-inner lazyloader " data-src="{{images.0.url}}">&nbsp;</div>
                                     {{else}}
                                     <div class="space-detail-list-image-inner space-detail-no-image">&nbsp;</div>
                                     {{/if}}
