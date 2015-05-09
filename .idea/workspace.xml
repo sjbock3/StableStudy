@@ -29,7 +29,7 @@
     <favorites_list name="StableStudy" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.21621622">
+    <splitter split-orientation="horizontal" split-proportion="0.450625">
       <split-first>
         <leaf>
           <file leaf-file-name="Brendan_css_1.css" pinned="false" current-in-tab="false">
@@ -65,7 +65,7 @@
           <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.5335366" vertical-offset="12740" max-vertical-offset="19720">
+                <state vertical-scroll-proportion="0.5208333" vertical-offset="12740" max-vertical-offset="19720">
                   <caret line="770" column="62" selection-start-line="770" selection-start-column="62" selection-end-line="770" selection-end-column="62" />
                   <folding>
                     <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -146,10 +146,13 @@
           <file leaf-file-name="SS_cd8b7165c408.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/SS_cd8b7165c408.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.3323442" vertical-offset="160069" max-vertical-offset="161313">
-                  <caret line="9429" column="42" selection-start-line="9429" selection-start-column="42" selection-end-line="9429" selection-end-column="42" />
+                <state vertical-scroll-proportion="0.6463768" vertical-offset="110768" max-vertical-offset="161381">
+                  <caret line="6542" column="38" selection-start-line="6542" selection-start-column="38" selection-end-line="6542" selection-end-column="38" />
                   <folding>
-                    <marker date="1431156750442" expanded="true" signature="83324:83379" placeholder="..." />
+                    <marker date="1431157589043" expanded="true" signature="83324:83379" placeholder="..." />
+                    <marker date="1431157589043" expanded="true" signature="256768:377020" placeholder="{...}" />
+                    <marker date="1431157589043" expanded="true" signature="257766:271690" placeholder="{...}" />
+                    <marker date="1431157589043" expanded="true" signature="258025:268068" placeholder="/*...*/" />
                   </folding>
                 </state>
               </provider>
@@ -277,8 +280,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="800" />
-    <option name="height" value="860" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1616" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -388,7 +393,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="800" height="860" extended-state="0" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -873,7 +878,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5335366" vertical-offset="12740" max-vertical-offset="19720">
+        <state vertical-scroll-proportion="0.5208333" vertical-offset="12740" max-vertical-offset="19720">
           <caret line="770" column="62" selection-start-line="770" selection-start-column="62" selection-end-line="770" selection-end-column="62" />
           <folding>
             <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -898,10 +903,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/SS_cd8b7165c408.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3323442" vertical-offset="160069" max-vertical-offset="161313">
-          <caret line="9429" column="42" selection-start-line="9429" selection-start-column="42" selection-end-line="9429" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.6463768" vertical-offset="110768" max-vertical-offset="161381">
+          <caret line="6542" column="38" selection-start-line="6542" selection-start-column="38" selection-end-line="6542" selection-end-column="38" />
           <folding>
-            <marker date="1431156750442" expanded="true" signature="83324:83379" placeholder="..." />
+            <marker date="1431157589043" expanded="true" signature="83324:83379" placeholder="..." />
+            <marker date="1431157589043" expanded="true" signature="256768:377020" placeholder="{...}" />
+            <marker date="1431157589043" expanded="true" signature="257766:271690" placeholder="{...}" />
+            <marker date="1431157589043" expanded="true" signature="258025:268068" placeholder="/*...*/" />
           </folding>
         </state>
       </provider>
