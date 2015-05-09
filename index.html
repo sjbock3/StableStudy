@@ -119,12 +119,16 @@
     </div>
     <div id="weatherButtonCont">
         <script id="weatherButtonScript" type="text/x-handlebars-template">
-            <button type="button" class="sideButton"><em>Find <br>{{IndoorOutdoor}}Spaces</em></button>
+            <button type="button" class="sideButton" id="weatherButton"><em>Find <br>{{IndoorOutdoor}}Spaces</em></button>
         </script>
     </div>
 
     <div id="meetingButtonCont">
         <button type="button" class="sideButton" id="meetingButton"><em>Schedule Meeting</em></button>
+    </div>
+
+    <div id="logOutCont">
+        <button type="button" id="logOutButton"><em>Log Out</em></button>
     </div>
 
     <div id="preload"></div>
@@ -1047,7 +1051,7 @@
             <a href="http://www.smu.edu/" title="FAQ about StableStudy" target="_blank">FAQ</a><br />
             Copyright &copy; 2015 &nbsp;*{font: 10, no-squad} Productions, SMU
         </div>
-        <div class="pull-right suggest" id="smallSuggest">Have a space to add? <a href="javascript:void(0);" id="suggest">Suggest it</a></div>
+        <div class="pull-right suggest" id="smallSuggest">Have a space to add? <a href="addRoom.html" id="suggest">Suggest it</a></div>
         <!--<div class="pull-left partners">Brought to you by SMU GUI 2015 under the direction of professor Jackson</div>
     </div>-->
 

@@ -6529,17 +6529,21 @@ var requests = [];
                 //image_id = spacedata.images[i].url
                 //image_url = "background:url(space/" + space_id + '/' + image_ + "/thumb/constrain/picture.jpg)";
                 /***where set background image***/
-                var image_url = "background:url(" + spacedata.images[i].url+")";
+                var newUrl = spacedata.images[i].url;
+                var indexWWW = newUrl.indexOf('/www/');
+                var newSrc = newUrl.substr(indexWWW+5);
+                var image_url = "background:url(" + newSrc+"); background-size: cover; ";
                 div_string = "<div class='carousel-inner-image item'><div class='carousel-inner-image-inner' style='" + image_url + "'>&nbsp;</div></div>";
                 elements.push(div_string);
             }
         } else {
             /*BC_change*/
 
-           /* div_string = "<div class='carousel-inner-image item'><div class='carousel-inner-image-inner space-detail-no-image' style='background-size: 500px'>&nbsp;</div></div>";
-            elements.push(div_string);*/
-            var image_url_stuff = "thisBrendan='dumb'"
+            div_string = "<div class='carousel-inner-image item'><div class='carousel-inner-image-inner space-detail-no-image' style='background-size: 500px'>&nbsp;</div></div>";
+            elements.push(div_string);
+            /*var image_url_stuff = "thisBrendan='dumb'"
             var div_string_2 = "<div class='carousel-inner-image item'><div class='carousel-inner-image-inner ' style=" + image_url_stuff + ">&nbsp;</div></div>";
+            */
         }
         return new H.SafeString(elements.join('\n'));
     });
@@ -8245,8 +8249,11 @@ var spacescout_map = null,
                         var src = $img.data('src');
                         //src = "/Brendan_url";
                         console.log('hello from src 2');
-                        newSrc = src.substr(8);
-                        newSrc = '..'+ newSrc;
+
+                        var indexWWW = src.indexOf('/www/');
+                        var newSrc = src.substr(indexWWW+5);
+
+
                         $img.css('background', 'transparent url("' + newSrc + '") no-repeat 50% 50%');
                         $img.css('background-size','cover');
                     });
@@ -9418,8 +9425,11 @@ function dataLoaded(count) {
                     console.log('inside lazy item');
                     console.log($img);
                     var src = $img.data('src');
-                    newSrc = src.substr(8);
-                    newSrc = '..'+ newSrc;
+                    //newSrc = src.substr(8);
+
+                    var indexWWW = src.indexOf('/www/');
+                    var newSrc = src.substr(indexWWW+5);
+
                     //src="/Brendan_URL";
                     $img.css('background', 'transparent url("' + newSrc + '") no-repeat 50% 50%');
                     $img.css('background-size','cover');
