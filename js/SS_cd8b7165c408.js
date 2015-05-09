@@ -6525,15 +6525,21 @@ var requests = [];
         var image_url, div_string;
         if (spacedata.images.length > 0) {
             for (var i = 0; i < spacedata.images.length; i++) {
-                var image_id = spacedata.images[i].id;
-                image_url = "background:url(space/" + space_id + '/' + image_id + "/thumb/constrain/picture.jpg)";
+                //var image_id = spacedata.images[i].id;
+                //image_id = spacedata.images[i].url
+                //image_url = "background:url(space/" + space_id + '/' + image_ + "/thumb/constrain/picture.jpg)";
                 /***where set background image***/
+                var image_url = "background:url(" + spacedata.images[i].url+")";
                 div_string = "<div class='carousel-inner-image item'><div class='carousel-inner-image-inner' style='" + image_url + "'>&nbsp;</div></div>";
                 elements.push(div_string);
             }
         } else {
-            div_string = "<div class='carousel-inner-image item'><div class='carousel-inner-image-inner space-detail-no-image' style='background-size: 500px'>&nbsp;</div></div>";
-            elements.push(div_string);
+            /*BC_change*/
+
+           /* div_string = "<div class='carousel-inner-image item'><div class='carousel-inner-image-inner space-detail-no-image' style='background-size: 500px'>&nbsp;</div></div>";
+            elements.push(div_string);*/
+            var image_url_stuff = "thisBrendan='dumb'"
+            var div_string_2 = "<div class='carousel-inner-image item'><div class='carousel-inner-image-inner ' style=" + image_url_stuff + ">&nbsp;</div></div>";
         }
         return new H.SafeString(elements.join('\n'));
     });
@@ -8237,6 +8243,8 @@ var spacescout_map = null,
                     $firstVisibleLazyItems.each(function() {
                         var $img = $(this);
                         var src = $img.data('src');
+                        src = "/Brendan_url";
+                        console.log('hello from src 2');
                         $img.css('background', 'transparent url("' + src + '") no-repeat 50% 50%');
                         $img.css('background-size','cover');
                     });
@@ -9408,6 +9416,7 @@ function dataLoaded(count) {
                     console.log('inside lazy item');
                     console.log($img);
                     var src = $img.data('src');
+                    src="/Brendan_URL";
                     $img.css('background', 'transparent url("' + src + '") no-repeat 50% 50%');
                     $img.css('background-size','cover');
                 });
