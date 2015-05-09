@@ -294,6 +294,7 @@ $(document).ready(function() {
     $.get(AllInfoQuery,function(allRooms){
         console.log("allRooms type = "+ allRooms);
         window._loadData(JSON.parse(allRooms));
+
     });
 
     //at the initial onload of page will get the favorite spaces of the user
@@ -329,6 +330,7 @@ $(document).ready(function() {
         $.post(favQuery,data2, function(dataReceived){
             console.log('dataRecieved from favorites = ' + dataReceived);
             _loadData(JSON.parse(dataReceived));
+
         });
 
     });
@@ -353,15 +355,35 @@ $(document).ready(function() {
     });*/
 
     //makes sure all the pictures will load
-    $('#info_list .lazyloader').each(function(){
-        var $img = $(this);
-        console.log('inside lazy item');
-        console.log($img);
-        var src = $img.data('src');
-        $img.css('background', 'transparent url("' + src + '") no-repeat 50% 50%');
-        $img.css('background-size','cover');
 
-    });
+    //can change images
+    /*setTimeout(function(){
+        var dummyBuildings = ["","Brendan's Dorm", "Fondren Library", "Fondren Science"];
+        /*console.log("dummyBuildings = " + dummyBuildings);
+         window._formatLocationFilter(dummyBuildings);*/
+
+     /*   alert('#BC_listImages length = ' + $('#BC_listImages').length);
+        $('#BC_listImages').each(function () {
+            alert('inside Brendan replace function');
+            var $img = $(this);
+            console.log('inside lazy item');
+            console.log($img);
+            var src = $img.data('src');
+            alert('about to set background')
+            src = 'http://google.com';
+
+            $img.css('background', 'transparent url("' + src + '") no-repeat 50% 50%');
+            $img.css('background-size', 'cover');
+
+        });
+
+    }, 5000);*/
+
+
+
+
+    //go and replace the background image
+    //$('.space0detail-list-image .lazyloader').
 
     setTimeout(function(){
         var dummyBuildings = ["","Brendan's Dorm", "Fondren Library", "Fondren Science"];
