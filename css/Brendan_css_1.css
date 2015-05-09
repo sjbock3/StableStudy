@@ -31,6 +31,8 @@
     font-family: sans-serif;
 
 }
+
+
 @font-face {
     font-family: Blunt;
     src: url('../fonts/Da_Blunt.TTF');
@@ -52,6 +54,27 @@
     line-height: 22px;
     margin: 15px;
 
+}
+
+#logOutCont{
+
+    width: auto;
+    margin-top: 40.5%;
+    float: left;
+    max-width: 120px;
+    position: absolute;
+    margin-left: 10%;
+}
+
+#logOutButton{
+    font-family: eraserRegular, sans-serif;
+    color: white;
+    background-color: transparent;
+    max-width: 120px;
+}
+
+#logOutCont:hover{
+    border-color: white;
 }
 
 #weatherButtonCont{

@@ -91,19 +91,19 @@ function createWeather(){
         data = JSON.parse(data);
         var newData = {};
         newData.temperature = data.temperature;
-        if(data.storm == true){
+        if(data.storm == 'true'){
             newData.sky = "Stormy";
 
         }else{
             newData.sky = "Sunny!";
         }
 
-        if(data.precipitation == true && data.windy == true){
+        if(data.precipitation == 'true' && data.windy == 'true'){
             newData.condition = "Rainy and Windy";
-        }else if(data.precipitation == true){
+        }else if(data.precipitation == 'true'){
             newData.condition = "Rainy";
         }
-        else if(data.windy == true){
+        else if(data.windy == 'true'){
             newData.condition = "Windy";
         }
         else{
@@ -228,7 +228,7 @@ $(document).ready(function() {
     console.log($('#weatherButton').length + ' = weatherButton')
     //add the event handlers
     $("#weatherButton").click(function(){
-        alert('weatherButton clicked');
+        //alert('weatherButton clicked');
         //clear the filter
         clear_filter();
         if(rainy == true){
@@ -335,6 +335,44 @@ $(document).ready(function() {
 
     });
 
+    //click function when hit favorites button:
+    $("#favSpaces").click(function() {
+        //alert('favButtonClicked');
+        var userSpaces = {};
+        //get all the favorite spaces for username
+        username = getCookie('username');
+        console.log('username = '+ username);
+        var favQuery = 'api/index.php/getFavorites';
+        var data2 = {
+            'username':username
+        };
+
+
+        $.post(favQuery,data2, function(dataReceived){
+            console.log('dataRecieved from favorites = ' + dataReceived);
+            _loadData(JSON.parse(dataReceived));
+
+        });
+
+    });
+
+    $("#logOutButton").click(function(){
+        //delete the cookies
+
+        //alert('just eliminated cookie');
+        var names = ["status","fName","lName","school","username"];
+        var values = ["","","","",""]
+        setMultipleCookies(names, values);
+        window.location.href = "BC_LandingPage.html";
+    });
+
+    function setMultipleCookies(names,values){
+        var counter;
+        for(counter = 0;counter<names.length;counter++){
+            setCookie(names[counter],values[counter],1);
+        }
+        //console.log(document.cookie);
+    }
 
 
 
