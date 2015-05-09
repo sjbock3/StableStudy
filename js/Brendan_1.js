@@ -131,7 +131,7 @@ function createWeather(){
         $('#weatherButtonCont').html(newHTML_2);
 
         $("#weatherButton").click(function(){
-            alert('weatherButton clicked');
+            //alert('weatherButton clicked');
             console.log('outside indoor/outdoor');
             //clear the filter
             clear_filter();
