@@ -8246,7 +8246,7 @@ var spacescout_map = null,
                         //src = "/Brendan_url";
                         console.log('hello from src 2');
                         newSrc = src.substr(8);
-                        newSrc = '..'+ newSrc;
+
                         $img.css('background', 'transparent url("' + newSrc + '") no-repeat 50% 50%');
                         $img.css('background-size','cover');
                     });
@@ -9419,7 +9419,7 @@ function dataLoaded(count) {
                     console.log($img);
                     var src = $img.data('src');
                     newSrc = src.substr(8);
-                    newSrc = '..'+ newSrc;
+
                     //src="/Brendan_URL";
                     $img.css('background', 'transparent url("' + newSrc + '") no-repeat 50% 50%');
                     $img.css('background-size','cover');
