@@ -146,10 +146,10 @@
           <file leaf-file-name="SS_cd8b7165c408.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/SS_cd8b7165c408.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.30869564" vertical-offset="159927" max-vertical-offset="161211">
-                  <caret line="9420" column="43" selection-start-line="9420" selection-start-column="43" selection-end-line="9420" selection-end-column="43" />
+                <state vertical-scroll-proportion="0.38260868" vertical-offset="140003" max-vertical-offset="161211">
+                  <caret line="8251" column="23" selection-start-line="8251" selection-start-column="23" selection-end-line="8251" selection-end-column="23" />
                   <folding>
-                    <marker date="1431145582894" expanded="true" signature="83324:83379" placeholder="..." />
+                    <marker date="1431155789481" expanded="true" signature="83324:83379" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -900,10 +900,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/SS_cd8b7165c408.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30869564" vertical-offset="159927" max-vertical-offset="161211">
-          <caret line="9420" column="43" selection-start-line="9420" selection-start-column="43" selection-end-line="9420" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.38260868" vertical-offset="140003" max-vertical-offset="161211">
+          <caret line="8251" column="23" selection-start-line="8251" selection-start-column="23" selection-end-line="8251" selection-end-column="23" />
           <folding>
-            <marker date="1431145582894" expanded="true" signature="83324:83379" placeholder="..." />
+            <marker date="1431155789481" expanded="true" signature="83324:83379" placeholder="..." />
           </folding>
         </state>
       </provider>
