@@ -1,0 +1,1154 @@
+
+<!DOCTYPE html>
+<!--
+
+  Copyright 2015, Southern Methodist University Information Technology, University of Washington
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Changes
+  ===================================================================
+
+  sbutler1@illinois.edu: div to fieldsets where appropriate; proper
+  	nesting of ol lists; HTTPS for external resources; use
+	<label for=>; alt attrs galore.
+-->
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js"> <!--<![endif]-->
+
+<head>
+    <script src="js/mainPageCookies.js"></script>
+    <title>StableStudy&trade; Stabilize your Studying</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Searching for that perfect study spot? SpaceScout helps UW students quickly locate campus spaces and resources to use for study or collaboration">
+
+    <!-- style sheets from spacescout-->
+    <link rel="stylesheet" href="css/SS_stylePage1.css" type="text/css" />
+    <link rel="stylesheet" href="css/SS_stylePage2.css" type="text/css" media="screen" />
+
+    <!--link personal style page last BC 3.31-->
+    <link rel="stylesheet" href="css/Brendan_css_1.css">
+
+
+    <!--Link handlebars and jquery cdns to page-->
+    <script src="js/jquery-1.11.2.min.js" ></script>
+    <script src="js/handlebars-v3.0.0.js"></script>
+
+    <!--include the javascript files from spacesout are at the end of the file-->
+
+
+
+
+
+    <!--*************NEED TO CHANGE TAB LOGO TO STABLE STUDY LOGO*******************-->
+    <link rel="shortcut icon" href="img/Stable_Study_Logo.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="touch-icon-ipad.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="touch-icon-iphone-retina.png" />
+
+    <!-- Respond.js, for IE6-8 support of media queries -->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="js/SS_js_1.js"></script>
+    <![endif]-->
+
+    <!--
+    <script type="text/javascript">
+        var isMobile = false,
+                spacescout_static_url = '/static/612/';
+    </script>
+
+    -->
+
+    <!-- ****************************************How Google Maps is set up*******************************************8-->
+    <!-- Google Analytics tracking
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-34234791-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+
+    -->
+
+</head>
+
+<body id="top">
+    <!--button that will load the spaces that are outdoor spaces if weather is good-->
+
+    <div id="weather_Alert">
+        <script id="weatherScript" type="text/x-handlebars-template">
+            <br>
+            <br>
+            <h1>Weather Report:</h1>
+            <br>
+
+            <div id="weatherInfo">
+            Temp: {{temperature}} F<br>
+            Sky: {{sky}}<br>
+            Conditions: {{condition}}
+            </div>
+
+        </script>
+        <!--
+        <h1 id="sunnyTitle">It's Sunny Out!</h1>
+        <h1 id="rainingTitle">It's Raining Out!</h1>
+        <br>
+        <button class="btn" type="button" aria-label="Outdoor Spaces" id="weatherButton"><em>Outdoor<br>Spaces</em></button>
+        -->
+    </div>
+    <div id="weatherButtonCont">
+        <script id="weatherButtonScript" type="text/x-handlebars-template">
+            <button type="button" class="sideButton"><em>Find <br>{{IndoorOutdoor}}Spaces</em></button>
+        </script>
+    </div>
+
+    <div id="meetingButtonCont">
+        <button type="button" class="sideButton" id="meetingButton"><em>Schedule Meeting</em></button>
+    </div>
+
+    <div id="preload"></div>
+<div id="container">
+
+
+
+
+
+    <div id="nav">
+
+        <div class="spacescout-header clearfix" id="overallHeader">
+            <div class="logo-container pull-left">
+                <div class="logo">
+                    <h1 id="app_header" class=""><img id="headerLogo" src="img/StableStudyLogoLight.png"> StableStudy</h1>
+                </div>
+            </div>
+            <div class="location_container">
+            <!--Drop Down heading for picking the school-->
+            <!--
+            <span aria-labelledby="location_select_heading">
+              <label id="location_select_heading" for="location_select"  class="visuallyhidden">Select campus:</label>
+              <select id='location_select'>
+
+                  <option value="32.8441,-96.7849,dallas,15">SMU</option>
+
+                  <option value="32.8441,-96.7849,dallas,15">TCU</option>
+
+                  <option value="32.8441,-96.7849,dallas,15">UT</option>
+
+              </select>
+            </span> -->
+                <br>
+                <!--button to click for favorites-->
+                <button class="btn" type="button" aria-label="Apply Filters" id="favSpaces"><em>Favorite Spaces</em></button>
+
+            </div>
+            <!-- hidden for now, until cool stuff for logged in users is finished.-->
+            <div class="user_context pull-right" id="user_Greet">
+                <script id="userGreeting" type="text/x-handlebars-template">
+                    Welcome &nbsp;<a id="login_button" href="personalPage.html">{{firstName}}</a> <!--**********Need to change out with username*******-->
+                </script>
+            </div>
+            <!-- -->
+        </div>
+
+
+        <div class="filter_context" role= "search" aria-labelledby="filter_group_header">
+            <h2 id="filter_group_header" class="visuallyhidden">Find Study Spaces by Specific Criteria</h2>
+            <button id="filter_button" class="btn btn-inverse" type="button" aria-label="Filter settings..." aria-owns="filter_container" >Filters<i class="fa fa-angle-double-down"></i></button>
+
+            <h3 id="spaces_match_header" class="visuallyhidden">Your current filters return:</h3>
+
+            <div id="space_count_container" aria-labelledby="spaces_match_header" role="status"> <!--here is where the count template
+            will be used   --></div>
+
+            <script id="space_count" type="text/x-handlebars-template">
+
+                <span class="count">{{count}}</span> spaces
+
+            </script>
+        </div>
+    </div>
+
+    <!--beginning of the filter form-->
+    <div id="filter_container" aria-labelledby="filters_header" aria-controls="space_count_container">
+        <form>
+            <!--filter container whose display: value is toggle to show and turn off"-->
+            <div id="filter_block" style="display: none" >
+                <h3 id="filters_header" class="">Filter By:</h3>
+                <div class="inner clearfix">
+                    <div class="inner-column">
+                        <div id="filter-clear">Filters Cleared</div>
+                        <div class="inner-block-left">
+
+
+                            <fieldset class="choice-group">
+                                <legend>Type &amp; Capacity</legend>
+                                <p><span class="small-text"><em>Select preferred types of space, if any:</em></span></p>
+                                <fieldset id="filter_space_types" class="choice-group clearfix">
+                                    <legend id="filter_space_types_header">Type of space:</legend>
+                                    <div style="width:auto;float:left; margin-right: 15px;">
+           <span class="checkbox">
+              <input type="checkbox" name="type" id="study_room" value="study_room">
+              <label class="inline" for="study_room">Study room</label>
+           </span>
+           <span class="checkbox">
+              <input type="checkbox" name="type" id="study_area" value="study_area">
+              <label class="inline" for="study_area">Study area</label>
+           </span>
+           <!--<span class="checkbox">
+              <input type="checkbox" name="type" id="computer_lab" value="computer_lab">
+              <label class="inline" for="computer_lab">Computer lab</label>
+           </span>-->
+           <!--<span class="checkbox">
+              <input type="checkbox" name="type" id="studio" value="studiextended_info:has_>
+              <label class="inline" for="studio">Production studio</label>
+           </span>-->
+           <span class="checkbox">
+              <input type="checkbox" name="type" id="classroom" value="classroom">
+              <label class="inline" for="classroom">Conference/<wbr><a class=wbr></a>classroom</label>
+           </span>
+                                    </div>
+
+                                    <div style="width:auto;float:left">
+           <span class="checkbox">
+              <input type="checkbox" name="type" id="open_space" value="open">
+              <label class="inline" for="open_space">Open space</label>
+           </span>
+           <span class="checkbox">
+              <input type="checkbox" name="type" id="lounge" value="lounge">
+              <label class="inline" for="lounge">Lounge</label>
+           </span>
+           <!--<span class="checkbox">
+              <input type="checkbox" name="type" id="cafe" value="cafe">
+              <label class="inline" for="cafe">Café</label>
+           </span>-->
+           <span class="checkbox">
+              <input type="checkbox" name="type" id="outdoor" value="outdoor">
+              <label class="inline" for="outdoor">Outdoor area</label>
+           </span>
+                                    </div>
+                                </fieldset>
+                                <fieldset id="filter_reservability" class="choice-group">
+                                    <legend id="filter_reservability_header">Reservability:</legend>
+       <span class="checkbox inline">
+          <input type="checkbox" id="reservable" value="true">
+          <label class="inline" for="reservable">Show reservable spaces only</label>
+       </span>
+                                </fieldset>
+                                <fieldset id="filter_capacity" class="choice-group">
+                                    <legend id="filter_capacity_header">Capacity</legend>
+                                    <label class="inline" for="capacity">Seats at least:</label>
+                                    <select id="capacity" style="width:60px;">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="25">25+</option>
+                                    </select>
+                                </fieldset>
+                            </fieldset>
+
+                        </div>
+                    </div>
+                    <div class="inner-column">
+
+                        <fieldset id="filter_hours" class="choice-group">
+                            <legend id="filter_hours_header">Hours</legend>
+                            <p id="open_hours_header"><span class="small-text"><em>Select open hours</em></span></p>
+                            <div>
+        <span class="radio inline">
+            <input type="radio" name="optionsHours" id="open_now" value="open_now" checked>
+            <label class="inline" for="open_now">Open now</label>
+        </span>
+        <span class="radio inline">
+            <input type="radio" name="optionsHours" id="hours_list_input" value="hours_list">
+            <label class="inline" for="hours_list_input">Specify day &amp; time</label>
+        </span>
+                            </div>
+
+                            <div id="hours_list_container" style="margin-top:8px; display:none; " aria-labelledby="from-time-heading">
+                                <div><span class="hours-from" id="from-time-heading">from</span>
+                                    <label class="hours-from visuallyhidden" for="day-from">from day:</label>
+                                    <select id="day-from">
+                                        <option value="Monday">MON</option>
+                                        <option value="Tuesday">TUE</option>
+                                        <option value="Wednesday">WED</option>
+                                        <option value="Thursday">THU</option>
+                                        <option value="Friday">FRI</option>
+                                        <option value="Saturday">SAT</option>
+                                        <option value="Sunday">SUN</option>
+                                    </select>
+                                    <label class="hours-from visuallyhidden" for="hour-from">from time:</label>
+                                    <select id="hour-from">
+                                        <option>12:00</option>
+                                        <option>12:30</option>
+                                        <option>1:00</option>
+                                        <option>1:30</option>
+                                        <option>2:00</option>
+                                        <option>2:30</option>
+                                        <option>3:00</option>
+                                        <option>3:30</option>
+                                        <option>4:00</option>
+                                        <option>4:30</option>
+                                        <option>5:00</option>
+                                        <option>5:30</option>
+                                        <option>6:00</option>
+                                        <option>6:30</option>
+                                        <option>7:00</option>
+                                        <option>7:30</option>
+                                        <option>8:00</option>
+                                        <option>8:30</option>
+                                        <option>9:00</option>
+                                        <option>9:30</option>
+                                        <option>10:00</option>
+                                        <option>10:30</option>
+                                        <option>11:00</option>
+                                        <option>11:30</option>
+                                    </select>
+                                    <label class="hours-from visuallyhidden" for="ampm-from">from: AM or PM?</label>
+                                    <select class="ampm" id="ampm-from">
+                                        <option value="AM">AM</option>
+                                        <option value="PM">PM</option>
+                                    </select>
+                                </div>
+
+
+                                <div aria-labelledby="until-time-heading">
+                                    <span class="hours-from" id="until-time-heading">until</span>
+                                    <label class="hour-until visuallyhidden" for="day-until">until day:</label>
+                                    <select id="day-until">
+                                        <option value="Monday">MON</option>
+                                        <option value="Tuesday">TUE</option>
+                                        <option value="Wednesday">WED</option>
+                                        <option value="Thursday">THU</option>
+                                        <option value="Friday">FRI</option>
+                                        <option value="Saturday">SAT</option>
+                                        <option value="Sunday">SUN</option>
+                                    </select>
+                                    <label class="hour-until visuallyhidden" for="hour-until">until time:</label>
+                                    <select id="hour-until">
+                                        <option>12:00</option>
+                                        <option>12:30</option>
+                                        <option>1:00</option>
+                                        <option>1:30</option>
+                                        <option>2:00</option>
+                                        <option>2:30</option>
+                                        <option>3:00</option>
+                                        <option>3:30</option>
+                                        <option>4:00</option>
+                                        <option>4:30</option>
+                                        <option>5:00</option>
+                                        <option>5:30</option>
+                                        <option>6:00</option>
+                                        <option>6:30</option>
+                                        <option>7:00</option>
+                                        <option>7:30</option>
+                                        <option>8:00</option>
+                                        <option>8:30</option>
+                                        <option>9:00</option>
+                                        <option>9:30</option>
+                                        <option>10:00</option>
+                                        <option>10:30</option>
+                                        <option>11:00</option>
+                                        <option>11:30</option>
+                                    </select>
+                                    <label class="hour-until visuallyhidden" for="ampm-until">until: AM or PM?</label>
+                                    <select class="ampm" id="ampm-until">
+                                        <option value="AM">AM</option>
+                                        <option value="PM">PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset id="filter_location" class="choice-group">
+                            <legend id="filter_location_header">Location</legend>
+                            <div>
+        <span class="radio inline">
+            <input type="radio" name="optionsLocations" id="entire_campus" value="entire_campus" checked>
+            <label class="inline" for="entire_campus">Entire campus</label>
+        </span>
+        <span class="radio inline">
+            <input type="radio" name="optionsLocations" id="building_list_input" value="building_list">
+            <label class="inline" for="building_list_input">Specific buildings</label>
+        </span>
+                            </div>
+                            <div id="building_list_container" style="margin-top:8px;display:none;"></div>
+
+                            <script id="building_list" type="text/x-handlebars-template">
+
+                                <label class="visuallyhidden" for="e9">Choose a building:</label>
+                                <select data-placeholder="Select building(s)" class="building-location chzn-select" name="e9" id="e9" multiple>
+                                    {{#alphaOptGroupsHTML data}}{{/alphaOptGroupsHTML}}
+                                </select>
+
+                            </script>
+                        </fieldset>
+
+
+
+                    </div>
+                    <div class="inner-column">
+                        <div class="inner-block-right">
+                            <fieldset id="filter_equipment_types" class="choice-group" style="margin-bottom:0px;">
+                                <legend id="filter_equipment_types_header">Resources</legend>
+                                <p class="small-text"><em>Select resources needed</em></p>
+
+                                <div style="width:auto;float:left; margin-right:15px;">
+        <span class="checkbox">
+            <input type="checkbox" id="whiteboards" name="equipment" value="whiteboards">
+            <label class="inline" for="whiteboards">Whiteboard</label>
+        </span>
+        <span class="checkbox">
+            <input type="checkbox" id="outlets" name="equipment" value="outlets">
+            <label class="inline" for="outlets">Outlets</label>
+        </span>
+        <span class="checkbox">
+            <input type="checkbox" id="computers" name="equipment" value="computers">
+            <label class="inline" for="computers">Computer</label>
+        </span>
+        <span class="checkbox">
+            <input type="checkbox" id="has_scanner" name="equipment" value="has_scanner">
+            <label class="inline" for="has_scanner">Scanning</label>
+        </span>
+                                </div>
+
+                                <div style="width:auto;float:left;">
+        <span class="checkbox">
+            <input type="checkbox" id="has_displays" name="equipment" value="has_displays">
+            <label class="inline" for="has_displays">Large display (for laptop)</label>
+        </span>
+        <span class="checkbox">
+            <input type="checkbox" id="projectors" name="equipment" value="projectors">
+            <label class="inline" for="projectors">Projector</label>
+        </span>
+        <span class="checkbox">
+            <input type="checkbox" id="printers" name="equipment" value="printers">
+            <label class="inline" for="printers">Printing</label>
+        </span>
+                                </div>
+                            </fieldset>
+
+                            <!--<fieldset id="filter_environment" class="choice-group">
+                                <legend id="filter_environment_header">Environment</legend>
+                                <p class="small-text"><em>Select preferred conditions, if any:</em></p>
+                                <div>
+                                    <fieldset id="filter_noise_level" class="choice-group">
+                                        <legend id="filter_noise_level_header">Noise level</legend>
+                                        <div aria-labelledby="filter_noise_level_header">
+                <span class="checkbox">
+                    <input type="checkbox" id="silent" name="noise_level" value="silent">
+                    <label class="inline" for="silent">Silent</label>
+                </span>
+                <span class="checkbox">
+                    <input type="checkbox" id="quiet" name="noise_level" value="quiet">
+                    <label class="inline" for="quiet">Low hum</label>
+                </span>
+                <span class="checkbox">
+                    <input type="checkbox" id="moderate" name="noise_level" value="moderate">
+                    <label class="inline" for="moderate">Chatter</label>
+                </span>
+                                        </div>
+                                    </fieldset>
+
+                                    <fieldset id="filter_lighting" class="choice-group">
+                                        <legend id="filter_lighting_header">Lighting</legend>
+            <span class="checkbox">
+                <input type="checkbox" id="lighting" name="has_natural_light"  value="true">
+                <label class="inline" for="lighting">Natural light</label>
+            </span>
+                                    </fieldset>
+
+                                    <fieldset id="filter_food_coffee" class="choice-group">
+                                        <legend id="filter_food_coffee_header">Food/Coffee</legend>
+            <span class="checkbox inline">
+                <input type="checkbox" id="space" name="food_nearby" value="space">
+                <label class="inline" for="space">In space</label>
+            </span>
+            <span class="checkbox inline">
+                <input type="checkbox" id="building" name="food_nearby" value="building">
+                <label class="inline" for="building">In building</label>
+            </span>
+            <span class="checkbox inline">
+                <input type="checkbox" id="neighboring" name="food_nearby" value="neighboring">
+                <label class="inline" for="neighboring">In neighboring building</label>
+            </span>
+                                    </fieldset>
+                                </div>
+                            </fieldset> -->
+
+
+                        </div>
+                    </div>
+                    <div class="inner-row">
+                        <button id="view_results_button" class="btn" type="button" aria-label="Apply Filters">Apply</button>
+                        <button id="cancel_results_button" class="btn" type="button" aria-label="Clear Filters">Reset</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="main_content" class="clearfix" role="main" aria-labelledby="app_header">
+        <h2 id="map_header" class="visuallyhidden" aria-hidden="true">Map of Spaces</h2>
+        <div id="map_canvas" aria-labelledby="map_header" aria-hidden="true"></div>
+
+        <script id="map_controls" type="text/x-handlebars-template">
+
+            <div class="map-control-container">
+                <a href="#" title="Recenter map"><img id="center_all" src="img/SS_img/center_all.png" alt="Recenter map" name="image" style="display: none;" /></a>&nbsp;
+            </div>
+
+        </script>
+
+        <!--space deetails container will appear right here when get something passed to it-->
+
+
+        <script id="space_details" type="text/x-handlebars-template">
+
+            <div class="space-detail-container">
+                <div class="space-detail">
+                    <div class="space-detail-inner" id="detail_container_{{id}}" aria-labelledby="space-detail-name" tabindex="0">
+                        <!--start of header block for pop up window with x in corner-->
+                        <div class="space-detail-header">
+                            <h2 id="space-detail-name" class="space-detail-name"><span class="visuallyhidden">Space Details:</span> <span>{{name}}</span></h2>
+                            <!--puts type of scool and if capacity field is not null then lists capacity-->
+                            <div class="space-detail-type">{{{type}}} {{#if capacity}}<span class="space-detail-capacity">[Seats&nbsp;{{capacity}}]</span>{{/if}}</div>
+                            <a class="close" href="#" title="close"><img alt="close details" src="img/SS_img/x.png" /></a>
+                            <div class="space-actions">
+                                <a id="show_reviews" class="space-stars" href="javascript:void(0);" title="See all reviews for {{name}}">
+                                    {{#each stars}}
+                                    <!--icon in this case is fa-star-o-->
+                                    <i class="fa {{icon}}"></i>
+                                    {{/each}}
+                                </a>
+                                <span id="space-average-rating-text" class="visuallyhidden">There are no reviews for {{name}}</span>
+                                <!--inserts the number of reviews in parenthesis-->
+                                <span id="review_count">({{review_count}})</span>
+                                <span class="divider"></span>
+                                <!--will have event listener attached to this button to go to user's page or will load up their favorites on the right scroll page-->
+                                <button id="favorite_space" title="Click to favorite {{name}}">
+                            	<span class="space-detail-fav space-detail-fav-unset">
+                            		<i class="fa fa-heart"></i>
+                            	</span> <span>Favorite</span>
+                                </button>
+
+                                <!--will have button to link to user page or come up with pop up-->
+                                <button id="share_space" title="Click to share {{name}}"><i class="fa fa-mail-forward"></i> Share</button>
+                            </div>
+                        </div>
+                        <div class="space-detail-body">
+
+                            <!--container with the picture and the camera and google ping icon-->
+                            <div class="clearfix">
+                                <!--container with just the picture in it-->
+
+                                <div class="space-detail-body-inner pull-left">
+                                    <!--container with just the picture in it without any margine-->
+                                    <div class="space-image">
+
+                                        <div id="spaceCarouselContainer" class="image-container" role="tabpanel">
+                                            <!--carousel-nav will be inserted here according to javascript and will initialize the navigation bar-->
+                                            <div id="myCarousel" class="carousel slide">
+                                                <!-- Carousel items -->
+                                                <div class="carousel-inner">
+                                                    <!--the images will be inserted here and when toggle the navigation then the class is changed to active-->
+                                                    <!--initializeCarousel() also handles toggling of pictures
+
+                                                    <!-- TODO: do an each loop of some sort -->
+
+                                                    {{carouselimages this}}
+
+                                                </div>
+                                                <!-- Carousel nav -->
+                                                <!-- the arrows on the left and right of the picture-->
+                                                <a class="carousel-control left" href="#myCarousel" title="previous image" data-slide="prev">&lsaquo;</a>
+                                                <a class="carousel-control right" href="#myCarousel" title="next image" data-slide="next">&rsaquo;</a>
+                                            </div>
+                                        </div>
+                                        <div id="spaceMap" class="map-container" style="display:none;" role="tabpanel">map goes here</div>
+                                    </div>
+
+                                </div>
+
+                                <!--these are the buttons where can select between seeing pictures and going to the map view of the space-->
+                                <div class="space-image-map-buttons btn-group pull-left" data-toggle="buttons-radio" role="tablist">
+                                    <button id="carouselControl" class="btn active" role="tab" aria-selected="true" aria-controls="spaceCarouselContainer"><span>Image gallery</span></button>
+                                    <button id="mapControl" class="btn" role="tab" aria-controls="spaceMap" aria-selected="false" data-location="[{{location.latitude}}, {{location.longitude}}]"><span>Show this space on a map</span></button>
+                                </div>
+
+                            </div>
+                            <!--larger container for all the info on the classrooms-->
+                            <div style="margin: 0 20px 20px 20px;">
+
+
+                                <div class="space-info">
+
+                                    <!--list that will have all of info that will appear under picture-->
+                                    <ul>
+
+                                        {{#if has_notes}}
+                                        <li class="clearfix">
+                                            <h3 class="space-info-label pull-left">Notes</h3>
+
+                                            <!--will have all the notes content on the right-->
+                                            <div class="space-info-detail pull-left">
+                                                {{#if extended_info}}
+                                                    {{#if extended_info.access_notes}}<p>{{extended_info.access_notes}}</p>{{/if}}
+                                                    {{#if extended_info.reservation_notes}}<p class="ei_reservation_notes">{{extended_info.reservation_notes}}</p>{{/if}}
+                                                {{/if}}
+                                            </div>
+                                        </li>
+                                        {{/if}}
+                                        {{#if extended_info.labstats_id}}
+                                        {{#if extended_info.auto_labstats_total}}
+                                        {{#compare extended_info.auto_labstats_total 0 operator="!="}}
+
+                                        <!
+                                        <li class="clearfix">
+                                            <h3 class="space-info-label pull-left">Computers</h3>
+                                            <div class="space-info-detail pull-left">
+
+                                                {{#compare extended_info.auto_labstats_available 0 operator=">"}}
+                                                <p><span class="computer-available">{{extended_info.auto_labstats_available}}</span> of {{extended_info.auto_labstats_total}} available</p>
+                                                {{^}}
+                                                <p><span class="computer-notavailable">{{extended_info.auto_labstats_available}}</span> of {{extended_info.auto_labstats_total}} available</p>
+                                                {{/compare}}
+                                            </div>
+                                        </li>
+                                        {{/compare}}
+                                        {{/if}}
+                                        {{/if}}
+
+                                        <li class="clearfix"><h3 class="space-info-label pull-left">Hours</h3><div class="space-info-detail pull-left">{{formatHours available_hours}}</div></li>
+                                        <li class="clearfix"><h3 class="space-info-label pull-left">Location</h3><div class="space-info-detail pull-left">{{extended_info.location_description}}</div></li>
+                                        {{#if has_resources}}
+                                        <li class="clearfix">
+                                            <h3 class="space-info-label pull-left">Resources</h3>
+                                            <div class="space-info-detail pull-left">
+                                                <ul class='space-info-resources-list'>
+                                                    {{#if extended_info.has_computers}}<li>Computers</li>{{/if}}
+                                                    {{#if extended_info.has_displays}}<li>Display</li>{{/if}}
+                                                    {{#if extended_info.has_outlets}}<li>Outlets</li>{{/if}}
+                                                    {{#if extended_info.has_printing}}<li>Printing</li>{{/if}}
+                                                    {{#if extended_info.has_projector}}<li>Projector</li>{{/if}}
+                                                    {{#if extended_info.has_scanner}}<li>Scanning</li>{{/if}}
+                                                    {{#if extended_info.has_whiteboards}}<li>Whiteboards</li>{{/if}}
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        {{/if}}
+
+                                        {{#if extended_info.noise_level}}
+                                        <li class="clearfix">
+                                            <h3 class="space-info-label pull-left">Noise Level</h3>
+                                            <div class="space-info-detail pull-left">
+
+                                                {{#compare extended_info.noise_level "quiet" operator="=="}}
+                                                Low hum
+                                                {{^}}
+                                                {{#compare extended_info.noise_level "moderate" operator="=="}}
+                                                Chatter
+                                                {{^}}
+                                                {{#compare extended_info.noise_level "silent" operator="=="}}
+                                                Silent
+                                                {{^}}
+                                                Variable
+                                                {{/compare}}
+                                                {{/compare}}
+                                                {{/compare}}
+
+                                            </div>
+                                        </li>
+                                        {{/if}}
+
+                                        {{#if extended_info.has_natural_light}}
+                                        <li class="clearfix"><h3 class="space-info-label pull-left">Lighting</h3><div class="space-info-detail pull-left">Natural light</div></li>
+                                        {{/if}}
+
+
+                                        {{#if extended_info.food_nearby}}
+                                        <li class="clearfix">
+                                            <h3 class="space-info-label pull-left">Food/Coffee</h3>
+                                            <div class="space-info-detail pull-left">
+
+                                                {{#compare extended_info.food_nearby "building" operator="=="}}
+                                                In building
+                                                {{^}}
+                                                {{#compare extended_info.food_nearby "space" operator="=="}}
+                                                In space
+                                                {{^}}
+                                                In neighboring building
+                                                {{/compare}}
+                                                {{/compare}}
+
+                                            </div>
+                                        </li>
+                                        {{/if}}
+
+                                        {{#if extended_info.hours_notes}}
+                                        <li class="clearfix">
+                                            <h3 class="space-info-label pull-left">Hours Notes</h3>
+                                            <div class="space-info-detail pull-left">
+                                                {{#if extended_info.hours_notes}}<p>{{extended_info.hours_notes}}</p>{{/if}}
+                                            </div>
+                                        </li>
+                                        {{/if}}
+
+                                    </ul>
+                                </div>
+                                <!-- loadRatingsAndReviews() function will flesh out this part of the-->
+
+                                <div class="space-ratings-and-reviews">
+                                    <!-- make container to write the review for this icon and images HERE!!!-->
+                                    <div class="loading"></div>
+                                </div>
+
+                                <div class="space-detail-report">
+                                    <a href="/contact/{{id}}/">Report a problem with this space</a>
+                                </div>
+
+                                <div class="space-detail-footer">This space was last updated on {{last_modified}} by UW-IT</div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </script>
+
+        <!--contains list of classrooms on the right-->
+        <div id="info_list">
+            <h2 id="space_list_header" class="visuallyhidden">List of Spaces</h2>
+            <div class="list-inner" aria-labelledby="space_list_header">
+                <div class="list-arrow"><a id="filter_link" title="List of spaces" href="#"><img alt="" src="img/SS_img/list.png" /></a></div>
+
+                <!-- TODO: need to implement if/else logic for spinner and info_items -->
+                <div class="loading"><div class="loading-inner" role="alert">&nbsp;&nbsp;Loading spaces...</div></div>
+
+
+                <div id="info_items"></div>
+
+                <!--list that populate right side with all the choices-->
+                <script id="all_markers" type="text/x-handlebars-template">
+
+
+                    {{#if data}}<ol class="lazyload-view">
+                    {{#each data}}
+
+                    <!-- space list start -->
+                    <li><h3 class="building_header">{{this.name}}</h3>
+                        <ol>{{#each this.spots}}
+                            <!--container for the whole data point (picture and the description on the right-->
+                            <li class="clearfix view-details">
+                                <!--larger image container-->
+                                <div class="space-detail-list-image pull-left">
+                                    {{#if images.0.id}}
+                                    <!--will have the image of the classroom-->   <!--BC change-->
+                                    <div class="space-detail-list-image-inner lazyloader" data-src="  {{images.0.url}}">&nbsp;</div>  <!--Brendan_Change where teh image is being loaded from -->
+                                    {{else}}
+                                    <div class="space-detail-list-image-inner space-detail-no-image">&nbsp;</div>
+                                    {{/if}}
+
+                                </div>
+
+                                <!--the right side that is the button with all the info-->
+                                <button id="{{id}}" class="space-detail-list-item pull-left" type="button" aria-label="Get space details for {{name}}" aria-owns="detail_container_{{id}}">
+                                    <div class="space-detail-type clearfix">
+                                        <!--lists out type of classroom-->
+                                        <span class="space-detail-type-label pull-left">{{{type}}}</span>
+                                        {{#if extended_info.labstats_id}}
+                                        {{#if extended_info.auto_labstats_total}}
+                                        {{#compare extended_info.auto_labstats_total 0 operator="!="}}
+                                        {{#compare extended_info.auto_labstats_available 0 operator=">"}}
+                                        <div class="space-detail-labstats pull-right"><p><span class="computer-available">{{extended_info.auto_labstats_available}}</span>/{{extended_info.auto_labstats_total}}</p></div>
+                                        {{^}}
+                                        <div class="space-detail-labstats pull-right"><p><span class="computer-notavailable">{{extended_info.auto_labstats_available}}</span>/{{extended_info.auto_labstats_total}}</p></div>
+                                        {{/compare}}
+                                        {{^}}
+                                        <span class="space-detail-capacity pull-right">{{#if capacity}}Seats&nbsp;{{capacity}}{{/if}}</span>
+                                        {{/compare}}
+                                        {{else}}
+                                        <span class="space-detail-capacity pull-right">{{#if capacity}}Seats&nbsp;{{capacity}}{{/if}}</span>
+                                        {{/if}}
+                                        {{else}}
+                                        <span class="space-detail-capacity pull-right">{{#if capacity}}Seats&nbsp;{{capacity}}{{/if}}</span>
+                                        {{/if}}
+                                    </div>
+
+                                    <div class="space-detail-name">{{name}}</div>
+                                    <div class="space-detail-desc">{{extended_info.location_description}}</div>
+                                </button>
+                            </li>
+                            {{/each}}</ol>
+                    </li>
+                    {{/each}}
+                </ol>
+                    {{else}}
+                    <li class="no-spaces">Sorry, no spaces match your filters!</li>
+                    {{/if}}
+
+
+                </script>
+                <!--end of templated info section on the right-->
+
+                <!--this script is for using the filter-->
+                <script id="cluster_list" type="text/x-handlebars-template">
+
+
+                    {{#if data}}<ol>
+                    {{#each data}}
+                    <li><h3 class="building_header">{{this.name}}</h3>
+                        <ol>{{#each this.spots}}
+                            <li class="clearfix view-details">
+                                <div class="space-detail-list-image pull-left">
+                                    {{#if images.0.id}}
+                                    <div class="space-detail-list-image-inner lazyloader " data-src="{{images.0.url}}">&nbsp;</div>
+                                    {{else}}
+                                    <div class="space-detail-list-image-inner space-detail-no-image">&nbsp;</div>
+                                    {{/if}}
+                                </div>
+                                <button  id="{{id}}" class="space-detail-list-item pull-left" type="button" aria-label="Get space details for {{name}}" aria-owns="detail_container_{{id}}">
+                                    <div class="space-detail-type clearfix">
+                                        <span class="space-detail-type-label pull-left">{{{type}}}</span>
+                                        {{#if extended_info.labstats_id}}
+                                        {{#if extended_info.auto_labstats_total}}
+                                        {{#compare extended_info.auto_labstats_total 0 operator="!="}}
+                                        {{#compare extended_info.auto_labstats_available 0 operator=">"}}
+                                        <div class="space-detail-labstats pull-right"><p><span class="computer-available">{{extended_info.auto_labstats_available}}</span>/{{extended_info.auto_labstats_total}}</p></div>
+                                        {{^}}
+                                        <div class="space-detail-labstats pull-right"><p><span class="computer-notavailable">{{extended_info.auto_labstats_available}}</span>/{{extended_info.auto_labstats_total}}</p></div>
+                                        {{/compare}}
+                                        {{^}}
+                                        <span class="space-detail-capacity pull-right">{{#if capacity}}Seats&nbsp;{{capacity}}{{/if}}</span>
+                                        {{/compare}}
+                                        {{else}}
+                                        <span class="space-detail-capacity pull-right">{{#if capacity}}Seats&nbsp;{{capacity}}{{/if}}</span>
+                                        {{/if}}
+                                        {{else}}
+                                        <span class="space-detail-capacity pull-right">{{#if capacity}}Seats&nbsp;{{capacity}}{{/if}}</span>
+                                        {{/if}}
+                                    </div>
+                                    <div class="space-detail-name">{{name}}</div>
+                                    <div class="space-detail-desc">{{extended_info.location_description}}</div>
+                                </button>
+                            </li>
+                            {{/each}}</ol>
+                    </li>
+                    {{/each}}</ol>
+                    {{else}}
+                    <li class="no-spaces">Sorry, no spaces match your filters!</li>
+                    {{/if}}
+
+
+                </script>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!--section for writing reviews-->
+    <script id="space_reviews" type="text/x-handlebars-template">
+
+        <div class="reviews-section-header">
+            <h3>Reviews for this space</h3>
+            <button id="Write_Review_btn" class="write-a-review add-a-review" type="button" aria-label="Write a review" aria-owns="WriteReview_container" style="display: none;" title="Click to write a review for this space"><i class="fa fa-pencil"></i> Write Review</button>
+        </div>
+        <div id="WriteReview_container" aria-labelledby="Write_Review_header" class="space-review-compose" style="display: none;">
+
+            <!-- CHANGE TO FORM -->
+            <h4 id="Write_Review_header">Write a review</h4>
+
+            <!-- change to radio form -->
+
+            <fieldset class="space-review-rating" required="required">
+                <legend id="Rate_header" class="rate-subhead">Rate this space (Required)</legend>
+                <ol>
+                    <li><input type="radio" name="star-rating" id="one-star" value="1" title="Click to rate this one star, I won't be back"><label for="one-star"><i class="fa fa-star-o"></i></label></li>
+                    <li><input type="radio" name="star-rating" id="two-star" value="2" title="Click to rate this two stars, I dislike it"><label for="two-star"><i class="fa fa-star-o"></i></label></li>
+                    <li><input type="radio" name="star-rating" id="three-star" value="3" title="Click to rate this three stars, It's OK"><label for="three-star"><i class="fa fa-star-o"></i></label></li>
+                    <li><input type="radio" name="star-rating" id="four-star" value="4" title="Click to rate this four stars, I like it"><label for="four-star"><i class="fa fa-star-o"></i></label></li>
+                    <li><input type="radio" name="star-rating" id="five-star" value="5" title="Click to rate this five stars, I love it"><label for="five-star"><i class="fa fa-star-o"></i></label></li>
+                </ol>
+                <span>&nbsp;</span>
+            </fieldset>
+
+            <div id="Char_counter" class="space-review-chars" role="status">
+                <strong><span id="space-review-remaining">300</span></strong> characters left
+            </div>
+            <!-- REVIEW COMMENT -->
+            <label for="Review_comment" class="visuallyhidden">Enter your review</label>
+            <textarea id="Review_comment" name="Review_comment" placeholder="Review is required. Please explain your star rating." maxlength="300" required="required"></textarea>
+
+            <a id="review_guidelines" href="javascript:void(0);" title="Click to see review guidelines"><i class="fa fa-angle-double-down"></i> Review Guidelines</a>
+
+            <ul style="display: none;">
+                <li>Explain your star rating—why you liked or disliked the space. </li>
+                <li>Be polite—no profanity.</li>
+                <li>Remember, your UW NetID will appear as the reviewer name.</li>
+            </ul>
+
+            <strong>Note:</strong> Your review will be published in 2-3 days if it meets review guidelines.
+            <br><br>
+
+            <!-- buttons -->
+            <div>
+                <button id="space-review-submit" class="btn primary-button" title="Submit your review and rating" disabled="disabled">Submit</button>
+                <button id="space-review-cancel" title="Cancel writing review">Cancel</button>
+            </div>
+
+        </div>
+
+        <div class="space-review-submitted border-rounded" style="display: none;">
+            <strong>Thank you for submitting a review!</strong><br />
+            You will receive an email once your submission has been reviewed; please allow three business days.
+            <a href="javascript:void(0);">Close</a>
+        </div>
+        <ol class="space-reviews-content"></ol>
+
+    </script>
+
+    <!--if there are no reviews available-->
+    <script id="no_space_reviews" type="text/x-handlebars-template">
+
+        <div class="space-reviews-none border-rounded">
+            Be the first to write a review for this space.
+            <br />
+            <button id="Write_Review_btn" class="write-a-review" title="Click to write a review for this space" type="button" aria-owns="WriteReview_container" ><i class="fa fa-pencil"></i>Write Review</button>
+        </div>
+
+    </script>
+
+
+    <script id="space_reviews_review" type="text/x-handlebars-template">
+
+        <li class="space-reviews-review">
+            <div class="space-review-header">
+        <span>
+	      <i class="fa fa-star-o fa-lg"></i>
+	      <i class="fa fa-star-o fa-lg"></i>
+	      <i class="fa fa-star-o fa-lg"></i>
+	      <i class="fa fa-star-o fa-lg"></i>
+	      <i class="fa fa-star-o fa-lg"></i>
+        </span>
+                <span id="space-rating-text" class="visuallyhidden">{{rating_description}}</span>
+                <span>By <strong>{{reviewer}}</strong> <span id="review-date" class="visuallyhidden">on</span> - {{date}}</span>
+            </div>
+            <div class="space-review-body">
+                {{review}}
+            </div>
+        </li>
+
+    </script>
+
+
+    <script id="rating_description_one_star" type="text/x-handlebars-template">
+
+        Rating: 1 out of 5 stars.
+
+    </script>
+
+
+    <script id="rating_description_two_star" type="text/x-handlebars-template">
+
+        Rating: 2 out of 5 stars.
+
+    </script>
+
+
+    <script id="rating_description_three_star" type="text/x-handlebars-template">
+
+        Rating: 3 out of 5 stars.
+
+    </script>
+
+
+    <script id="rating_description_four_star" type="text/x-handlebars-template">
+
+        Rating: 4 out of 5 stars.
+
+    </script>
+
+
+    <script id="rating_description_five_star" type="text/x-handlebars-template">
+
+        Rating: 5 out of 5 stars.
+
+    </script>
+
+
+    <script id="space_reviews_count" type="text/x-handlebars-template">
+
+        ({{count}})
+
+    </script>
+
+
+    <script id="space_average_rating" type="text/x-handlebars-template">
+
+        Average rating is {{decimal}} {{fraction}} star{{star_plural}} out of five, based on {{total}} review{{total_plural}}
+
+    </script>
+
+
+    <script id="more_space_reviews" type="text/x-handlebars-template">
+
+        <li class="more-space-reviews">
+            <a href="javascript:void(0);" title="Click to see more reviews"><i class="fa fa-angle-double-down"></i> See more reviews</a>
+        </li>
+
+    </script>
+
+
+
+
+    <div id="footer" class="clearfix" role="contentinfo">
+
+        <div class="pull-left copyright">
+            <!--<div id="SMU_Logo_Footer">
+                Text will be here!
+            </div>-->
+            <a href="http://www.smu.edu/" title="UW Online Privacy Statement" target="_blank">Privacy</a> |
+            <a href="http://www.smu.edu/" target="_blank" title="UW Website Terms & Conditions">Terms</a> |
+            <a href="http://www.smu.edu/" title="About StableStudy" target="_blank">About</a>  |
+            <a href="http://www.smu.edu/" title="FAQ about StableStudy" target="_blank">FAQ</a><br />
+            Copyright &copy; 2015 &nbsp;*{font: 10, no-squad} Productions, SMU
+        </div>
+        <div class="pull-right suggest" id="smallSuggest">Have a space to add? <a href="javascript:void(0);" id="suggest">Suggest it</a></div>
+        <!--<div class="pull-left partners">Brought to you by SMU GUI 2015 under the direction of professor Jackson</div>
+    </div>-->
+
+</div>
+
+<!-- jQuery -->
+
+
+<script type="text/javascript" src="js/SS_jquery.js"></script>
+<script type="text/javascript" src="js/SS_jquery-ui.js"></script>
+
+<!--spacescout javascript files ybder scripts (cached)-->
+
+<!--has initial jsons-->
+<script type="text/javascript" src="js/SS_html_js_1.js"></script>
+
+
+<!--has to do with google maps
+<script type="text/javascript" src="js/SS_js.js"></script> -->
+
+<!--same as spacescout.uw.edu/ and defines the get text library with the catalog dictionary-->
+<script type="text/javascript" src="js/initial_json_BC.js"></script>
+
+<!--API resonse not sure what used for -->
+<!--<script type="text/javascript" src="js/SS_vt_resources.js"></script>-->
+
+<!--other javascript files-->
+
+<!--Google Maps  javascripts-->
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyAKp8I19VjVf4sOzkRnKXKbdvSOKsqbubE&amp;libraries=geometry&amp;sensor=false"></script>
+        <!--<script type="text/javascript" src="js/SS_maps_main.js"></script>-->
+<!--<script type="text/javascript" src="js/SS_respond.js"></script>
+
+<!--this script will probably not work because uses wrong key...-->
+
+<!--
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.15&key=AIzaSyAKp8I19VjVf4sOzkRnKXKbdvSOKsqbubE&libraries=geometry&sensor=false"></script>
+
+
+<script type="text/javascript" src="js/SS_maps_geometry.js"></script>-->
+<!--deals with cookies and storage and event handlers-->
+    <script type="text/javascript" src="js/SS_jsi18n.js"></script>
+<script type="text/javascript" src="js/SS_cd8b7165c408.js"></script>
+
+<script>
+    window.by_building_zooms = [15, 16, 17];
+    window.by_distance_ratio = 0.04;
+    if ($.cookie('initial_load')) {
+        window.initial_load = false;
+    } else {
+        window.initial_load = true;
+    }
+    var failed = false;
+    if ($.cookie('default_location')) {
+        var defaults = $.cookie('default_location').split(',');
+        if (defaults.length >= 4) {
+            window.default_latitude = defaults[0];
+            window.default_longitude = defaults[1];
+            window.default_location = defaults[2];
+            window.default_zoom = parseInt(defaults[3]);
+        } else {
+            $.removeCookie('default_location');
+            failed = true;
+        }
+    } else {
+        failed = true;
+    }
+    if (failed) {
+        window.default_latitude = 32.8441;
+        window.default_longitude = -96.7849;
+        //window.default_location = "dallas";
+        window.default_zoom = 15;
+    }
+    var state = window.spacescout_url.parse_path(window.location.pathname);
+    if (state.hasOwnProperty('search') && window.default_location != state.campus) {
+        $('#location_select option').each(function (i) {
+            var location = $(this).val().split(',');
+            if (location[2] == state.campus) {
+                $(document).ready(function () {
+                    $('#location_select option:eq(' + i + ')').attr('selected', 'selected');
+                });
+                window.default_latitude = location[0];
+                window.default_longitude = location[1];
+                window.default_location = location[2];
+                window.default_zoom = parseInt(location[3]);
+            }
+        });
+    }
+    window.spacescout_authenticated_user = '';
+    window.spacescout_referrer = '';
+    window.spacescout_favorites_list = [];
+    $.ajaxSetup({
+        headers: { "X-CSRFToken": 'X5YSGMbmAi5wvtTOCUit0eBahZ3UtSpc' }
+    });
+</script>
+
+
+        <!--personal java script file-->
+        <script type="text/javascript" src="js/Brendan_1.js"></script>
+
+
+</body>
+</html>
+

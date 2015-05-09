@@ -1,0 +1,63 @@
+<!-- Should be moved into the main page -->
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="css/addRoom_and_registration.css">
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<title>Stable Study</title>
+
+</head>
+
+<header>
+
+	<div id="logo-container">
+		<div id="logo"><img src="img/StableStudyLogoLight.png"> Stable Study</div>
+		<br>
+	</div>
+
+</header>
+
+<body>
+<script src="js/meeting.js"></script>
+	<div id="content">
+	<section class="row">
+	<div class="col-borderless">
+		<table id="formTable"><tbody>
+		<form name="meeting" id="meeting"  enctype="application/json"  method="post">
+		<input type="hidden" name="redirect" value="index.html" form="meeting"> 
+		<tr><td><h4>Host Name: </td><td><input type="text" name="hostName" id="hostName" required/></h4></td></tr>
+		<tr><td><h4>Time: </td><td><input type="time" name="time" required/></h4></td></tr>
+		<tr><td><h4>Date: </td><td><input type="date" name="date" required/></h4></td></tr>
+		<tr><td><h4>Building: </td><td><input type="text" name="buildingName" required/></h4></td></tr>
+		<tr><td><h4>Room Number: </td><td><input type="text" name="roomNumber" required/></h4></td></tr>
+		<div id="dynamicInput">
+			<tr><td><h4>User to Invite #1: </td><td><input type ="text" name="users[0]" required/></td></tr>
+		</div>
+		</tbody></table>
+		<input type="button" class="btn" value="Add another user" onClick="addInput('dynamicInput');"/>
+		<br><br>
+		<input type="submit" class="btn" name="Submit" value="Submit"/>
+		</form>
+
+		<script type="text/javascript">
+			document.getElementById("hostName").value = getCookie("username");
+			$(function() {
+  			  $("form").submit(function(){
+    			    $.post('api/index.php/createMeeting', $("form").serialize(), function() {
+     				  window.location = 'index.html';
+    			    });
+    			  return false;
+  			  });
+			});
+		</script>
+	</div>
+	</section>
+	</div>
+</body>
+		
+</html>

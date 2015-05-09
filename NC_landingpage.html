@@ -2,8 +2,15 @@
 <html>
 <head>
 	<link rel='stylesheet' href='css/NC_landingpage.css'>
+	<link href="css/landingPageStyle2.css" rel="stylesheet">
+	
+	
 	<title>Welcome to Stable Study</title>
+	<script src="js/jquery-1.11.2.js"></script>
+	<script src="js/loginPageCookies.js"></script>
 </head>
+
+	
 	<body>
 		<div class="bg">
 			<img id="background-img" class="bg" src="images/shelves.jpg" alt="" />
@@ -14,15 +21,28 @@
 		<div>
 			<input type="submit" value="Get Started" class="button_style" onclick="window.open('registrationPage.html')">
 		</div>
-		<div class="login">
-			<form name="login" id="login" enctype="application/json"  method="post">
-			<table>
-			<tbody>
-			<tr><td>Email: </td><td><input type="email" name="email" required></td><td>Login</td></tr>
-			<tr><td>Password: </td><td><input type="password" name="password" required minlength="8"></td></tr>
-			</tbody></table>
-			<input type="button" onclick="loginForm(login)" name="Login" value="Login">
-			</form>
-		</div>
+		<div class="stableButtons">
+		<div  id="signinButton" >
+                    <a href="#about" class="btn btn-dark btn-lg" id="sign" >Sign In</a>
+
+        </div>
+        </div>
+        	<div class="userLogin">
+       	 		<div class="grad"></div>
+       	 		<div class="header2">
+        	    <div>Stable<span>Study</span></div>
+       	 	</div>
+       	 <br>
+	
+    	    <div class="login">
+    	        <p class="incorrect_Login" >***Username or Password Incorrect***</p>
+    	        <input type="text" placeholder="username" name="user" id="username"><br>
+    	        <input type="password" placeholder="password" name="password" id="userPassword" ><br>
+    	        <input type="button" value="Login" id="loginButton" class="loginBut">
+    	    </div>
+    	</div>
+    	
+    	<script src="js/BC_landingPage.js"></script>
+    
 	</body>
 </html>

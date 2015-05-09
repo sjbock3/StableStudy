@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">StableStudy</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="no_net_toast">Connect to the internet first!</string>
+    <string name="invalid_account_toast">Invalid Account Info</string>
+    <string name="title_activity_main_page">MainPage</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+    <string name="title_activity_register_page">RegisterPage</string>
+    <string name="regButton">Register</string>
+    <string name="account_create_failed">Account Creation Failed</string>
+    <string name="account_create_success">Account Created!</string>
+    <string name="title_activity_room_details">RoomDetails</string>
+    <string name="title_activity_add_room">AddRoom</string>
+    <string name="title_activity_take_picture">TakePicture</string>
+    <string name="title_activity_maps">Map</string>
+</resources>

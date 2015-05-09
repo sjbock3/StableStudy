@@ -1,0 +1,168 @@
+/* Changes: BC 3.30 */
+
+/*change background of drop down to green */
+#filter_container{
+    background-color: rgb(13, 236, 13);
+}
+
+#favSpaces{
+    color: green;
+
+    //background-color: blue;
+}
+
+/*styles the button that will load outdoor or indoor spaces*/
+#weather_Alert{
+    position: absolute;
+    float: right;
+    /*margin-top: -25px;*/
+    /*length: 75px;*/
+    width: auto;
+    margin-right: 0;
+    margin-left: 83%;
+    margin-top: 100px;
+    min-height:200px;
+    background-image: url('../img/stickyNote_2.png');
+    background-size: 100% 100%;
+
+    /* styles the font*/
+    min-width: 200px;
+    font-size: 20px;
+    font-family: sans-serif;
+
+}
+@font-face {
+    font-family: Blunt;
+    src: url('../fonts/Da_Blunt.TTF');
+}
+
+
+#weatherInfo{
+    float: left;
+    color: black;
+    font-family: Blunt, sans-serif;
+    font-size: 24px;
+    margin-left: 30px;
+}
+
+#weather_Alert h1{
+    float: left;
+    color: black;
+    font-size: 20px;
+    line-height: 22px;
+    margin: 15px;
+
+}
+
+#weatherButtonCont{
+
+    width: auto;
+    margin-top: 320px;
+    float: right;
+    max-width: 150px;
+    position: absolute;
+    float: right;
+    margin-right: 0;
+    margin-left: 84%;
+}
+
+#weatherButtonCont:hover{
+    border-color: white;
+}
+
+@font-face {
+    font-family: eraserRegular;
+    src: url('../fonts/DK_Cool_Crayon.ttf');
+}
+
+.sideButton {
+    font-family: eraserRegular, sans-serif;
+    color: white;
+    background-color: transparent;
+    min-width: 180px;
+    /*text-align: left;*/
+}
+
+#meetingButtonCont{
+    width: auto;
+    margin-top: 420px;
+    float: right;
+    max-width: 150px;
+    position: absolute;
+    float: right;
+    margin-right: 0;
+    margin-left: 84%;
+}
+
+html {
+    background-image: url("../img/chalkboard3.jpg");
+    background-repeat: no-repeat;
+    /*background-position: center center;*/
+    /*display: table;
+    position: relative;*/
+    width: 100%;                    /************Have to change these widths and heights******/
+    height: 100%;
+    background-size: 100% 100%
+    /*-webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;*/
+    /*background-color: green;*/
+}
+
+body {
+    background-color: transparent;
+}
+
+#headerLogo {
+    height: 50px;
+    display: inline;
+    color: #ffffff;
+}
+
+#nav .spacescout-header .logo-container {
+    background-color: transparent;
+    width: 250px;
+}
+
+#app_header {
+    font-size: large;
+    color: white;       /*????????????change to chalkboard*/
+}
+
+/*Change the color of user_content*/
+
+#nav .spacescout-header .user_context {
+    color: white;
+}
+
+#nav {
+    margin-top:50px;
+}
+
+#map_canvas{
+    /*background: url('../img/google_Maps_Pic.png');*/
+}
+
+/*Edits made 4/9/15 11:48pm*/
+#smallSuggest {
+    margin-right: 15px;
+}
+
+.location_container{
+    float: right;
+}
+#info_list #info_items ol li ol .view-details button {
+    float: right;
+    width: 45%;
+}
+
+.loading .loading-inner{
+    display: none
+}
+
+/*BC change 4/30*/
+#footer{
+    margin-top: -40px;
+    margin-left: 5px;
+}
