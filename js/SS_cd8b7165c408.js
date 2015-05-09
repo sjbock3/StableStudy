@@ -6532,7 +6532,7 @@ var requests = [];
                 var newUrl = spacedata.images[i].url;
                 var indexWWW = newUrl.indexOf('/www/');
                 var newSrc = newUrl.substr(indexWWW+5);
-                var image_url = "background:url(" + newSrc+")";
+                var image_url = "background:url(" + newSrc+"); background-size: cover; ";
                 div_string = "<div class='carousel-inner-image item'><div class='carousel-inner-image-inner' style='" + image_url + "'>&nbsp;</div></div>";
                 elements.push(div_string);
             }
