@@ -335,6 +335,7 @@
         
         $target_file = $_FILES['pictureurl']['name'];
         $url = '/var/www/upload/'. $fileNumber.".jpg";
+        $url2 = '/var/www/html/StableStudy/upload/'. $fileNumber.'.jpg';
 
         
         $pictureurl = $url;
@@ -355,7 +356,7 @@
             $roomid = $getRoomid['id'];
             $mysqli->query("INSERT INTO pictures(room_id, pictureurl) VALUES('$roomid', '$pictureurl')");
             echo json_encode(array('status'=>'success', 'problem'=>0));
-            move_uploaded_file($_FILES['pictureurl']['tmp_name'], $url);
+            move_uploaded_file($_FILES['pictureurl']['tmp_name'], $url2);
             return;
         }
 
