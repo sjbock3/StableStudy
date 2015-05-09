@@ -56,8 +56,8 @@ function addInput(divName){
 	  var newRow = tableRef.insertRow(tableRef.rows.length);
 	  var newCell1  = newRow.insertCell(0);
 	  var newCell2  = newRow.insertCell(1);
-          newCell1.innerHTML = "<p>User to invite #" + (counter + 1) + ": </p>";
-	  newCell2.innerHTML = "<input type=\"text\" name=\"users[" + counter + "]\" form=\"meeting\">";
+          newCell1.innerHTML = "<tr><td><h4>User to invite #" + (counter + 1) + ": </td><td>";
+	  newCell2.innerHTML = "<input type=\"text\" name=\"users[" + counter + "]\" form=\"meeting\"></td></tr>";
           counter++;
      }
 }
