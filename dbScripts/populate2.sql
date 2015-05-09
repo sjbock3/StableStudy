@@ -47,18 +47,18 @@ INSERT INTO locations(latitude, longitude, floor, buildingName, roomNumber, clas
 	(32.839658, -96.784334, NULL, 'Outside', NULL, 0, 1, 0, 0, NULL, 0, 0, 0, 0, FALSE);
 
 INSERT INTO pictures(picture_id, room_id, pictureurl) VALUES
-	(1, 1, '/var/www/html/StableStudy/upload/1.jpg'),
-	(2, 2, '/var/www/html/StableStudy/upload/2.jpg'),
-	(3, 3, '/var/www/html/StableStudy/upload/3.jpg'),
-	(4, 4, '/var/www/html/StableStudy/upload/4.jpg'),
-	(5, 5, '/var/www/html/StableStudy/upload/5.jpg'),
-	(6, 6, '/var/www/html/StableStudy/upload/6.jpg'),
-	(7, 7, '/var/www/html/StableStudy/upload/7.jpg'),
-	(8, 8, '/var/www/html/StableStudy/upload/8.jpg'),
-	(9, 9, '/var/www/html/StableStudy/upload/9.jpg'),
-	(10, 10, '/var/www/html/StableStudy/upload/10.jpg'),
-	(11, 11, '/var/www/html/StableStudy/upload/11.jpg'),
-	(12, 12, '/var/www/html/StableStudy/upload/12.jpg');
+	(1, 1, '/var/www/upload/1.jpg'),
+	(2, 2, '/var/www/upload/2.jpg'),
+	(3, 3, '/var/www/upload/3.jpg'),
+	(4, 4, '/var/www/upload/4.jpg'),
+	(5, 5, '/var/www/upload/5.jpg'),
+	(6, 6, '/var/www/upload/6.jpg'),
+	(7, 7, '/var/www/upload/7.jpg'),
+	(8, 8, '/var/www/upload/8.jpg'),
+	(9, 9, '/var/www/upload/9.jpg'),
+	(10, 10, '/var/www/upload/10.jpg'),
+	(11, 11, '/var/www/upload/11.jpg'),
+	(12, 12, '/var/www/upload/12.jpg');
 
 INSERT INTO favorites(username, favRoom) VALUES
 	('danhn', 1),
