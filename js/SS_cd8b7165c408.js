@@ -8243,7 +8243,7 @@ var spacescout_map = null,
                     $firstVisibleLazyItems.each(function() {
                         var $img = $(this);
                         var src = $img.data('src');
-                        src = "hello there yo";
+                        src = "/Brendan_url";
                         console.log('hello from src 2');
                         $img.css('background', 'transparent url("' + src + '") no-repeat 50% 50%');
                         $img.css('background-size','cover');
@@ -9416,7 +9416,7 @@ function dataLoaded(count) {
                     console.log('inside lazy item');
                     console.log($img);
                     var src = $img.data('src');
-                    src = "hello from Brendan"
+                    src="/Brendan_URL";
                     $img.css('background', 'transparent url("' + src + '") no-repeat 50% 50%');
                     $img.css('background-size','cover');
                 });
