@@ -334,7 +334,7 @@
         
         
         $target_file = $_FILES['pictureurl']['name'];
-        $url = '/var/www/upload/'. $fileNumber.".jpg";
+        $url = '/var/www/html/StableStudy/upload/'. $fileNumber.".jpg";
 
         
         $pictureurl = $url;
