@@ -6530,8 +6530,8 @@ var requests = [];
                 //image_url = "background:url(space/" + space_id + '/' + image_ + "/thumb/constrain/picture.jpg)";
                 /***where set background image***/
                 var newUrl = spacedata.images[i].url;
-                var indexWWW = src.indexOf('/www/');
-                var newSrc = src.substr(indexWWW+5);
+                var indexWWW = newUrl.indexOf('/www/');
+                var newSrc = newUrl.substr(indexWWW+5);
                 var image_url = "background:url(" + newSrc+")";
                 div_string = "<div class='carousel-inner-image item'><div class='carousel-inner-image-inner' style='" + image_url + "'>&nbsp;</div></div>";
                 elements.push(div_string);
