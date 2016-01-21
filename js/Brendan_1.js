@@ -84,12 +84,107 @@ var dummyClassData = {
 };
 
 //return true if raining and false if not raining
-function getRainyInfo(){
+function createWeather(){
     //query the weather database
+    weatherURL = 'api/index.php/getWeather';
+    $.get(weatherURL,function(data){
+        data = JSON.parse(data);
+        var newData = {};
+        newData.temperature = data.temperature;
+        if(data.storm == 'true'){
+            newData.sky = "Stormy";
 
-    return false;
+        }else{
+            newData.sky = "Sunny!";
+        }
+
+        if(data.precipitation == 'true' && data.windy == 'true'){
+            newData.condition = "Rainy and Windy";
+        }else if(data.precipitation == 'true'){
+            newData.condition = "Rainy";
+        }
+        else if(data.windy == 'true'){
+            newData.condition = "Windy";
+        }
+        else{
+            newData.condition = "Clear";
+        }
+
+        var beforeTemplate_1 = $('#weatherScript').html();
+        var Template_1 = Handlebars.compile(beforeTemplate_1);
+
+        var newHTML_1 = Template_1(newData);
+        $('#weather_Alert').html(newHTML_1);
+
+        var buttonData = {};
+        if(newData.condition == "Clear" && newData.sky == "Sunny!"){
+            buttonData.IndoorOutdoor = "Outdoor";
+        }
+        else{
+            buttonData.IndoorOutdoor = "Indoor";
+        }
+
+        var beforeTemplate_2 = $('#weatherButtonScript').html();
+        var Template_2 = Handlebars.compile(beforeTemplate_2);
+
+        var newHTML_2 = Template_2(buttonData);
+        $('#weatherButtonCont').html(newHTML_2);
+
+        $("#weatherButton").click(function(){
+            //alert('weatherButton clicked');
+            console.log('outside indoor/outdoor');
+            //clear the filter
+            clear_filter();
+            console.log('outside indoor/outdoor');
+            filterURL = 'api/index.php/search?' ;
+            var query = '';
+            if(buttonData.IndoorOutdoor == "Indoor"){
+                console.log('inside indoor');
+                query = 'chairs=0&open_now=1&study_room=1&study_area=1&classroom=1&open=1&lounge=1&outdoor=0&open_space=1&computers=0&whiteboards=0&printers=0&projectors=0&restricted=0';
+                    $.get(filterURL+query,function(data){
+                    _loadData(JSON.parse(data));
+                });
+                //check the outdoor spaces
+
+                /*$('#filter_space_types [type="checkbox"]').each(function() {
+                    console.log("this.val() = "+ $(this).attr('id'));
+                    if($(this ).attr('id') != "outdoor"){
+                        console.log('inside indoor checked loop');
+                        /*name is not outdoor
+                        $(this).prop( "checked" );
+                    }
+
+                })*/
+
+            }
+            else{
+                query = 'chairs=0&open_now=1&study_room=0&study_area=0&classroom=0&open=0&lounge=0&outdoor=1&open_space=0&computers=0&whiteboards=0&printers=0&projectors=0&restricted=0'
+                $.get(filterURL+query,function(data){
+                    _loadData(JSON.parse(data));
+                });
+                /*//check all but outdoor spaces
+                console.log('inside outdoor');
+                $('#outdoor').prop( "checked" );*/
+
+            }
+            //call the apply_custom_filter
+            //run_custom_search();
+            //clear_filter();
+
+
+        });
+
+    });
+
+
 }
 $(document).ready(function() {
+
+    /*BC_edit*/
+    $("#meetingButton").click(function(){
+        window.location.href = "meetingForm.html";
+    });
+
     var baseURL = 'http://192.168.33.10';
     //add the user's name in right corner
     var username = getCookie('fName');
@@ -104,10 +199,13 @@ $(document).ready(function() {
     //insert the new HTML
     $('#user_Greet').html(newHTML);
 
-
+    //will load all the sources from the database
+    window._fetchData();
+    window._reloadOnIdle();
 
     //get the weather info
-    var rainy = getRainyInfo();
+    createWeather();
+    /*var rainy = getRainyInfo();
     //get the script for weather alert:
     var beforeTemplate_1 = $('#weatherScript').html();
     var Template_1 = Handlebars.compile(beforeTemplate_1);
@@ -125,11 +223,12 @@ $(document).ready(function() {
         }
     }
 
-    var newHTML_1 = Template(data_1);
-    $('#weatherScript').html(newHTML_1);
-
+    var newHTML_1 = Template_1(data_1);
+    $('#weather_Alert').html(newHTML_1);*/
+    console.log($('#weatherButton').length + ' = weatherButton')
     //add the event handlers
     $("#weatherButton").click(function(){
+        //alert('weatherButton clicked');
         //clear the filter
         clear_filter();
         if(rainy == true){
@@ -182,6 +281,7 @@ $(document).ready(function() {
     fav_button.click(function (e) {
         /*make share pope up list*/
         window.location.href = '/userAccount#share';
+
     });
 
 
@@ -192,12 +292,17 @@ $(document).ready(function() {
     //get all the spaces from the database on initial load
     var AllInfoQuery = 'api/index.php/locinfo';
     $.get(AllInfoQuery,function(allRooms){
+        console.log("allRooms type = "+ allRooms);
         window._loadData(JSON.parse(allRooms));
+
     });
 
-    var userSpaces = {};
+    //at the initial onload of page will get the favorite spaces of the user
+    //so when putton is clicked then
+    /*var userSpaces = {};
     //get all the favorite spaces for username
     username = getCookie('username');
+    console.log('username = '+ username);
     var favQuery = 'api/index.php/favorites?username=' + username;
     var data2 = {
         'username':username
@@ -206,19 +311,68 @@ $(document).ready(function() {
 
     $.post(favQuery,data2, function(dataReceived){
         userSpaces = JSON.parse(dataReceived);
+    });*/
+
+
+    //click function when hit favorites button:
+    $("#favSpaces").click(function() {
+        //alert('favButtonClicked');
+        var userSpaces = {};
+        //get all the favorite spaces for username
+        username = getCookie('username');
+        console.log('username = '+ username);
+        var favQuery = 'api/index.php/getFavorites';
+        var data2 = {
+            'username':username
+        };
+
+
+        $.post(favQuery,data2, function(dataReceived){
+            console.log('dataRecieved from favorites = ' + dataReceived);
+            _loadData(JSON.parse(dataReceived));
+
+        });
+
     });
 
     //click function when hit favorites button:
-    $("favSpaces").click(function() {
-        if (userSpace != []) {
-            _loadData(userSpaces)
-        }
-        else{
-            alert('No current saved Favorite spaces');
-        }
+    $("#favSpaces").click(function() {
+        //alert('favButtonClicked');
+        var userSpaces = {};
+        //get all the favorite spaces for username
+        username = getCookie('username');
+        console.log('username = '+ username);
+        var favQuery = 'api/index.php/getFavorites';
+        var data2 = {
+            'username':username
+        };
+
+
+        $.post(favQuery,data2, function(dataReceived){
+            console.log('dataRecieved from favorites = ' + dataReceived);
+            _loadData(JSON.parse(dataReceived));
+
+        });
 
     });
 
+    $("#logOutButton").click(function(){
+        //delete the cookies
+
+        //alert('just eliminated cookie');
+        var names = ["status","fName","lName","school","username"];
+        var values = ["","","","",""]
+        setMultipleCookies(names, values);
+        window.location.href = "BC_LandingPage.html";
+    });
+
+    function setMultipleCookies(names,values){
+        var counter;
+        for(counter = 0;counter<names.length;counter++){
+            setCookie(names[counter],values[counter],1);
+        }
+        //console.log(document.cookie);
+    }
 
 
 
@@ -239,20 +393,41 @@ $(document).ready(function() {
     });*/
 
     //makes sure all the pictures will load
-    $('#info_list .lazyloader').each(function(){
-        var $img = $(this);
-        console.log('inside lazy item');
-        console.log($img);
-        var src = $img.data('src');
-        $img.css('background', 'transparent url("' + src + '") no-repeat 50% 50%');
-        $img.css('background-size','cover');
 
-    });
+    //can change images
+    /*setTimeout(function(){
+        var dummyBuildings = ["","Brendan's Dorm", "Fondren Library", "Fondren Science"];
+        /*console.log("dummyBuildings = " + dummyBuildings);
+         window._formatLocationFilter(dummyBuildings);*/
+
+     /*   alert('#BC_listImages length = ' + $('#BC_listImages').length);
+        $('#BC_listImages').each(function () {
+            alert('inside Brendan replace function');
+            var $img = $(this);
+            console.log('inside lazy item');
+            console.log($img);
+            var src = $img.data('src');
+            alert('about to set background')
+            src = 'http://google.com';
+
+            $img.css('background', 'transparent url("' + src + '") no-repeat 50% 50%');
+            $img.css('background-size', 'cover');
+
+        });
+
+    }, 5000);*/
+
+
+
+
+    //go and replace the background image
+    //$('.space0detail-list-image .lazyloader').
 
     setTimeout(function(){
         var dummyBuildings = ["","Brendan's Dorm", "Fondren Library", "Fondren Science"];
-        console.log("dummyBuildings = " + dummyBuildings);
-        window._formatLocationFilter(dummyBuildings);
+        /*console.log("dummyBuildings = " + dummyBuildings);
+        window._formatLocationFilter(dummyBuildings);*/
+
     }, 5000)//mock formatting the building list
 
 

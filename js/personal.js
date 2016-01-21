@@ -13,7 +13,7 @@ function getCookie(cname) {
 }
 
 $( document ).ready(function() {
-  $.post('http://localhost/StableStudy/api/index.php/getMeetings', {"hostName": "afulsom"}, function(json, textStatus) {
+  $.post('./api/index.php/getMeetings', {"hostName": getCookie("username")}, function (json, textStatus) {
 	/*var json = [
 {"meetingTime" : '2015-05-01 12:35:00',
 "buildingName": "caruth",
@@ -25,23 +25,24 @@ $( document ).ready(function() {
 "username": "andrew"}
 ];*/
 	json = JSON.parse(json);
-            $('#meetingTable').DataTable({
+	console.log(json);
+            $('#meetingTable').dataTable({
 		info: false,
 		scrollY: 400,
 		scrollCollapse: true,
 		paging: false,
 		searching: false,
 		"data": json,
-		"columns": [{"title":"Meeting Date and Time", "data": "meetingTime"},{"title":"Building and Room Number", "data": "buildingName" , "orderable": false ,"render": function(data, type, row, meta){return '<a href="index.html">'+data + ' '+ row["roomNumber"] +'</a>';}, "targets": 0},{"title":"Room Number", "data": "roomNumber", "visible": false, "orderable": false},{"title":"Host", "data": "users", "orderable": false}]});
+		"columns": [{"title":"Meeting Date and Time", "data": "meetingTime"},{"title":"Building and Room Number", "data": "buildingName" , "orderable": false ,"render": function(data, type, row, meta){return '<a href="index.html">'+data + ' '+ row["roomNumber"] +'</a>';}, "targets": 0},{"title":"Room Number", "data": "roomNumber", "visible": false, "orderable": false}]});
 });
-  $.post('http://localhost/StableStudy/api/index.php/seeFavorites', {"username": "afulsom"}, function(json, textStatus) {
+  $.post('./api/index.php/seeFavorites', {"username": getCookie("username")}, function (json, textStatus) {
 
 	/*json = [{"buildingName":"Caruth",
 		"roomNumber":145},
 		{"buildingName":"Junkins",
 		"roomNumber":101}];*/
 	json = JSON.parse(json);
-	$('#favoritesTable').DataTable({
+	$('#favoritesTable').dataTable({
 		info: false,
 		scrollY: 400,
 		scrollCollapse: true,

@@ -9,7 +9,7 @@ Design Documents:
 https://docs.google.com/spreadsheets/d/1Sl90qPphmEQ072cv8mI9FT-gsT-8ySRzIY2y5KLd6qg/edit
 
 Android APK
-https://drive.google.com/file/d/0B_AYxwYVpT71aERZdkNSSTZLc0E/view?usp=sharing
+https://drive.google.com/file/d/0B_AYxwYVpT71UWdmbFVyMUlDczA/view?usp=sharing
 
 
 

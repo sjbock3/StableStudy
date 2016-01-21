@@ -41,7 +41,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `stablestudy`.`pictures` ;
 
 CREATE TABLE IF NOT EXISTS `stablestudy`.`pictures` (
-  `picture_id` INT NOT NULL,
+  `picture_id` INT NOT NULL AUTO_INCREMENT,
   `room_id` INT NULL DEFAULT NULL,
   `pictureurl` VARCHAR(100) NULL DEFAULT NULL,
   PRIMARY KEY (`picture_id`),
@@ -76,7 +76,8 @@ CREATE TABLE IF NOT EXISTS `stablestudy`.`locations` (
   `printers` INT NULL DEFAULT NULL,
   `projectors` INT NULL DEFAULT NULL,
   `restricted` TINYINT(1) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  INDEX `buildingName` (`buildingName` ASC))
 ENGINE = InnoDB;
 
 
